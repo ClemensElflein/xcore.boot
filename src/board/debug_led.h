@@ -5,10 +5,10 @@
 #ifndef DEBUG_LED_H
 #define DEBUG_LED_H
 
-namespace DebugLed {
+namespace Board::DebugLed {
 void InitHw();
 
 void SetColor(float r, float g, float b);
-}  // namespace DebugLed
+}  // namespace Board::DebugLed
 
 #endif  // DEBUG_LED_H

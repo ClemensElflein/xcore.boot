@@ -4,11 +4,14 @@
 
 #include "main.h"
 
-#include "hw.h"
+#include "board/board.h"
+#include "board/debug_led.h"
+
+using namespace Board;
 
 int main() {
   HAL_Init();
-  InitHw();
+  InitBoard();
 
   float r = 0;
 

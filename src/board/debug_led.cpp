@@ -4,11 +4,12 @@
 
 #include "debug_led.h"
 
-#include "hw.h"
+#include "board.h"
 
 TIM_HandleTypeDef tim_led1_pwm;
 
-void DebugLed::InitHw() {
+namespace Board::DebugLed {
+void InitHw() {
   __HAL_RCC_GPIOF_CLK_ENABLE();
 
   __HAL_RCC_TIM23_CLK_ENABLE();
@@ -76,7 +77,7 @@ void DebugLed::InitHw() {
   HAL_TIM_PWM_Start(&tim_led1_pwm, TIM_CHANNEL_3);
 }
 
-void DebugLed::SetColor(float r, float g, float b) {
+void SetColor(float r, float g, float b) {
   r = pow(fmaxf(0.0, fminf(1.0, r)), 2.2);
   g = pow(fmaxf(0.0, fminf(1.0, g)), 2.2);
   b = pow(fmaxf(0.0, fminf(1.0, b)), 2.2);
@@ -85,3 +86,4 @@ void DebugLed::SetColor(float r, float g, float b) {
   tim_led1_pwm.Instance->CCR2 = static_cast<uint16_t>(g * 65535.0f);
   tim_led1_pwm.Instance->CCR3 = static_cast<uint16_t>(b * 65535.0f);
 }
+}  // namespace Board::DebugLed

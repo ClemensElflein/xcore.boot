@@ -53,7 +53,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
         src/interrupt.cpp
         src/hw.cpp
-        src/debug_led.cpp
+        src/board/board.cpp
+        src/board/debug_led.cpp
         src/main.cpp
 )
 
