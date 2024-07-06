@@ -4,11 +4,72 @@
 
 #include "debug_led.h"
 
+#include <tx_api.h>
+
 #include "board.h"
 
 TIM_HandleTypeDef tim_led1_pwm;
 
 namespace Board::DebugLed {
+
+uint8_t blink_thread_stack[512];
+TX_THREAD blink_thread;
+TX_MUTEX color_mutex;
+
+float current_r, current_g, current_b;
+
+MODE mode = BLINK;
+
+void blink_thread_entry(uint32_t arg) {
+  float r, g, b;
+  MODE m;
+  while (true) {
+    tx_mutex_get(&color_mutex, TX_WAIT_FOREVER);
+    r = current_r;
+    g = current_g;
+    b = current_b;
+    m = mode;
+    tx_mutex_put(&color_mutex);
+
+    switch (m) {
+      case PULSE:
+        for (float scale = 0.0f; scale < 1.0f; scale += 0.02) {
+          tim_led1_pwm.Instance->CCR1 =
+              static_cast<uint16_t>(powf(r, 2.2) * 65535.0f * scale);
+          tim_led1_pwm.Instance->CCR2 =
+              static_cast<uint16_t>(powf(g, 2.2) * 65535.0f * scale);
+          tim_led1_pwm.Instance->CCR3 =
+              static_cast<uint16_t>(powf(b, 2.2) * 65535.0f * scale);
+          tx_thread_sleep(1);
+        }
+        for (float scale = 1.0f; scale > 0.0f; scale -= 0.02) {
+          tim_led1_pwm.Instance->CCR1 =
+              static_cast<uint16_t>(powf(r, 2.2) * 65535.0f * scale);
+          tim_led1_pwm.Instance->CCR2 =
+              static_cast<uint16_t>(powf(g, 2.2) * 65535.0f * scale);
+          tim_led1_pwm.Instance->CCR3 =
+              static_cast<uint16_t>(powf(b, 2.2) * 65535.0f * scale);
+          tx_thread_sleep(1);
+        }
+
+        break;
+      default:;
+      case BLINK:
+        tim_led1_pwm.Instance->CCR1 =
+            static_cast<uint16_t>(powf(r, 2.2) * 65535.0f);
+        tim_led1_pwm.Instance->CCR2 =
+            static_cast<uint16_t>(powf(g, 2.2) * 65535.0f);
+        tim_led1_pwm.Instance->CCR3 =
+            static_cast<uint16_t>(powf(b, 2.2) * 65535.0f);
+        tx_thread_sleep(10);
+        tim_led1_pwm.Instance->CCR1 = 0;
+        tim_led1_pwm.Instance->CCR2 = 0;
+        tim_led1_pwm.Instance->CCR3 = 0;
+        tx_thread_sleep(10);
+        break;
+    }
+  }
+}
 void InitHw() {
   __HAL_RCC_GPIOF_CLK_ENABLE();
 
@@ -75,15 +136,27 @@ void InitHw() {
   HAL_TIM_PWM_Start(&tim_led1_pwm, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&tim_led1_pwm, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&tim_led1_pwm, TIM_CHANNEL_3);
+
+  current_r = current_g = current_b = 0.0f;
+
+  tx_mutex_create(&color_mutex, "DebugLed Mutex", 0);
+
+  tx_thread_create(&blink_thread, "Blink", blink_thread_entry, 0,
+                   blink_thread_stack, sizeof(blink_thread_stack), 8, 8,
+                   TX_NO_TIME_SLICE, TX_AUTO_START);
 }
 
 void SetColor(float r, float g, float b) {
-  r = pow(fmaxf(0.0, fminf(1.0, r)), 2.2);
-  g = pow(fmaxf(0.0, fminf(1.0, g)), 2.2);
-  b = pow(fmaxf(0.0, fminf(1.0, b)), 2.2);
+  tx_mutex_get(&color_mutex, TX_WAIT_FOREVER);
+  current_r = fmaxf(0.0, fminf(1.0, r));
+  current_g = fmaxf(0.0, fminf(1.0, g));
+  current_b = fmaxf(0.0, fminf(1.0, b));
+  tx_mutex_put(&color_mutex);
+}
 
-  tim_led1_pwm.Instance->CCR1 = static_cast<uint16_t>(r * 65535.0f);
-  tim_led1_pwm.Instance->CCR2 = static_cast<uint16_t>(g * 65535.0f);
-  tim_led1_pwm.Instance->CCR3 = static_cast<uint16_t>(b * 65535.0f);
+void SetMode(MODE m) {
+  tx_mutex_get(&color_mutex, TX_WAIT_FOREVER);
+  mode = m;
+  tx_mutex_put(&color_mutex);
 }
 }  // namespace Board::DebugLed

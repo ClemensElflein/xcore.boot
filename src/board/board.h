@@ -9,6 +9,7 @@
 
 namespace Board {
 // Initialize board hardware (clocks, etc)
+void InitBoardBase();
 void InitBoard();
 
 void Error_Handler();

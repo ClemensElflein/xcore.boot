@@ -6,13 +6,15 @@
 
 #include "debug_led.h"
 
+namespace Board {
 void SystemClock_Config();
 
-namespace Board {
-void InitHw() {
+void InitBoardBase() {
+  HAL_Init();
   SystemClock_Config();
-  DebugLed::InitHw();
 }
+
+void InitBoard() { DebugLed::InitHw(); }
 
 void SystemClock_Config() {
   RCC_OscInitTypeDef RCC_OscInitStruct = {};
@@ -64,6 +66,18 @@ void SystemClock_Config() {
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK) {
     Error_Handler();
   }
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM17) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
 }
 
 void Error_Handler() {

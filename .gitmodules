@@ -7,3 +7,6 @@
 [submodule "lib/cmsis_core"]
 	path = lib/cmsis_core
 	url = https://github.com/STMicroelectronics/cmsis_core
+[submodule "lib/threadx"]
+	path = lib/threadx
+	url = https://github.com/eclipse-threadx/threadx.git

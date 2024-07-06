@@ -13,6 +13,8 @@ target_compile_definitions(stm32h7xx_hal_driver PUBLIC
         STM32H723xx
         $<$<CONFIG:Debug>:DEBUG>
 )
+set(THREADX_ARCH cortex_m7)
+SET(THREADX_TOOLCHAIN gnu)
 
 target_include_directories(stm32h7xx_hal_driver PUBLIC
         conf
@@ -20,3 +22,5 @@ target_include_directories(stm32h7xx_hal_driver PUBLIC
         cmsis_device_h7/Include
         "stm32h7xx_hal_driver/Inc"
 )
+
+add_subdirectory(threadx)
