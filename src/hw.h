@@ -5,11 +5,10 @@
 #ifndef HW_H
 #define HW_H
 
-#include "stm32h7xx_hal.h"
 #include "debug_led.h"
+#include "stm32h7xx_hal.h"
 
 void InitHw();
 void Error_Handler();
 
-
-#endif //HW_H
+#endif  // HW_H

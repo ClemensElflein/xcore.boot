@@ -6,9 +6,9 @@
 #define DEBUG_LED_H
 
 namespace DebugLed {
-    void InitHw();
+void InitHw();
 
-    void SetColor(float r, float g, float b);
-}
+void SetColor(float r, float g, float b);
+}  // namespace DebugLed
 
-#endif //DEBUG_LED_H
+#endif  // DEBUG_LED_H

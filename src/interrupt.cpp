@@ -2,13 +2,13 @@
 // Created by clemens on 7/6/24.
 //
 
-#include "main.h"
 #include "interrupt.h"
+
+#include "main.h"
 /**
-  * @brief This function handles System tick timer.
-  */
-void SysTick_Handler(void)
-{
+ * @brief This function handles System tick timer.
+ */
+void SysTick_Handler(void) {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */

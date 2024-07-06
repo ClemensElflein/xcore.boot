@@ -6,12 +6,12 @@
 #define INTERRUPT_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 void SysTick_Handler(void);
 
-  #ifdef __cplusplus
+#ifdef __cplusplus
 }
 #endif
-#endif //INTERRUPT_H
+#endif  // INTERRUPT_H

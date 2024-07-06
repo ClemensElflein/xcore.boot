@@ -9,10 +9,8 @@
 extern "C" {
 #endif
 
-
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif //PINS_H
+#endif  // PINS_H

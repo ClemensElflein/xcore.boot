@@ -2,8 +2,9 @@
 // Created by clemens on 7/6/24.
 //
 
-#include "hw.h"
 #include "debug_led.h"
+
+#include "hw.h"
 
 TIM_HandleTypeDef tim_led1_pwm;
 
