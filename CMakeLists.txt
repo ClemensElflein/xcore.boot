@@ -55,6 +55,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         src/board/debug_led.cpp
         src/board/stm32h7xx_hal_timebase_tim.c
         src/board/hal_callbacks.c
+        src/board/id_eeprom.cpp
         src/main.cpp
         src/tx_initialize_low_level.S
 )

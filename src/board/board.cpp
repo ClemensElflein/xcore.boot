@@ -5,6 +5,7 @@
 #include "board.h"
 
 #include "debug_led.h"
+#include "id_eeprom.h"
 
 namespace Board {
 void SystemClock_Config();
@@ -14,7 +15,10 @@ void InitBoardBase() {
   SystemClock_Config();
 }
 
-void InitBoard() { DebugLed::InitHw(); }
+void InitBoard() {
+  DebugLed::InitHw();
+  ID::Init();
+}
 
 void SystemClock_Config() {
   RCC_OscInitTypeDef RCC_OscInitStruct = {};

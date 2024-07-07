@@ -8,6 +8,7 @@
 
 #include "board/board.h"
 #include "board/debug_led.h"
+#include "board/id_eeprom.h"
 
 using namespace Board;
 
@@ -16,22 +17,24 @@ TX_THREAD blink_thread;
 TX_MUTEX color_mutex;
 
 void blink_thread_entry(uint32_t arg) {
-  while (1) {
+  DebugLed::SetColor(0, 0, 255);
+  DebugLed::SetMode(DebugLed::PULSE);
+
+  uint8_t addr[6] = {};
+
+  bool test = Board::ID::GetMacAddress(addr, sizeof(addr));
+
+  if (test) {
     DebugLed::SetColor(255, 0, 0);
-    HAL_Delay(1123);
-    DebugLed::SetColor(0, 255, 0);
-    HAL_Delay(1123);
-    DebugLed::SetColor(0, 0, 255);
-    HAL_Delay(1123);
-    DebugLed::SetMode(DebugLed::PULSE);
-    HAL_Delay(1123);
-    DebugLed::SetColor(255, 0, 0);
-    HAL_Delay(1123);
-    DebugLed::SetColor(0, 255, 0);
-    HAL_Delay(1123);
-    DebugLed::SetColor(0, 0, 255);
-    HAL_Delay(1123);
     DebugLed::SetMode(DebugLed::BLINK);
+    while (1) {
+      tx_thread_sleep(TX_WAIT_FOREVER);
+    }
+  }
+
+  DebugLed::SetColor(0, 255, 0);
+  while (1) {
+    tx_thread_sleep(TX_WAIT_FOREVER);
   }
 }
 
