@@ -10,3 +10,6 @@
 [submodule "lib/threadx"]
 	path = lib/threadx
 	url = https://github.com/eclipse-threadx/threadx.git
+[submodule "lib/netxduo"]
+	path = lib/netxduo
+	url = https://github.com/eclipse-threadx/netxduo.git
