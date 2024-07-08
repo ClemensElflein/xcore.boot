@@ -15,8 +15,9 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 # Define the build type
 if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug")
+    set(CMAKE_BUILD_TYPE "Release")
 endif ()
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Os")
 
 # Set the project name
 set(CMAKE_PROJECT_NAME xore_boot)
@@ -60,6 +61,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         src/ethernet/nx_ethernet.cpp
         src/main.cpp
         src/tx_initialize_low_level.S
+        src/service_discovery.cpp
+        src/bootloader.cpp
 )
 
 # Add include paths
@@ -81,3 +84,11 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
         # Add user defined libraries
 )
+
+set_target_properties(${CMAKE_PROJECT_NAME}
+        PROPERTIES SUFFIX ".elf")
+
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} -Obinary ${CMAKE_PROJECT_NAME}.elf ${CMAKE_PROJECT_NAME}.bin
+        COMMAND ${CMAKE_OBJCOPY} -Oihex ${CMAKE_PROJECT_NAME}.elf ${CMAKE_PROJECT_NAME}.hex)

@@ -15,11 +15,12 @@
  */
 uint8_t RXBUF[pool_size] __attribute__((section(".EthPoolSection"))){};
 NX_PACKET_POOL ethernet_pool;
+TX_EVENT_FLAGS_GROUP dhcp_flags;
 
 /**
  * IP instance and the stack pointer for the IP thread
  */
-uint8_t ip_thread_stack[1024];
+uint8_t ip_thread_stack[4096];
 NX_IP ip{};
 
 // ARP cache
@@ -29,7 +30,7 @@ uint8_t arp_cache[1024];
  * ethernet_thread is used to start the DHCP process
  */
 TX_THREAD ethernet_thread;
-uint8_t ethernet_thread_stack[512];
+uint8_t ethernet_thread_stack[4096];
 
 NX_DHCP dhcp __attribute__((section(".EthPoolSection"))){};
 
@@ -140,8 +141,17 @@ bool TxPacket(NX_PACKET *packet) {
   return true;
 }
 
+void on_dhcp_changed(NX_DHCP *dhcp_ptr, UCHAR new_state) {
+  if (new_state == NX_DHCP_STATE_BOUND) {
+    // Got the IP address, notify
+    tx_event_flags_set(&dhcp_flags, DHCP_FLAGS::DHCP_FLAGS_HAS_IP, TX_OR);
+  }
+}
+
 void ethernet_thread_entry(ULONG input) {
   nx_dhcp_create(&dhcp, &ip, "nx");
+
+  nx_dhcp_state_change_notify(&dhcp, on_dhcp_changed);
 
   nx_dhcp_start(&dhcp);
 
@@ -153,6 +163,9 @@ void ethernet_thread_entry(ULONG input) {
 
 void nx_ethernet_init() {
   nx_system_initialize();
+
+  tx_event_flags_create(&dhcp_flags, "dhcp_flags");
+
   // +14 for the ethernet header
   nx_packet_pool_create(&ethernet_pool, "NetXDuo App Pool",
                         max_payload_size + 14, RXBUF, sizeof(RXBUF));
@@ -162,6 +175,7 @@ void nx_ethernet_init() {
                9);
   nx_arp_enable(&ip, arp_cache, sizeof(arp_cache));
   nx_icmp_enable(&ip);
+  nx_tcp_enable(&ip);
   nx_udp_enable(&ip);
 
   tx_thread_create(&ethernet_thread, "NetXDuo thread", ethernet_thread_entry, 0,

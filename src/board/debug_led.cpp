@@ -31,41 +31,60 @@ void blink_thread_entry(uint32_t arg) {
     m = mode;
     tx_mutex_put(&color_mutex);
 
+    uint8_t sleep_ticks;
+    switch (m) {
+      case PULSE_SLOW:
+        sleep_ticks = 4;
+        break;
+      case PULSE:
+        sleep_ticks = 1;
+        break;
+      case BLINK_SLOW:
+        sleep_ticks = 15;
+        break;
+      default:
+      case BLINK:
+        sleep_ticks = 5;
+        break;
+    }
+
     switch (m) {
       case PULSE:
-        for (float scale = 0.0f; scale < 1.0f; scale += 0.02) {
+      case PULSE_SLOW:
+        for (float scale = 0.0f; scale < 1.0f; scale += 0.04) {
           tim_led1_pwm.Instance->CCR1 =
               static_cast<uint16_t>(powf(r, 2.2) * 65535.0f * scale);
           tim_led1_pwm.Instance->CCR2 =
               static_cast<uint16_t>(powf(g, 2.2) * 65535.0f * scale);
           tim_led1_pwm.Instance->CCR3 =
               static_cast<uint16_t>(powf(b, 2.2) * 65535.0f * scale);
-          tx_thread_sleep(1);
+          tx_thread_sleep(sleep_ticks);
         }
-        for (float scale = 1.0f; scale > 0.0f; scale -= 0.02) {
+        for (float scale = 1.0f; scale > 0.0f; scale -= 0.04) {
           tim_led1_pwm.Instance->CCR1 =
               static_cast<uint16_t>(powf(r, 2.2) * 65535.0f * scale);
           tim_led1_pwm.Instance->CCR2 =
               static_cast<uint16_t>(powf(g, 2.2) * 65535.0f * scale);
           tim_led1_pwm.Instance->CCR3 =
               static_cast<uint16_t>(powf(b, 2.2) * 65535.0f * scale);
-          tx_thread_sleep(1);
+          tx_thread_sleep(sleep_ticks);
         }
 
         break;
       default:;
       case BLINK:
+      case BLINK_SLOW:
         tim_led1_pwm.Instance->CCR1 =
             static_cast<uint16_t>(powf(r, 2.2) * 65535.0f);
         tim_led1_pwm.Instance->CCR2 =
             static_cast<uint16_t>(powf(g, 2.2) * 65535.0f);
         tim_led1_pwm.Instance->CCR3 =
             static_cast<uint16_t>(powf(b, 2.2) * 65535.0f);
-        tx_thread_sleep(10);
+        tx_thread_sleep(sleep_ticks);
         tim_led1_pwm.Instance->CCR1 = 0;
         tim_led1_pwm.Instance->CCR2 = 0;
         tim_led1_pwm.Instance->CCR3 = 0;
-        tx_thread_sleep(10);
+        tx_thread_sleep(sleep_ticks);
         break;
     }
   }

@@ -20,7 +20,7 @@ struct EthDescriptor {
   volatile uint32_t reserved[2];
 };
 
-static constexpr uint8_t TX_DESC_COUNT = 50;
+static constexpr uint8_t TX_DESC_COUNT = 5;
 static constexpr uint8_t RX_DESC_COUNT = 5;
 
 volatile EthDescriptor TX_DESC_TABLE[TX_DESC_COUNT]
@@ -193,10 +193,9 @@ bool TxPacket(void *buffer, void *user_ptr, size_t size, uint32_t tx_flags) {
 }
 
 void InitPHY() {
-  /* USER CODE BEGIN PHY_INIT_1 */
   // Reset the chip
-  mdio_write(31, 0x1F, 0xFA00);
-  mdio_write(31, 0x01, 0xFFFF);
+  // mdio_write(31, 0x1F, 0xFA00);
+  // mdio_write(31, 0x01, 0xFFFF);
 
   // Wait for switch to be ready
   while (1) {

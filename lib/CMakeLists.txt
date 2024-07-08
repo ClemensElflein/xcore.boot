@@ -28,7 +28,7 @@ target_link_options(threadx INTERFACE
         "--specs=nosys.specs"
 )
 
-
+# We do this instead of add_subdirectory(netxduo) in order to have fine-grained control over what gets compiled into our project.
 add_library(netxduo
         netxduo/common/src/nx_arp_announce_send.c
         netxduo/common/src/nx_arp_dynamic_entries_invalidate.c

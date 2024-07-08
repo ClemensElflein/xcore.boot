@@ -8,7 +8,7 @@
 namespace Board {
 namespace DebugLed {
 
-enum MODE { BLINK, PULSE };
+enum MODE { BLINK, BLINK_SLOW, PULSE, PULSE_SLOW };
 
 void InitHw();
 
