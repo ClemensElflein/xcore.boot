@@ -4,6 +4,8 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cmsis_core" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cmsis_device_h7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/netxduo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/stm32h7xx_hal_driver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/threadx" vcs="Git" />
   </component>
 </project>

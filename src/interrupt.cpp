@@ -15,3 +15,7 @@ void TIM17_IRQHandler(void) {
 
   /* USER CODE END TIM17_IRQn 1 */
 }
+void HardFault_Handler() {
+  while (1) {
+  }
+}

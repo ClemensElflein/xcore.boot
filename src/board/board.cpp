@@ -21,6 +21,7 @@ void InitBoard() {
 }
 
 void SystemClock_Config() {
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
   RCC_OscInitTypeDef RCC_OscInitStruct = {};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {};
 

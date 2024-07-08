@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 void TIM17_IRQHandler(void);
+void HardFault_Handler();
 #ifdef __cplusplus
 }
 #endif

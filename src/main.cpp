@@ -9,10 +9,11 @@
 #include "board/board.h"
 #include "board/debug_led.h"
 #include "board/id_eeprom.h"
+#include "ethernet/nx_ethernet.hpp"
 
 using namespace Board;
 
-uint8_t blink_thread_stack[1024];
+uint8_t blink_thread_stack[4096];
 TX_THREAD blink_thread;
 TX_MUTEX color_mutex;
 
@@ -24,23 +25,26 @@ void blink_thread_entry(uint32_t arg) {
 
   bool test = Board::ID::GetMacAddress(addr, sizeof(addr));
 
-  if (test) {
+  if (!test) {
     DebugLed::SetColor(255, 0, 0);
     DebugLed::SetMode(DebugLed::BLINK);
     while (1) {
       tx_thread_sleep(TX_WAIT_FOREVER);
     }
   }
-
   DebugLed::SetColor(0, 255, 0);
   while (1) {
     tx_thread_sleep(TX_WAIT_FOREVER);
   }
 }
 
-void tx_application_define(void*) {
+void tx_application_define(void *) {
   // Init board (DebugLED, Ethernet, ...)
   InitBoard();
+
+  SCB_EnableDCache();
+  SCB_DisableDCache();
+  nx_ethernet_init();
 
   tx_thread_create(&blink_thread, "Blink", blink_thread_entry, 0,
                    blink_thread_stack, sizeof(blink_thread_stack),

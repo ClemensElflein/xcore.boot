@@ -56,6 +56,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         src/board/stm32h7xx_hal_timebase_tim.c
         src/board/hal_callbacks.c
         src/board/id_eeprom.cpp
+        src/ethernet/ethernet.cpp
+        src/ethernet/nx_ethernet.cpp
         src/main.cpp
         src/tx_initialize_low_level.S
 )
@@ -63,6 +65,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         # Add user defined include paths
+        SW-API/include
+        SW-API/src
 )
 
 # Add project symbols (macros)
@@ -73,7 +77,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
         stm32h7xx_hal_driver
-        threadx
+        netxduo
 
         # Add user defined libraries
 )

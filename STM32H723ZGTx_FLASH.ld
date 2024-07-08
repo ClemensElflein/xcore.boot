@@ -177,7 +177,12 @@ SECTIONS
     . = ALIGN(8);
   } >DTCMRAM
 
-
+  .eth (NOLOAD) :
+  {
+    KEEP(*(.RxDecripSection))
+    KEEP(*(.TxDecripSection))
+    KEEP(*(.EthPoolSection))
+  } >RAM
 
   /* Remove information from the standard libraries */
   /DISCARD/ :
