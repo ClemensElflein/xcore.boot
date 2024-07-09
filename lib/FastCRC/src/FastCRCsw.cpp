@@ -29,6 +29,7 @@
 //
 // - Danjel McGougan (CRC-Table-Generator)
 //
+#include <cstddef>
 
 #if defined(ARDUINO)
 #include <Arduino.h>
