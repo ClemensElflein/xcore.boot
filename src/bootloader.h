@@ -5,6 +5,6 @@
 #ifndef BOOTLOADER_H
 #define BOOTLOADER_H
 
-void InitBootloader();
+bool InitBootloader();
 
-#endif //BOOTLOADER_H
+#endif  // BOOTLOADER_H

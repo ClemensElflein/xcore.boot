@@ -5,6 +5,6 @@
 #ifndef SERVICE_DISCOVERY_H
 #define SERVICE_DISCOVERY_H
 
-void InitServiceDiscovery();
+bool InitServiceDiscovery();
 
-#endif //SERVICE_DISCOVERY_H
+#endif  // SERVICE_DISCOVERY_H
