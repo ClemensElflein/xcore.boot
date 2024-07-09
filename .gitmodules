@@ -13,6 +13,3 @@
 [submodule "lib/netxduo"]
 	path = lib/netxduo
 	url = https://github.com/eclipse-threadx/netxduo.git
-[submodule "lib/FastCRC"]
-	path = lib/FastCRC
-	url = https://github.com/FrankBoesing/FastCRC.git
