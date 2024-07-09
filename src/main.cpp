@@ -28,9 +28,8 @@ NX_HTTP_SERVER http_server;
 uint8_t http_thread_stack[2048 * 16];
 
 void blink_thread_entry(uint32_t arg) {
-  fx_media_open(&ram_disk, "RAM DISK", fx_ram_driver,
-                _home_clemens_Dev_xcore_xcore_boot_image_image_dat,
-                media_memory, sizeof(media_memory));
+  fx_media_open(&ram_disk, "RAM DISK", fx_ram_driver, image_dat, media_memory,
+                sizeof(media_memory));
   nx_http_server_create(&http_server, "test", &ip, &ram_disk, http_thread_stack,
                         sizeof(http_thread_stack), &ethernet_pool, NX_NULL,
                         NX_NULL);
