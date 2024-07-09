@@ -542,11 +542,13 @@ add_library(netxduo
         netxduo/common/src/nxe_udp_socket_vlan_priority_set.c
         netxduo/common/src/nxe_udp_source_extract.c
         netxduo/addons/dhcp/nxd_dhcp_client.c
+        netxduo/addons/http/nxd_http_server.c
 )
 
 target_include_directories(netxduo PUBLIC
         netxduo/common/inc
         netxduo/addons/dhcp
+        netxduo/addons/http
         netxduo/ports/${THREADX_ARCH}/${THREADX_TOOLCHAIN}/inc
 )
 
@@ -568,7 +570,11 @@ target_compile_definitions(netxduo PUBLIC
         #        TX_ENABLE_EVENT_TRACE
 )
 
-target_link_libraries(netxduo PUBLIC threadx)
+
+add_subdirectory(filex)
+
+target_link_libraries(netxduo PUBLIC threadx filex)
+
 
 add_library(FastCRC
         FastCRC/src/FastCRCsw.cpp

@@ -16,7 +16,7 @@ enum DHCP_FLAGS : ULONG { DHCP_FLAGS_NONE = 0, DHCP_FLAGS_HAS_IP = 1 };
 
 // 1500 MTU + 14 for the ethernet header + 4 for CRC
 constexpr size_t max_payload_size = 1518;
-constexpr size_t pool_size = max_payload_size * 20;
+constexpr size_t pool_size = max_payload_size * 50;
 extern NX_IP ip;
 extern TX_EVENT_FLAGS_GROUP dhcp_flags;
 

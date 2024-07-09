@@ -63,6 +63,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         src/tx_initialize_low_level.S
         src/service_discovery.cpp
         src/bootloader.cpp
+        src/filex/fx_ram_driver.c
 )
 
 # Add include paths
@@ -77,11 +78,15 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
         # Add user defined symbols
 )
 
+add_subdirectory(image)
+
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
         stm32h7xx_hal_driver
         netxduo
+        filex
         FastCRC
+        binary_image
         # Add user defined libraries
 )
 

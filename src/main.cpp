@@ -4,6 +4,8 @@
 
 #include "main.h"
 
+#include <fx_api.h>
+#include <nxd_http_server.h>
 #include <tx_api.h>
 
 #include "board/board.h"
@@ -12,17 +14,27 @@
 #include "bootloader.h"
 #include "ethernet/ethernet.hpp"
 #include "ethernet/nx_ethernet.hpp"
+#include "filex/ram_driver.h"
 #include "service_discovery.h"
 
 using namespace Board;
 
 TX_MUTEX color_mutex;
+TX_THREAD blink_thread;
+uint8_t blink_thread_stack[2048];
+FX_MEDIA ram_disk;
+unsigned char media_memory[512];
+NX_HTTP_SERVER http_server;
+uint8_t http_thread_stack[2048 * 16];
 
 void blink_thread_entry(uint32_t arg) {
-  // wait for address
-  uint32_t flags = 0;
-  // tx_event_flags_get(&dhcp_flags, DHCP_FLAGS_HAS_IP, TX_AND, &flags,
-  //                    TX_WAIT_FOREVER);
+  fx_media_open(&ram_disk, "RAM DISK", fx_ram_driver,
+                _home_clemens_Dev_xcore_xcore_boot_image_image_dat,
+                media_memory, sizeof(media_memory));
+  nx_http_server_create(&http_server, "test", &ip, &ram_disk, http_thread_stack,
+                        sizeof(http_thread_stack), &ethernet_pool, NX_NULL,
+                        NX_NULL);
+  nx_http_server_start(&http_server);
 
   uint8_t addr[6] = {};
 
@@ -45,6 +57,8 @@ void tx_application_define(void *) {
 
   nx_ethernet_init();
 
+  fx_system_initialize();
+
   if (!InitServiceDiscovery()) {
     DebugLed::SetColor(255, 0, 0);
     DebugLed::SetMode(DebugLed::BLINK);
@@ -60,10 +74,10 @@ void tx_application_define(void *) {
   //
   //
   //
-  // tx_thread_create(&blink_thread, "Blink", blink_thread_entry, 0,
-  //                  blink_thread_stack, sizeof(blink_thread_stack),
-  //                  TX_MAX_PRIORITIES - 1, TX_MAX_PRIORITIES - 2,
-  //                  TX_NO_TIME_SLICE, TX_AUTO_START);
+  tx_thread_create(&blink_thread, "Blink", blink_thread_entry, 0,
+                   blink_thread_stack, sizeof(blink_thread_stack),
+                   TX_MAX_PRIORITIES - 1, TX_MAX_PRIORITIES - 2,
+                   TX_NO_TIME_SLICE, TX_AUTO_START);
 }
 
 int main() {

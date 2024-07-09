@@ -13,3 +13,6 @@
 [submodule "lib/netxduo"]
 	path = lib/netxduo
 	url = https://github.com/eclipse-threadx/netxduo.git
+[submodule "lib/filex"]
+	path = lib/filex
+	url = https://github.com/eclipse-threadx/filex.git
