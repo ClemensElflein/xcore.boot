@@ -4,13 +4,18 @@
 
 #include "id_eeprom.h"
 
+#include <FastCRC.h>
 #include <stm32h7xx_hal.h>
+#include <tx_api.h>
 
 #include "board.h"
 
 I2C_HandleTypeDef hi2c4;
+TX_MUTEX eeprom_mutex;
+FastCRC32 CRC32;
 
 void Board::ID::Init() {
+  tx_mutex_create(&eeprom_mutex, "EEPROM", 0);
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
 
@@ -68,8 +73,32 @@ void Board::ID::Init() {
   }
 }
 bool Board::ID::GetMacAddress(void* buf, size_t buflen) {
+  if (buflen < 6) return false;
+  tx_mutex_get(&eeprom_mutex, TX_WAIT_FOREVER);
   HAL_StatusTypeDef status = HAL_I2C_Mem_Read(
       &hi2c4, eeprom_device_address, 0xFA, I2C_MEMADD_SIZE_8BIT,
       static_cast<uint8_t*>(buf), 6, 1000);
+  tx_mutex_put(&eeprom_mutex);
   return status == HAL_OK;
+}
+bool Board::ID::SaveBootloaderInfo(struct bootloader_info* buffer) {
+  tx_mutex_get(&eeprom_mutex, TX_WAIT_FOREVER);
+  buffer->crc = CRC32.crc32((uint8_t*)buffer,
+                            sizeof(struct bootloader_info) - sizeof(uint32_t));
+
+  HAL_StatusTypeDef status = HAL_I2C_Mem_Write(
+      &hi2c4, eeprom_device_address, 0x00, I2C_MEMADD_SIZE_8BIT,
+      (uint8_t*)(buffer), sizeof(struct bootloader_info), 1000);
+  tx_mutex_put(&eeprom_mutex);
+  return status == HAL_OK;
+}
+bool Board::ID::GetBootloaderInfo(struct bootloader_info* buffer) {
+  tx_mutex_get(&eeprom_mutex, TX_WAIT_FOREVER);
+  HAL_StatusTypeDef status = HAL_I2C_Mem_Read(
+      &hi2c4, eeprom_device_address, 0x00, I2C_MEMADD_SIZE_8BIT,
+      (uint8_t*)(buffer), sizeof(struct bootloader_info), 1000);
+  uint32_t expected_crc = CRC32.crc32(
+      (uint8_t*)buffer, sizeof(struct bootloader_info) - sizeof(uint32_t));
+  tx_mutex_put(&eeprom_mutex);
+  return status == HAL_OK && expected_crc == buffer->crc;
 }

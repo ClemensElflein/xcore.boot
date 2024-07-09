@@ -6,6 +6,8 @@
 
 #include <cstdint>
 
+#include "../board/id_eeprom.h"
+
 /**
  * Make the descriptor 32 byte long, so that we can cache invalidate exactly one
  * descriptor without interfering with the neighboring descriptors.
@@ -80,7 +82,6 @@ void InitEthernet(AllocRxBuffer alloc_func, FreeTxBuffer free_func,
                   ReceivedCallback received_callback, size_t buffer_size) {
   /**
    * TODOS:
-   * - generate a mac address from UID
    * - allow d-cache (use MPU / invalidate cache)
    * - arp offloading (low prio)
    * - multicast
@@ -393,8 +394,14 @@ void InitMAC() {
   WRITE_REG(ETH->MACMDIOAR, ETH_MACMDIOAR_CR_DIV124);
 
   // Set the MAC address
-  WRITE_REG(ETH->MACA0HR, 0x0203);
-  WRITE_REG(ETH->MACA0LR, 0x01E18000);
+  uint8_t mac[6];
+  if (!Board::ID::GetMacAddress(&mac, 6)) {
+    while (1)
+      ;
+  }
+
+  WRITE_REG(ETH->MACA0HR, mac[5] << 8 | mac[4]);
+  WRITE_REG(ETH->MACA0LR, mac[3] << 24 | mac[2] << 16 | mac[1] << 8 | mac[0]);
 
   // Perfect filtering
   WRITE_REG(ETH->MACPFR, 0);

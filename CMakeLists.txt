@@ -81,7 +81,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 target_link_libraries(${CMAKE_PROJECT_NAME}
         stm32h7xx_hal_driver
         netxduo
-
+        FastCRC
         # Add user defined libraries
 )
 
