@@ -74,9 +74,6 @@ static void multicast_sender_thread(void *p) {
       status = sendto(
           sockfd, boardAdvertisementBuffer, strlen(boardAdvertisementBuffer), 0,
           (struct sockaddr *)&multicast_addr, sizeof(multicast_addr));
-      if (status < 0) {
-        // error
-      }
     }
   }
 

@@ -62,7 +62,7 @@ To upload a firmware image without Docker, use the `upload` command followed by 
     - The microcontroller responds with its IP address.
 
 2. **Establishing Connection:**
-    - The host connects to the microcontroller using TCP on port `4242`.
+    - The host connects to the microcontroller using TCP on port `8007`.
 
 3. **Handshake Protocol:**
     - The microcontroller sends variable pairs (if any) and requests the SHA256 checksum.

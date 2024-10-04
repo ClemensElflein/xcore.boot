@@ -8,8 +8,8 @@ import time
 import sys
 from tqdm import tqdm
 
-BROADCAST_PORT = 4242
-TCP_PORT = 4242
+BROADCAST_PORT = 8007
+TCP_PORT = 8007
 TIMEOUT = 0.5  # seconds
 
 def read_file(filename):

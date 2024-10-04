@@ -6,8 +6,8 @@
 #define SERVICE_DISCOVERY_H
 
 #define SD_MULTICAST_GROUP "255.255.255.255"
-#define SD_MULTICAST_PORT 4242
-#define SD_INTERVAL 2500
+#define SD_MULTICAST_PORT 8007
+#define SD_INTERVAL 500
 
 void InitServiceDiscovery();
 
