@@ -8,23 +8,20 @@ on:
       - 'feature/*'
 
 jobs:
-  pre-commit:
+  CI:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-
-      - name: Build Docker Image
-        run: docker build --output=out .
-
       - uses: actions/setup-python@v3
       - uses: pre-commit/action@v3.0.1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          context: bootloader
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          outputs: type=local,dest=./out
