@@ -55,8 +55,6 @@ int main(void) {
   // Start the actual Bootloader Task
   InitBootloaderThread();
 
-  chThdSleep(TIME_INFINITE);
-
   uint32_t sleep_count = 1000 / 100;
   while (sleep_count-- > 0) {
     chThdSleep(TIME_MS2I(100));
