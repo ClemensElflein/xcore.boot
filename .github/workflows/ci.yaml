@@ -25,3 +25,9 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           outputs: type=local,dest=./out
+      - name: Copy Artifacts
+        run: |
+          mkdir artifacts
+          mkdir ./artifacts/bootloader
+          cp ./bootloader/out/* ./artifacts/bootloader
+          cp ./bootloader/out/* ./artifacts/bootloader
