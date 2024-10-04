@@ -1,11 +1,15 @@
 #include "bootloader.h"
 
+// clang-format off
+#include "ch.h"
+#include "hal.h"
+// clang-format on
+
 #include <sha256.h>
 #include <stdlib.h>
 #include <stm32h7xx_hal.h>
 
 #include "board_ex.h"
-#include "ch.h"
 #include "chprintf.h"
 #include "globals.h"
 #include "lwip/sockets.h"

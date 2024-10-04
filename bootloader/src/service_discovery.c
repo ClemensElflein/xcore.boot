@@ -4,11 +4,14 @@
 
 #include "service_discovery.h"
 
+// clang-format off
+#include "ch.h"
+#include "hal.h"
+// clang-format on
+
 #include <string.h>
 
-#include "ch.h"
 #include "chprintf.h"
-#include "hal.h"
 #include "lwip/sockets.h"
 
 static char boardAdvertisementBuffer[1000];

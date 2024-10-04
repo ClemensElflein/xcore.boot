@@ -1,3 +1,8 @@
+// clang-format off
+#include "ch.h"
+#include "hal.h"
+// clang-format on
+
 #include <board_ex.h>
 #include <bootloader.h>
 #include <globals.h>
@@ -5,8 +10,6 @@
 #include <id_eeprom.h>
 #include <service_discovery.h>
 
-#include "ch.h"
-#include "hal.h"
 #include "lwipthread.h"
 
 /*
