@@ -48,6 +48,7 @@ jobs:
           path: artifacts/
   build-host-docker:
     name: "Build Host Software Docker Image"
+    needs: pre-commit
     runs-on: ubuntu-latest
     defaults:
       run:
