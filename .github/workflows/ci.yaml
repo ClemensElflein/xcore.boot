@@ -28,7 +28,7 @@ jobs:
       - name: Copy Artifacts
         run: |
           mkdir artifacts
-          cp ./host-software ./artifacts
+          cp -r ./host-software ./artifacts
           mkdir ./artifacts/bootloader
           cp ./bootloader/out/* ./artifacts/bootloader
           cp ./bootloader/out/* ./artifacts/bootloader
