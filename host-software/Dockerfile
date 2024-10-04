@@ -11,4 +11,4 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Command to run your Python script along with the specified arguments
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python", "xbot-boot.py"]

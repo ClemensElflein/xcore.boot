@@ -32,7 +32,7 @@ docker run --rm -it --network=host -v/path/to/your/firmware:/workdir ghcr.io/cle
 To upload a firmware image without Docker, use the `upload` command followed by the path to the image file:
 
 ```bash
-./xcore-upload.py upload path/to/your/image.bin
+./xcore-boot.py upload path/to/your/image.bin
 ```
 #### Prerequisites
 
@@ -46,13 +46,13 @@ To upload a firmware image without Docker, use the `upload` command followed by 
 - **`-i`, `--interface`:** Specify the network interface to use for communication.
 
   ```bash
-  ./xcore-upload.py -i eth0 upload firmware.bin
+  ./xcore-boot.py -i eth0 upload firmware.bin
   ```
 
 - **`--target-ip`:** Specify the IP address of the target board to skip service discovery.
 
   ```bash
-  ./xcore-upload.py --target-ip 192.168.1.100 upload firmware.bin
+  ./xcore-boot.py --target-ip 192.168.1.100 upload firmware.bin
   ```
 
 ## How It Works
@@ -94,7 +94,7 @@ If you want to run the host-software without docker, follow these steps:
 3. **Make the Host Utility Executable:**
 
    ```bash
-   chmod +x xcore-upload.py
+   chmod +x xcore-boot.py
    ```
 
 ## License
