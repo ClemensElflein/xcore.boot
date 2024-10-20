@@ -9,5 +9,5 @@ var searchData=
   ['traps',['Traps',['../group__snmp__traps.html',1,'']]],
   ['time',['Time',['../group__sys__time.html',1,'']]],
   ['tcp',['TCP',['../group__tcp__raw.html',1,'']]],
-  ['tftp_20server',['TFTP server',['../group__tftp.html',1,'']]]
+  ['tftp_20client_2fserver',['TFTP client/server',['../group__tftp.html',1,'']]]
 ];

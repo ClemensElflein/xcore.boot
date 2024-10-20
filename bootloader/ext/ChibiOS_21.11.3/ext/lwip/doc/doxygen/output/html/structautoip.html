@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -96,30 +96,26 @@ Data Fields</h2></td></tr>
 <tr class="separator:a13b5da8a86839b4cd9bd9f5400ac9dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51af55190548e378e310aeaddfa1fdef"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a51af55190548e378e310aeaddfa1fdef">state</a></td></tr>
 <tr class="separator:a51af55190548e378e310aeaddfa1fdef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d3e3bab2f12b7c7283177fbf039fb25"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a9d3e3bab2f12b7c7283177fbf039fb25">sent_num</a></td></tr>
-<tr class="separator:a9d3e3bab2f12b7c7283177fbf039fb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7510d9a2961ea7c28ebfcde6390284bf"><td class="memItemLeft" align="right" valign="top">u16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a7510d9a2961ea7c28ebfcde6390284bf">ttw</a></td></tr>
-<tr class="separator:a7510d9a2961ea7c28ebfcde6390284bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f51d8cde73e20d6e0ae3ec8053afb55"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a2f51d8cde73e20d6e0ae3ec8053afb55">lastconflict</a></td></tr>
-<tr class="separator:a2f51d8cde73e20d6e0ae3ec8053afb55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a472f3d18c07b3df024a0cde8f4ffa853"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a472f3d18c07b3df024a0cde8f4ffa853">tried_llipaddr</a></td></tr>
 <tr class="separator:a472f3d18c07b3df024a0cde8f4ffa853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1965250cda881d229e2a1fe146a0bb9e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structacd.html">acd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautoip.html#a1965250cda881d229e2a1fe146a0bb9e">acd</a></td></tr>
+<tr class="separator:a1965250cda881d229e2a1fe146a0bb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>AutoIP state information per netif </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a2f51d8cde73e20d6e0ae3ec8053afb55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f51d8cde73e20d6e0ae3ec8053afb55">&#9670;&nbsp;</a></span>lastconflict</h2>
+<a id="a1965250cda881d229e2a1fe146a0bb9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1965250cda881d229e2a1fe146a0bb9e">&#9670;&nbsp;</a></span>acd</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">u8_t autoip::lastconflict</td>
+          <td class="memname">struct <a class="el" href="structacd.html">acd</a> autoip::acd</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>ticks until a conflict can be solved by defending </p>
+<p>acd struct </p>
 
 </div>
 </div>
@@ -135,21 +131,6 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>the currently selected, probed, announced or used LL IP-Address </p>
-
-</div>
-</div>
-<a id="a9d3e3bab2f12b7c7283177fbf039fb25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d3e3bab2f12b7c7283177fbf039fb25">&#9670;&nbsp;</a></span>sent_num</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">u8_t autoip::sent_num</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>sent number of probes or announces, dependent on state </p>
 
 </div>
 </div>
@@ -180,21 +161,6 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>total number of probed/used Link Local IP-Addresses </p>
-
-</div>
-</div>
-<a id="a7510d9a2961ea7c28ebfcde6390284bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7510d9a2961ea7c28ebfcde6390284bf">&#9670;&nbsp;</a></span>ttw</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">u16_t autoip::ttw</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>ticks to wait, tick is AUTOIP_TMR_INTERVAL long </p>
 
 </div>
 </div>

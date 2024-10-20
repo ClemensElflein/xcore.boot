@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -261,6 +261,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Set igmp mac filter function for a netif. </p>
 
 </div>
 </div>
@@ -289,6 +290,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Set mld mac filter function for a netif. </p>
 
 </div>
 </div>
@@ -396,10 +398,10 @@ Functions</h2></td></tr>
     <tr><td class="paramname">state</td><td>opaque data passed to the new netif </td></tr>
     <tr><td class="paramname">init</td><td>callback function that initializes the interface </td></tr>
     <tr><td class="paramname">input</td><td>callback function that is called to pass ingress packets up in the protocol layer stack.<br />
-It is recommended to use a function that passes the input directly to the stack (<a class="el" href="group__lwip__nosys.html#ga5532f93d68c874fb99c681bff2165385">netif_input()</a>, NO_SYS=1 mode) or via sending a message to TCPIP thread (<a class="el" href="group__lwip__os.html#gae510f195171bed8499ae94e264a92717">tcpip_input()</a>, NO_SYS=0 mode).<br />
-These functions use netif flags NETIF_FLAG_ETHARP and NETIF_FLAG_ETHERNET to decide whether to forward to <a class="el" href="group__lwip__nosys.html#ga6a10c58b82c56d02c48b3cfa2c2494ff">ethernet_input()</a> or <a class="el" href="group__lwip__nosys.html#ga3c420dab0c6760df099a2d688fa42a26">ip_input()</a>. In other words, the functions only work when the netif driver is implemented correctly!<br />
-Most members of struct netif should be be initialized by the netif init function = netif driver (init parameter of this function).<br />
-IPv6: Don't forget to call <a class="el" href="group__netif__ip6.html#gae864211a5eb052deb5da7bc7e3427fb9">netif_create_ip6_linklocal_address()</a> after setting the MAC address in struct <a class="el" href="structnetif.html#aee967965d999fc1a4c40a66709304e69">netif.hwaddr</a> (IPv6 requires a link-local address).</td></tr>
+ It is recommended to use a function that passes the input directly to the stack (<a class="el" href="group__lwip__nosys.html#ga5532f93d68c874fb99c681bff2165385">netif_input()</a>, NO_SYS=1 mode) or via sending a message to TCPIP thread (<a class="el" href="group__lwip__os.html#gae510f195171bed8499ae94e264a92717">tcpip_input()</a>, NO_SYS=0 mode).<br />
+ These functions use netif flags NETIF_FLAG_ETHARP and NETIF_FLAG_ETHERNET to decide whether to forward to <a class="el" href="group__lwip__nosys.html#ga6a10c58b82c56d02c48b3cfa2c2494ff">ethernet_input()</a> or <a class="el" href="group__lwip__nosys.html#ga3c420dab0c6760df099a2d688fa42a26">ip_input()</a>. In other words, the functions only work when the netif driver is implemented correctly!<br />
+ Most members of struct netif should be be initialized by the netif init function = netif driver (init parameter of this function).<br />
+ IPv6: Don't forget to call <a class="el" href="group__netif__ip6.html#gae864211a5eb052deb5da7bc7e3427fb9">netif_create_ip6_linklocal_address()</a> after setting the MAC address in struct <a class="el" href="structnetif.html#aee967965d999fc1a4c40a66709304e69">netif.hwaddr</a> (IPv6 requires a link-local address).</td></tr>
   </table>
   </dd>
 </dl>
@@ -595,7 +597,7 @@ IPv6: Don't forget to call <a class="el" href="group__netif__ip6.html#gae864211a
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Send an IP packet to be received on the same netif (loopif-like). The pbuf is simply copied and handed back to netif-&gt;input. In multithreaded mode, this is done directly since netif-&gt;input must put the packet on a queue. In callback mode, the packet is put on an internal queue and is fed to netif-&gt;input by <a class="el" href="netif_8c.html#a0fbaed78253d21e1b54e65651da3e327">netif_poll()</a>.</p>
+<p>Send an IP packet to be received on the same netif (loopif-like). The pbuf is copied and added to an internal queue which is fed to netif-&gt;input by <a class="el" href="netif_8c.html#a0fbaed78253d21e1b54e65651da3e327">netif_poll()</a>. In multithreaded mode, the call to <a class="el" href="netif_8c.html#a0fbaed78253d21e1b54e65651da3e327">netif_poll()</a> is queued to be done on the TCP/IP thread. In callback mode, the user has the responsibility to call <a class="el" href="netif_8c.html#a0fbaed78253d21e1b54e65651da3e327">netif_poll()</a> in the main loop of their application.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">netif</td><td>the lwip network interface structure </td></tr>

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -140,7 +140,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>DNS_LOCAL_HOSTLIST: Implements a local host-to-address list. If enabled, you have to define an initializer: #define DNS_LOCAL_HOSTLIST_INIT {DNS_LOCAL_HOSTLIST_ELEM("host_ip4", <a class="el" href="group__ip4addr.html#ga55cc3896c46564bd2941ee5806fe1e11">IPADDR4_INIT_BYTES(1,2,3,4)</a>), \ DNS_LOCAL_HOSTLIST_ELEM("host_ip6", <a class="el" href="group__ip6addr.html#gadaff748da2b808995993dd3db5420f08">IPADDR6_INIT_HOST(123, 234, 345, 456)</a>}</p>
-<p>Instead, you can also use an external function: #define DNS_LOOKUP_LOCAL_EXTERN(x) extern err_t my_lookup_function(const char *name, ip_addr_t *addr, u8_t dns_addrtype) that looks up the IP address and returns ERR_OK if found (LWIP_DNS_ADDRTYPE_xxx is passed in dns_addrtype). </p>
+<p>Instead, you can also use an external function: #define DNS_LOOKUP_LOCAL_EXTERN(name, namelen, addr, dns_addrtype) my_lookup_function(name, namelen, addr, dns_addrtype) with function signature: extern err_t my_lookup_function(const char *name, size_t namelen, ip_addr_t *addr, u8_t dns_addrtype) that looks up the IP address and returns ERR_OK if found (LWIP_DNS_ADDRTYPE_xxx is passed in dns_addrtype). </p>
 
 </div>
 </div>

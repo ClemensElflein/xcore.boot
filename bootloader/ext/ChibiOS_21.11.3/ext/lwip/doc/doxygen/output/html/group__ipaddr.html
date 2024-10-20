@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -131,12 +131,18 @@ Macros</h2></td></tr>
 <tr class="separator:ga3528798be1d2f1ec6a6bccd35694edce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab5c5540ea05227bdd9207a47304bb2c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gab5c5540ea05227bdd9207a47304bb2c1">ip_addr_get_network</a>(target,  host,  netmask)</td></tr>
 <tr class="separator:gab5c5540ea05227bdd9207a47304bb2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga3a2123f0bbf6fe843c8542e349c680eb">ip_addr_netcmp</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="memitem:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga3a2123f0bbf6fe843c8542e349c680eb">ip_addr_netcmp</a>(addr1,  addr2,  mask)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a>((addr1), (addr2), (mask))</td></tr>
 <tr class="separator:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga008c9c92d770cc030ea054e6b259835a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga008c9c92d770cc030ea054e6b259835a">ip_addr_cmp</a>(addr1,  addr2)</td></tr>
+<tr class="memitem:gad1bbbe4c93ea2368663e90814953b929"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="separator:gad1bbbe4c93ea2368663e90814953b929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga008c9c92d770cc030ea054e6b259835a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga008c9c92d770cc030ea054e6b259835a">ip_addr_cmp</a>(addr1,  addr2)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a>((addr1), (addr2))</td></tr>
 <tr class="separator:ga008c9c92d770cc030ea054e6b259835a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gadb66f6d5fa926ed4b0e69db58dffcbe4">ip_addr_cmp_zoneless</a>(addr1,  addr2)</td></tr>
+<tr class="memitem:ga5b40158bdffa4b0c81c4ee77066e6b28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a>(addr1,  addr2)</td></tr>
+<tr class="separator:ga5b40158bdffa4b0c81c4ee77066e6b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gadb66f6d5fa926ed4b0e69db58dffcbe4">ip_addr_cmp_zoneless</a>(addr1,  addr2)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a>((addr1), (addr2))</td></tr>
 <tr class="separator:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ac2686417ec2974bb0b3fc6ee0ee1a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a>(addr1,  addr2)</td></tr>
+<tr class="separator:ga8ac2686417ec2974bb0b3fc6ee0ee1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga279118890e6a90aa740051fb8b0cc5f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga279118890e6a90aa740051fb8b0cc5f4">ip_addr_isany</a>(ipaddr)</td></tr>
 <tr class="separator:ga279118890e6a90aa740051fb8b0cc5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd8f5aa151cff966fd28368b85f38c05"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gacd8f5aa151cff966fd28368b85f38c05">ip_addr_isany_val</a>(ipaddr)</td></tr>
@@ -231,14 +237,12 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a>((addr1), (addr2))</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">((IP_GET_TYPE(addr1) != IP_GET_TYPE(addr2)) ? 0 : (<a class="code" href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a>(*(addr1)) ? \</div><div class="line">  ip6_addr_cmp(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr1), <a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr2)) : \</div><div class="line">  ip4_addr_cmp(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
-<div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-<div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
-</div><!-- fragment -->
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Deprecated:</a></b></dt><dd>Renamed to <a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a> </dd></dl>
+
 </div>
 </div>
 <a id="gadb66f6d5fa926ed4b0e69db58dffcbe4"></a>
@@ -262,14 +266,12 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a>((addr1), (addr2))</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">((IP_GET_TYPE(addr1) != IP_GET_TYPE(addr2)) ? 0 : (<a class="code" href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a>(*(addr1)) ? \</div><div class="line">  ip6_addr_cmp_zoneless(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr1), <a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr2)) : \</div><div class="line">  ip4_addr_cmp(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
-<div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-<div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
-</div><!-- fragment -->
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated:</a></b></dt><dd>Renamed to <a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a> </dd></dl>
+
 </div>
 </div>
 <a id="ga77a933975db287f6aa5c2e70249ba18f"></a>
@@ -301,6 +303,38 @@ Functions</h2></td></tr>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
 <div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ga5b40158bdffa4b0c81c4ee77066e6b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5b40158bdffa4b0c81c4ee77066e6b28">&#9670;&nbsp;</a></span>ip_addr_eq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ip_addr_eq</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr2&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((IP_GET_TYPE(addr1) != IP_GET_TYPE(addr2)) ? 0 : (<a class="code" href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a>(*(addr1)) ? \</div><div class="line">  ip6_addr_eq(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr1), <a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr2)) : \</div><div class="line">  ip4_addr_eq(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
+<div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
+<div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
+</div><!-- fragment --><p>Check if two ip addresses are equal. </p>
+
 </div>
 </div>
 <a id="gab5c5540ea05227bdd9207a47304bb2c1"></a>
@@ -359,7 +393,8 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">(((ipaddr) == NULL) ? 1 : ((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(ipaddr)) ? \</div><div class="line">  ip6_addr_isany(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(ipaddr)) : \</div><div class="line">  ip4_addr_isany(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(ipaddr))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Check if an ip address is the 'any' address. </p>
+
 </div>
 </div>
 <a id="gacd8f5aa151cff966fd28368b85f38c05"></a>
@@ -380,7 +415,8 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a>(ipaddr)) ? \</div><div class="line">  ip6_addr_isany_val(*<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(&amp;(ipaddr))) : \</div><div class="line">  ip4_addr_isany_val(*<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(&amp;(ipaddr))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
 <div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Check if an ip address is the 'any' address, by value. </p>
+
 </div>
 </div>
 <a id="gaa3345706e3aa8b32dd630c195b053e75"></a>
@@ -410,8 +446,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(ipaddr)) ? \</div><div class="line">  0 : \</div><div class="line">  ip4_addr_isbroadcast(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(ipaddr), <a class="code" href="structnetif.html">netif</a>))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
-<div class="ttc" id="structnetif_html"><div class="ttname"><a href="structnetif.html">netif</a></div><div class="ttdef"><b>Definition:</b> netif.h:260</div></div>
-</div><!-- fragment -->
+<div class="ttc" id="structnetif_html"><div class="ttname"><a href="structnetif.html">netif</a></div><div class="ttdef"><b>Definition:</b> netif.h:269</div></div>
+</div><!-- fragment --><p>Check if an ip address is a broadcast address. </p>
+
 </div>
 </div>
 <a id="ga33bc079baaf513a9a7381b9531a1f653"></a>
@@ -432,7 +469,8 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(ipaddr)) ? \</div><div class="line">  ip6_addr_islinklocal(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(ipaddr)) : \</div><div class="line">  ip4_addr_islinklocal(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(ipaddr)))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Check inf an ip address is a link-local address. </p>
+
 </div>
 </div>
 <a id="ga0fc8bf6662809274750868683b3a422e"></a>
@@ -454,7 +492,8 @@ Functions</h2></td></tr>
 <div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Check inf an ip address is a loopback address. </p>
+
 </div>
 </div>
 <a id="ga2170d3ee13dd22722222228e7b1c5752"></a>
@@ -475,7 +514,46 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(ipaddr)) ? \</div><div class="line">  ip6_addr_ismulticast(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(ipaddr)) : \</div><div class="line">  ip4_addr_ismulticast(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(ipaddr)))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
 <div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
 <div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Check inf an ip address is a multicast address. </p>
+
+</div>
+</div>
+<a id="gad1bbbe4c93ea2368663e90814953b929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad1bbbe4c93ea2368663e90814953b929">&#9670;&nbsp;</a></span>ip_addr_net_eq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ip_addr_net_eq</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr2, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">mask&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(addr1) &amp;&amp; <a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(addr2)) ? \</div><div class="line">  0 : \</div><div class="line">  <a class="code" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a>(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2), mask))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
+<div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
+<div class="ttc" id="ip4__addr_8h_html_a95d05df9201602fc873a97fb61fd1134"><div class="ttname"><a href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a></div><div class="ttdeci">#define ip4_addr_net_eq(addr1, addr2, mask)</div><div class="ttdef"><b>Definition:</b> ip4_addr.h:146</div></div>
+</div><!-- fragment --><p>Check if two ip addresses are share the same network, for a specific netmask. </p>
+
 </div>
 </div>
 <a id="ga3a2123f0bbf6fe843c8542e349c680eb"></a>
@@ -505,14 +583,12 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a>((addr1), (addr2), (mask))</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(addr1) &amp;&amp; <a class="code" href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a>(addr2)) ? \</div><div class="line">  0 : \</div><div class="line">  <a class="code" href="ip4__addr_8h.html#afd43f6ceb2df8d50c84509ad1059f514">ip4_addr_netcmp</a>(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2), mask))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
-<div class="ttc" id="group__ip6addr_html_ga9bac7e938757f1d24df2404e8b57cb7d"><div class="ttname"><a href="group__ip6addr.html#ga9bac7e938757f1d24df2404e8b57cb7d">IP_IS_V6</a></div><div class="ttdeci">#define IP_IS_V6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:102</div></div>
-<div class="ttc" id="ip4__addr_8h_html_afd43f6ceb2df8d50c84509ad1059f514"><div class="ttname"><a href="ip4__addr_8h.html#afd43f6ceb2df8d50c84509ad1059f514">ip4_addr_netcmp</a></div><div class="ttdeci">#define ip4_addr_netcmp(addr1, addr2, mask)</div><div class="ttdef"><b>Definition:</b> ip4_addr.h:141</div></div>
-</div><!-- fragment -->
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Deprecated:</a></b></dt><dd>Renamed to <a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a> </dd></dl>
+
 </div>
 </div>
 <a id="ga40db7feae2b92f7a7a01d65a85b06e18"></a>
@@ -754,6 +830,38 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="ga8ac2686417ec2974bb0b3fc6ee0ee1a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">&#9670;&nbsp;</a></span>ip_addr_zoneless_eq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ip_addr_zoneless_eq</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr2&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((IP_GET_TYPE(addr1) != IP_GET_TYPE(addr2)) ? 0 : (<a class="code" href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a>(*(addr1)) ? \</div><div class="line">  ip6_addr_zoneless_eq(<a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr1), <a class="code" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(addr2)) : \</div><div class="line">  ip4_addr_eq(<a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr1), <a class="code" href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a>(addr2))))</div><div class="ttc" id="group__ip4addr_html_gad7268a496b7e3f872efecd859eba6f03"><div class="ttname"><a href="group__ip4addr.html#gad7268a496b7e3f872efecd859eba6f03">ip_2_ip4</a></div><div class="ttdeci">#define ip_2_ip4(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:120</div></div>
+<div class="ttc" id="group__ip6addr_html_ga06e75bcd198012b5ba39480c233608bd"><div class="ttname"><a href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a></div><div class="ttdeci">#define ip_2_ip6(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:116</div></div>
+<div class="ttc" id="group__ip6addr_html_ga1578e34703e86711a7fb7dcc3857004d"><div class="ttname"><a href="group__ip6addr.html#ga1578e34703e86711a7fb7dcc3857004d">IP_IS_V6_VAL</a></div><div class="ttdeci">#define IP_IS_V6_VAL(ipaddr)</div><div class="ttdef"><b>Definition:</b> ip_addr.h:98</div></div>
+</div><!-- fragment --><p>Check if two ip addresses are equal, ignoring the zone. </p>
+
+</div>
+</div>
 <a id="gabe43b154533b73585c4e58f568370ede"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gabe43b154533b73585c4e58f568370ede">&#9670;&nbsp;</a></span>IP_ANY_TYPE</h2>
 
@@ -765,6 +873,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Macro representing the 'any' address. </p>
 
 </div>
 </div>

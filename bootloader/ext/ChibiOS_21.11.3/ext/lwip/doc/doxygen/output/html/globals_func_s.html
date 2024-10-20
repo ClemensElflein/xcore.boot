@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -213,6 +213,10 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 : <a class="el" href="group__snmp__core.html#gaba31b6f1816661df5a3b7f2076ee6ec0">snmp_msg.c</a>
 , <a class="el" href="group__snmp__core.html#gaba31b6f1816661df5a3b7f2076ee6ec0">snmp.h</a>
 </li>
+<li>snmp_get_default_trap_version()
+: <a class="el" href="group__snmp__traps.html#gaf6d83aae6464852427a812f573a40359">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gaf6d83aae6464852427a812f573a40359">snmp.h</a>
+</li>
 <li>snmp_get_device_enterprise_oid()
 : <a class="el" href="group__snmp__core.html#ga4dff82dda2553b9554a9f98561852a50">snmp_core.c</a>
 , <a class="el" href="group__snmp__core.html#ga4dff82dda2553b9554a9f98561852a50">snmp.h</a>
@@ -324,13 +328,25 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 : <a class="el" href="snmp__core_8c.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.c</a>
 , <a class="el" href="snmp__core_8h.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.h</a>
 </li>
+<li>snmp_send_inform()
+: <a class="el" href="group__snmp__traps.html#gae450dd71ad91f6c0bc243493a913f692">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gae450dd71ad91f6c0bc243493a913f692">snmp.h</a>
+</li>
+<li>snmp_send_inform_generic()
+: <a class="el" href="group__snmp__traps.html#gab7e4b943a9758010b02371b876abc275">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gab7e4b943a9758010b02371b876abc275">snmp.h</a>
+</li>
+<li>snmp_send_inform_specific()
+: <a class="el" href="group__snmp__traps.html#ga7492bb861ba73923221a8ab49ea79210">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#ga7492bb861ba73923221a8ab49ea79210">snmp.h</a>
+</li>
 <li>snmp_send_trap()
-: <a class="el" href="group__snmp__traps.html#ga96cc7af0118d75049609872ea41187cd">snmp_traps.c</a>
-, <a class="el" href="group__snmp__traps.html#ga96cc7af0118d75049609872ea41187cd">snmp.h</a>
+: <a class="el" href="group__snmp__traps.html#ga21974b1f6b626bce1e006f09db712e9c">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#ga21974b1f6b626bce1e006f09db712e9c">snmp.h</a>
 </li>
 <li>snmp_send_trap_generic()
-: <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp_traps.c</a>
-, <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp.h</a>
+: <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp.h</a>
+, <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp_traps.c</a>
 </li>
 <li>snmp_send_trap_specific()
 : <a class="el" href="group__snmp__traps.html#ga56bdce04e9e77cb3f8a872718cd273d1">snmp_traps.c</a>
@@ -352,9 +368,17 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 : <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp_msg.c</a>
 , <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp.h</a>
 </li>
+<li>snmp_set_default_trap_version()
+: <a class="el" href="group__snmp__traps.html#ga6d411c0ba7a8fb1ed3777ebde5b5f455">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#ga6d411c0ba7a8fb1ed3777ebde5b5f455">snmp.h</a>
+</li>
 <li>snmp_set_device_enterprise_oid()
 : <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp_core.c</a>
 , <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp.h</a>
+</li>
+<li>snmp_set_inform_callback()
+: <a class="el" href="group__snmp__core.html#ga323ed081cc9903ceb6ebb26a046e0838">snmp.h</a>
+, <a class="el" href="group__snmp__core.html#ga323ed081cc9903ceb6ebb26a046e0838">snmp_msg.c</a>
 </li>
 <li>snmp_set_mibs()
 : <a class="el" href="group__snmp__core.html#ga29c76474971f25d038fd486447c70e21">snmp_core.c</a>
@@ -377,20 +401,24 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 , <a class="el" href="group__snmp__traps.html#ga15e4afbf80ed2260850842e6608c6d86">snmp.h</a>
 </li>
 <li>snmp_varbind_length()
-: <a class="el" href="snmp__msg_8c.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.c</a>
-, <a class="el" href="snmp__msg_8h.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.h</a>
+: <a class="el" href="snmp__msg_8h.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.h</a>
+, <a class="el" href="snmp__msg_8c.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.c</a>
 </li>
 <li>sntp_enabled()
 : <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.c</a>
 , <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.h</a>
 </li>
+<li>sntp_getkodreceived()
+: <a class="el" href="group__sntp.html#ga68146d2ee1bba10e5aa01f098b597d9e">sntp.h</a>
+, <a class="el" href="group__sntp.html#ga68146d2ee1bba10e5aa01f098b597d9e">sntp.c</a>
+</li>
 <li>sntp_getoperatingmode()
-: <a class="el" href="group__sntp.html#gae66404a551d5cef420cf844a71356fae">sntp.h</a>
-, <a class="el" href="group__sntp.html#gae66404a551d5cef420cf844a71356fae">sntp.c</a>
+: <a class="el" href="group__sntp.html#gae66404a551d5cef420cf844a71356fae">sntp.c</a>
+, <a class="el" href="group__sntp.html#gae66404a551d5cef420cf844a71356fae">sntp.h</a>
 </li>
 <li>sntp_getreachability()
-: <a class="el" href="group__sntp.html#gac8097829a81cb6f37d9acf8efb2cc82e">sntp.c</a>
-, <a class="el" href="group__sntp.html#gac8097829a81cb6f37d9acf8efb2cc82e">sntp.h</a>
+: <a class="el" href="group__sntp.html#gac8097829a81cb6f37d9acf8efb2cc82e">sntp.h</a>
+, <a class="el" href="group__sntp.html#gac8097829a81cb6f37d9acf8efb2cc82e">sntp.c</a>
 </li>
 <li>sntp_getserver()
 : <a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp.h</a>
@@ -405,16 +433,16 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 , <a class="el" href="group__sntp.html#gaae94fb2adadbf9667e9597f8a45bf120">sntp.c</a>
 </li>
 <li>sntp_setserver()
-: <a class="el" href="group__sntp.html#ga4fa038dcea66349fafdbe1cc3e52ff3a">sntp.c</a>
-, <a class="el" href="group__sntp.html#ga4fa038dcea66349fafdbe1cc3e52ff3a">sntp.h</a>
+: <a class="el" href="group__sntp.html#ga4fa038dcea66349fafdbe1cc3e52ff3a">sntp.h</a>
+, <a class="el" href="group__sntp.html#ga4fa038dcea66349fafdbe1cc3e52ff3a">sntp.c</a>
 </li>
 <li>sntp_stop()
-: <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.h</a>
-, <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.c</a>
+: <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.c</a>
+, <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.h</a>
 </li>
 <li>stats_init()
-: <a class="el" href="stats_8c.html#aeaa149d6c0445b22e944a063e0884d0d">stats.c</a>
-, <a class="el" href="stats_8h.html#aeaa149d6c0445b22e944a063e0884d0d">stats.h</a>
+: <a class="el" href="stats_8h.html#aeaa149d6c0445b22e944a063e0884d0d">stats.h</a>
+, <a class="el" href="stats_8c.html#aeaa149d6c0445b22e944a063e0884d0d">stats.c</a>
 </li>
 <li>sys_arch_mbox_fetch()
 : <a class="el" href="group__sys__mbox.html#ga6464cd77cf6799bd8b3d6c840166a2e8">sys.h</a>
@@ -457,8 +485,8 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 : <a class="el" href="group__sys__mbox.html#ga8bcfab4bd791dd33f69a778e7585275d">sys.h</a>
 </li>
 <li>sys_msleep()
-: <a class="el" href="group__sys__misc.html#ga6b8786f43e779953e8b74e983c88682e">sys.c</a>
-, <a class="el" href="group__sys__misc.html#ga6b8786f43e779953e8b74e983c88682e">sys.h</a>
+: <a class="el" href="group__sys__misc.html#ga6b8786f43e779953e8b74e983c88682e">sys.h</a>
+, <a class="el" href="group__sys__misc.html#ga6b8786f43e779953e8b74e983c88682e">sys.c</a>
 </li>
 <li>sys_mutex_free()
 : <a class="el" href="group__sys__mutex.html#ga16336ce68b741e98204102ca4bc84dd9">sys.h</a>
@@ -504,16 +532,16 @@ $(document).ready(function(){initNavTree('globals_func_s.html','');});
 : <a class="el" href="group__sys__misc.html#ga0d596afdd8dbcfad320172d39b0f607a">sys.h</a>
 </li>
 <li>sys_timeout()
-: <a class="el" href="timeouts_8h.html#a8deed391626ec8b5423998e33782d7a8">timeouts.h</a>
-, <a class="el" href="timeouts_8c.html#a8deed391626ec8b5423998e33782d7a8">timeouts.c</a>
+: <a class="el" href="timeouts_8c.html#a8deed391626ec8b5423998e33782d7a8">timeouts.c</a>
+, <a class="el" href="timeouts_8h.html#a8deed391626ec8b5423998e33782d7a8">timeouts.h</a>
 </li>
 <li>sys_timeouts_init()
 : <a class="el" href="timeouts_8c.html#a60f42f167f496f6f740c8df48f4dd26c">timeouts.c</a>
 , <a class="el" href="timeouts_8h.html#a60f42f167f496f6f740c8df48f4dd26c">timeouts.h</a>
 </li>
 <li>sys_timeouts_sleeptime()
-: <a class="el" href="timeouts_8h.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.h</a>
-, <a class="el" href="timeouts_8c.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.c</a>
+: <a class="el" href="timeouts_8c.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.c</a>
+, <a class="el" href="timeouts_8h.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.h</a>
 </li>
 <li>sys_untimeout()
 : <a class="el" href="timeouts_8h.html#adbfcaa78f4b8d71ae0d7f0bcab6f8fb6">timeouts.h</a>

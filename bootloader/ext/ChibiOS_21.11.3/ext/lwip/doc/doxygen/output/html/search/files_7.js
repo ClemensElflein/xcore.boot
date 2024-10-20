@@ -2,7 +2,11 @@ var searchData=
 [
   ['mdns_2ec',['mdns.c',['../mdns_8c.html',1,'']]],
   ['mdns_2eh',['mdns.h',['../mdns_8h.html',1,'']]],
+  ['mdns_5fdomain_2ec',['mdns_domain.c',['../mdns__domain_8c.html',1,'']]],
+  ['mdns_5fdomain_2eh',['mdns_domain.h',['../mdns__domain_8h.html',1,'']]],
   ['mdns_5fopts_2eh',['mdns_opts.h',['../mdns__opts_8h.html',1,'']]],
+  ['mdns_5fout_2ec',['mdns_out.c',['../mdns__out_8c.html',1,'']]],
+  ['mdns_5fout_2eh',['mdns_out.h',['../mdns__out_8h.html',1,'']]],
   ['mdns_5fpriv_2eh',['mdns_priv.h',['../mdns__priv_8h.html',1,'']]],
   ['mem_2ec',['mem.c',['../mem_8c.html',1,'']]],
   ['mem_2eh',['mem.h',['../mem_8h.html',1,'']]],

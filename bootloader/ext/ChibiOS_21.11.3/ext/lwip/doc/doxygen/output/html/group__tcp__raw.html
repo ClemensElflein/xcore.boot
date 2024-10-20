@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -159,9 +159,10 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Transmission Control Protocol for IP<br />
-</p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__api.html">APIs</a></dd></dl>
+ </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__api.html">APIs</a></dd></dl>
 <p>Common functions for the TCP implementation, such as functions for manipulating the data structures and the TCP timer functions. TCP functions related to input and output is found in <a class="el" href="tcp__in_8c.html">tcp_in.c</a> and <a class="el" href="tcp__out_8c.html">tcp_out.c</a> respectively.<br />
- </p><h2>TCP connection setup </h2>
+</p>
+<h2>TCP connection setup </h2>
 <p>The functions used for setting up connections is similar to that of the sequential API and of the BSD socket API. A new TCP connection identifier (i.e., a protocol control block - PCB) is created with the <a class="el" href="group__tcp__raw.html#ga7427c5d237fe66a8097bfa8d24ceb943">tcp_new()</a> function. This PCB can then be either set to listen for new incoming connections or be explicitly connected to another host.</p><ul>
 <li><a class="el" href="group__tcp__raw.html#ga7427c5d237fe66a8097bfa8d24ceb943">tcp_new()</a></li>
 <li><a class="el" href="group__tcp__raw.html#gacf5aa67bd7fc66fef43f77a55a1201ee">tcp_bind()</a></li>
@@ -369,7 +370,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Used for specifying the function that should be called when a LISTENing connection has been connected to another host.</p>
+<p>Used for specifying the function that should be called when a LISTENing connection has been connected to another host. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__lwip__opts__memp.html#ga04fba6a249123513271dccb4ec26aa5a">MEMP_NUM_TCP_PCB_LISTEN</a> and <a class="el" href="group__lwip__opts__memp.html#ga73beecc19cfbc3114768f9b32b2cd70e">MEMP_NUM_TCP_PCB</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pcb</td><td><a class="el" href="structtcp__pcb.html">tcp_pcb</a> to set the accept callback </td></tr>
@@ -499,7 +500,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Binds the connection to a local port number and IP address. If the IP address is not given (i.e., ipaddr == IP_ANY_TYPE), the connection is bound to all local IP addresses. If another connection is bound to the same port, the function will return ERR_USE, otherwise ERR_OK is returned.</p>
+<p>Binds the connection to a local port number and IP address. If the IP address is not given (i.e., ipaddr == IP_ANY_TYPE), the connection is bound to all local IP addresses. If another connection is bound to the same port, the function will return ERR_USE, otherwise ERR_OK is returned. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__lwip__opts__memp.html#ga04fba6a249123513271dccb4ec26aa5a">MEMP_NUM_TCP_PCB_LISTEN</a> and <a class="el" href="group__lwip__opts__memp.html#ga73beecc19cfbc3114768f9b32b2cd70e">MEMP_NUM_TCP_PCB</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pcb</td><td>the <a class="el" href="structtcp__pcb.html">tcp_pcb</a> to bind (no check is done whether this pcb is already bound!) </td></tr>
@@ -621,7 +622,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">pcb</td><td>the <a class="el" href="structtcp__pcb.html">tcp_pcb</a> used to establish the connection </td></tr>
     <tr><td class="paramname">ipaddr</td><td>the remote ip address to connect to </td></tr>
     <tr><td class="paramname">port</td><td>the remote tcp port to connect to </td></tr>
-    <tr><td class="paramname">connected</td><td>callback function to call when connected (on error, the err calback will be called) </td></tr>
+    <tr><td class="paramname">connected</td><td>callback function to call when connected (on error, the err callback will be called) </td></tr>
   </table>
   </dd>
 </dl>
@@ -768,7 +769,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Creates a new TCP protocol control block but doesn't place it on any of the TCP PCB lists. The pcb is not put on any list until binding using <a class="el" href="group__tcp__raw.html#gacf5aa67bd7fc66fef43f77a55a1201ee">tcp_bind()</a>. If memory is not available for creating the new pcb, NULL is returned. </p>
+<p>Creates a new TCP protocol control block but doesn't place it on any of the TCP PCB lists. The pcb is not put on any list until binding using <a class="el" href="group__tcp__raw.html#gacf5aa67bd7fc66fef43f77a55a1201ee">tcp_bind()</a>. If memory is not available for creating the new pcb, NULL is returned. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__lwip__opts__memp.html#ga04fba6a249123513271dccb4ec26aa5a">MEMP_NUM_TCP_PCB_LISTEN</a> and <a class="el" href="group__lwip__opts__memp.html#ga73beecc19cfbc3114768f9b32b2cd70e">MEMP_NUM_TCP_PCB</a> </dd></dl>
 
 </div>
 </div>
@@ -787,7 +788,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Creates a new TCP protocol control block but doesn't place it on any of the TCP PCB lists. The pcb is not put on any list until binding using <a class="el" href="group__tcp__raw.html#gacf5aa67bd7fc66fef43f77a55a1201ee">tcp_bind()</a>.</p>
+<p>Creates a new TCP protocol control block but doesn't place it on any of the TCP PCB lists. The pcb is not put on any list until binding using <a class="el" href="group__tcp__raw.html#gacf5aa67bd7fc66fef43f77a55a1201ee">tcp_bind()</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__lwip__opts__memp.html#ga04fba6a249123513271dccb4ec26aa5a">MEMP_NUM_TCP_PCB_LISTEN</a> and <a class="el" href="group__lwip__opts__memp.html#ga73beecc19cfbc3114768f9b32b2cd70e">MEMP_NUM_TCP_PCB</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>IP address type, see <a class="el" href="group__ipaddr.html#gaf2142f0dfdcc938e2db16aa745ed585c">lwip_ip_addr_type</a> definitions. If you want to listen to IPv4 and IPv6 (dual-stack) connections, supply <a class="el" href="group__ipaddr.html#ggaf2142f0dfdcc938e2db16aa745ed585cac6b2c99cf920e08efcb55dc40e42944e">IPADDR_TYPE_ANY</a> as argument and bind to <a class="el" href="group__ipaddr.html#gabe43b154533b73585c4e58f568370ede">IP_ANY_TYPE</a>. </td></tr>
@@ -999,7 +1000,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Causes all or part of a full-duplex connection of this PCB to be shut down. This doesn't deallocate the PCB unless shutting down both sides! Shutting down both sides is the same as calling tcp_close, so if it succeds (i.e. returns ER_OK), the PCB must not be referenced any more!</p>
+<p>Causes all or part of a full-duplex connection of this PCB to be shut down. This doesn't deallocate the PCB unless shutting down both sides! Shutting down both sides is the same as calling tcp_close, so if it succeeds (i.e. returns ER_OK), the PCB must not be referenced any more!</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pcb</td><td>PCB to shutdown </td></tr>

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -102,6 +102,9 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 <li>service_get_txt_fn_t
 : <a class="el" href="mdns_8h.html#a3b9ee5953214665e585e5bcaf6b8ea83">mdns.h</a>
 </li>
+<li>SET_TIMEOUT_FROM_OFFERED
+: <a class="el" href="dhcp_8c.html#a33f306da575f8a437996d073b374df82">dhcp.c</a>
+</li>
 <li>setsockopt
 : <a class="el" href="group__socket.html#ga115d74cd1953e7bafc2e34157c697df1">sockets.h</a>
 </li>
@@ -124,8 +127,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="slipif_8h.html#a198967c11f79cffc32192710294e8826">slipif.h</a>
 </li>
 <li>slipif_init()
-: <a class="el" href="group__slipif.html#ga687973ba82dab13a5b9d38d7399aeee3">slipif.h</a>
-, <a class="el" href="group__slipif.html#ga687973ba82dab13a5b9d38d7399aeee3">slipif.c</a>
+: <a class="el" href="group__slipif.html#ga687973ba82dab13a5b9d38d7399aeee3">slipif.c</a>
+, <a class="el" href="group__slipif.html#ga687973ba82dab13a5b9d38d7399aeee3">slipif.h</a>
 </li>
 <li>slipif_poll()
 : <a class="el" href="group__slipif.html#ga7b036fd1cde9b299139cac62f52d15a6">slipif.h</a>
@@ -239,8 +242,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 , <a class="el" href="snmp__asn1_8h.html#a25b3fe21becd08260ec56bef9299d3c6">snmp_asn1.h</a>
 </li>
 <li>snmp_asn1_enc_s32t_cnt()
-: <a class="el" href="snmp__asn1_8h.html#a8c74914532f1e0c219dfb1977fd0c22f">snmp_asn1.h</a>
-, <a class="el" href="snmp__asn1_8c.html#a8c74914532f1e0c219dfb1977fd0c22f">snmp_asn1.c</a>
+: <a class="el" href="snmp__asn1_8c.html#a8c74914532f1e0c219dfb1977fd0c22f">snmp_asn1.c</a>
+, <a class="el" href="snmp__asn1_8h.html#a8c74914532f1e0c219dfb1977fd0c22f">snmp_asn1.h</a>
 </li>
 <li>snmp_asn1_enc_u32t()
 : <a class="el" href="snmp__asn1_8c.html#aa54b4ee3c58ef66721df96fd8b1f66b2">snmp_asn1.c</a>
@@ -265,12 +268,12 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 <li>SNMP_COMMUNITY
 : <a class="el" href="group__snmp__opts.html#ga316c1e1f06f0c7ca56589563809e64db">snmp_opts.h</a>
 </li>
+<li>SNMP_COMMUNITY_TRAP
+: <a class="el" href="group__snmp__opts.html#gaaefc9dda5f8e5c296018a463cdbac39b">snmp_opts.h</a>
+</li>
 <li>snmp_community_trap
 : <a class="el" href="snmp__msg_8c.html#a2e2007343d9492b8e31d363d2c6ad79b">snmp_msg.c</a>
 , <a class="el" href="snmp__traps_8c.html#a2e2007343d9492b8e31d363d2c6ad79b">snmp_traps.c</a>
-</li>
-<li>SNMP_COMMUNITY_TRAP
-: <a class="el" href="group__snmp__opts.html#gaaefc9dda5f8e5c296018a463cdbac39b">snmp_opts.h</a>
 </li>
 <li>SNMP_COMMUNITY_WRITE
 : <a class="el" href="group__snmp__opts.html#gafb9414dc7a33978b62a3a9838b659464">snmp_opts.h</a>
@@ -338,6 +341,10 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 <li>snmp_get_community_write()
 : <a class="el" href="group__snmp__core.html#gaba31b6f1816661df5a3b7f2076ee6ec0">snmp_msg.c</a>
 , <a class="el" href="group__snmp__core.html#gaba31b6f1816661df5a3b7f2076ee6ec0">snmp.h</a>
+</li>
+<li>snmp_get_default_trap_version()
+: <a class="el" href="group__snmp__traps.html#gaf6d83aae6464852427a812f573a40359">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gaf6d83aae6464852427a812f573a40359">snmp.h</a>
 </li>
 <li>snmp_get_device_enterprise_oid()
 : <a class="el" href="group__snmp__core.html#ga4dff82dda2553b9554a9f98561852a50">snmp_core.c</a>
@@ -460,8 +467,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 , <a class="el" href="snmp__core_8h.html#a41fd5e854d809499e28c66b4918481a6">snmp_core.h</a>
 </li>
 <li>snmp_oid_combine()
-: <a class="el" href="snmp__core_8h.html#a6edcb88d8162544333bcede301cf0904">snmp_core.h</a>
-, <a class="el" href="snmp__core_8c.html#a6edcb88d8162544333bcede301cf0904">snmp_core.c</a>
+: <a class="el" href="snmp__core_8c.html#a6edcb88d8162544333bcede301cf0904">snmp_core.c</a>
+, <a class="el" href="snmp__core_8h.html#a6edcb88d8162544333bcede301cf0904">snmp_core.h</a>
 </li>
 <li>snmp_oid_compare()
 : <a class="el" href="snmp__core_8c.html#af041ab415e8063097c79be2b892174f8">snmp_core.c</a>
@@ -476,59 +483,79 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 , <a class="el" href="snmp__core_8h.html#a5275903be5948b1c28bfadb365823504">snmp_core.h</a>
 </li>
 <li>snmp_oid_prefix()
-: <a class="el" href="snmp__core_8h.html#a32256b37b211b4f59d8f114cee364f39">snmp_core.h</a>
-, <a class="el" href="snmp__core_8c.html#a32256b37b211b4f59d8f114cee364f39">snmp_core.c</a>
+: <a class="el" href="snmp__core_8c.html#a32256b37b211b4f59d8f114cee364f39">snmp_core.c</a>
+, <a class="el" href="snmp__core_8h.html#a32256b37b211b4f59d8f114cee364f39">snmp_core.h</a>
 </li>
 <li>snmp_oid_to_ip()
 : <a class="el" href="snmp__core_8c.html#a66aac86af921cd8aecb95eb252eb3e84">snmp_core.c</a>
 , <a class="el" href="snmp__core_8h.html#a66aac86af921cd8aecb95eb252eb3e84">snmp_core.h</a>
 </li>
 <li>snmp_oid_to_ip4()
-: <a class="el" href="snmp__core_8h.html#a095efcd4202782e57625d7b1afcdbf77">snmp_core.h</a>
-, <a class="el" href="snmp__core_8c.html#a095efcd4202782e57625d7b1afcdbf77">snmp_core.c</a>
+: <a class="el" href="snmp__core_8c.html#a095efcd4202782e57625d7b1afcdbf77">snmp_core.c</a>
+, <a class="el" href="snmp__core_8h.html#a095efcd4202782e57625d7b1afcdbf77">snmp_core.h</a>
 </li>
 <li>snmp_oid_to_ip6()
 : <a class="el" href="snmp__core_8c.html#aa1b651a1faf6f1ee0dfdbea48310ed09">snmp_core.c</a>
 , <a class="el" href="snmp__core_8h.html#aa1b651a1faf6f1ee0dfdbea48310ed09">snmp_core.h</a>
 </li>
 <li>snmp_oid_to_ip_port()
-: <a class="el" href="snmp__core_8h.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.h</a>
-, <a class="el" href="snmp__core_8c.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.c</a>
+: <a class="el" href="snmp__core_8c.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.c</a>
+, <a class="el" href="snmp__core_8h.html#a21f02b239cc9abae586f5ef92923e507">snmp_core.h</a>
 </li>
 <li>SNMP_SAFE_REQUESTS
 : <a class="el" href="group__snmp__opts.html#ga95e39047b9bcb385780b06b35af49261">snmp_opts.h</a>
 </li>
+<li>snmp_send_inform()
+: <a class="el" href="group__snmp__traps.html#gae450dd71ad91f6c0bc243493a913f692">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gae450dd71ad91f6c0bc243493a913f692">snmp.h</a>
+</li>
+<li>snmp_send_inform_generic()
+: <a class="el" href="group__snmp__traps.html#gab7e4b943a9758010b02371b876abc275">snmp.h</a>
+, <a class="el" href="group__snmp__traps.html#gab7e4b943a9758010b02371b876abc275">snmp_traps.c</a>
+</li>
+<li>snmp_send_inform_specific()
+: <a class="el" href="group__snmp__traps.html#ga7492bb861ba73923221a8ab49ea79210">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#ga7492bb861ba73923221a8ab49ea79210">snmp.h</a>
+</li>
 <li>snmp_send_trap()
-: <a class="el" href="group__snmp__traps.html#ga96cc7af0118d75049609872ea41187cd">snmp_traps.c</a>
-, <a class="el" href="group__snmp__traps.html#ga96cc7af0118d75049609872ea41187cd">snmp.h</a>
+: <a class="el" href="group__snmp__traps.html#ga21974b1f6b626bce1e006f09db712e9c">snmp.h</a>
+, <a class="el" href="group__snmp__traps.html#ga21974b1f6b626bce1e006f09db712e9c">snmp_traps.c</a>
 </li>
 <li>snmp_send_trap_generic()
 : <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp_traps.c</a>
 , <a class="el" href="group__snmp__traps.html#ga0e044259289cb690197173f93c17607d">snmp.h</a>
 </li>
 <li>snmp_send_trap_specific()
-: <a class="el" href="group__snmp__traps.html#ga56bdce04e9e77cb3f8a872718cd273d1">snmp_traps.c</a>
-, <a class="el" href="group__snmp__traps.html#ga56bdce04e9e77cb3f8a872718cd273d1">snmp.h</a>
+: <a class="el" href="group__snmp__traps.html#ga56bdce04e9e77cb3f8a872718cd273d1">snmp.h</a>
+, <a class="el" href="group__snmp__traps.html#ga56bdce04e9e77cb3f8a872718cd273d1">snmp_traps.c</a>
 </li>
 <li>snmp_set_auth_traps_enabled()
-: <a class="el" href="group__snmp__traps.html#gacaf816ff917f7b7e5d00ed6c9f79b51c">snmp.h</a>
-, <a class="el" href="group__snmp__traps.html#gacaf816ff917f7b7e5d00ed6c9f79b51c">snmp_traps.c</a>
+: <a class="el" href="group__snmp__traps.html#gacaf816ff917f7b7e5d00ed6c9f79b51c">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gacaf816ff917f7b7e5d00ed6c9f79b51c">snmp.h</a>
 </li>
 <li>snmp_set_community()
 : <a class="el" href="group__snmp__core.html#ga30cc587a260757fdb2b81d462f430ef1">snmp_msg.c</a>
 , <a class="el" href="group__snmp__core.html#ga30cc587a260757fdb2b81d462f430ef1">snmp.h</a>
 </li>
 <li>snmp_set_community_trap()
-: <a class="el" href="group__snmp__traps.html#ga5631711f357b6610be7e93b1c6d87760">snmp.h</a>
-, <a class="el" href="group__snmp__traps.html#ga5631711f357b6610be7e93b1c6d87760">snmp_msg.c</a>
+: <a class="el" href="group__snmp__traps.html#ga5631711f357b6610be7e93b1c6d87760">snmp_msg.c</a>
+, <a class="el" href="group__snmp__traps.html#ga5631711f357b6610be7e93b1c6d87760">snmp.h</a>
 </li>
 <li>snmp_set_community_write()
-: <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp_msg.c</a>
-, <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp.h</a>
+: <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp.h</a>
+, <a class="el" href="group__snmp__core.html#ga341461766863cff46a44e5f431f2da01">snmp_msg.c</a>
+</li>
+<li>snmp_set_default_trap_version()
+: <a class="el" href="group__snmp__traps.html#ga6d411c0ba7a8fb1ed3777ebde5b5f455">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#ga6d411c0ba7a8fb1ed3777ebde5b5f455">snmp.h</a>
 </li>
 <li>snmp_set_device_enterprise_oid()
-: <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp.h</a>
-, <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp_core.c</a>
+: <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp_core.c</a>
+, <a class="el" href="group__snmp__core.html#gacc71ac857bf9215f06a624dda09abe3a">snmp.h</a>
+</li>
+<li>snmp_set_inform_callback()
+: <a class="el" href="group__snmp__core.html#ga323ed081cc9903ceb6ebb26a046e0838">snmp_msg.c</a>
+, <a class="el" href="group__snmp__core.html#ga323ed081cc9903ceb6ebb26a046e0838">snmp.h</a>
 </li>
 <li>snmp_set_mibs()
 : <a class="el" href="group__snmp__core.html#ga29c76474971f25d038fd486447c70e21">snmp_core.c</a>
@@ -555,8 +582,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="group__snmp__opts.html#ga692343b0cc555c302fd713003d4f8a08">snmp_opts.h</a>
 </li>
 <li>snmp_trap_dst_enable()
-: <a class="el" href="group__snmp__traps.html#gab101505be59778cf0f2f1ac40bcf3f32">snmp.h</a>
-, <a class="el" href="group__snmp__traps.html#gab101505be59778cf0f2f1ac40bcf3f32">snmp_traps.c</a>
+: <a class="el" href="group__snmp__traps.html#gab101505be59778cf0f2f1ac40bcf3f32">snmp_traps.c</a>
+, <a class="el" href="group__snmp__traps.html#gab101505be59778cf0f2f1ac40bcf3f32">snmp.h</a>
 </li>
 <li>snmp_trap_dst_ip_set()
 : <a class="el" href="group__snmp__traps.html#ga15e4afbf80ed2260850842e6608c6d86">snmp_traps.c</a>
@@ -573,8 +600,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="group__snmp__opts.html#ga8c93f4260af2eb3c50d4bc603f716f1f">snmp_opts.h</a>
 </li>
 <li>snmp_varbind_length()
-: <a class="el" href="snmp__msg_8h.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.h</a>
-, <a class="el" href="snmp__msg_8c.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.c</a>
+: <a class="el" href="snmp__msg_8c.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.c</a>
+, <a class="el" href="snmp__msg_8h.html#ac1f684dada963f68b71a04a702f28fe5">snmp_msg.h</a>
 </li>
 <li>SNTP_CHECK_RESPONSE
 : <a class="el" href="group__sntp__opts.html#ga7d4e12d90912d486e64f289d7f3ca446">sntp_opts.h</a>
@@ -586,8 +613,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="group__sntp__opts.html#ga25c6f9c14c17e218d110d826b09f8d91">sntp_opts.h</a>
 </li>
 <li>sntp_enabled()
-: <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.h</a>
-, <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.c</a>
+: <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.c</a>
+, <a class="el" href="group__sntp.html#ga3fe5254e5a056fca80802d9f26b9c3c5">sntp.h</a>
 </li>
 <li>SNTP_FRAC_TO_US
 : <a class="el" href="sntp_8c.html#aebe74c93643ac9b8c8a9c7d223192c8f">sntp.c</a>
@@ -595,8 +622,15 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 <li>SNTP_GET_SERVERS_FROM_DHCP
 : <a class="el" href="group__sntp__opts.html#ga961a61eef942ab5378cff1e3742b3ade">sntp_opts.h</a>
 </li>
+<li>SNTP_GET_SERVERS_FROM_DHCPV6
+: <a class="el" href="group__sntp__opts.html#ga0d5b4f1e382d08f0df9dbe0c9da64006">sntp_opts.h</a>
+</li>
 <li>SNTP_GET_SYSTEM_TIME
 : <a class="el" href="group__sntp__opts.html#gab0ea385479a5c5c8c173f165ded2fb63">sntp_opts.h</a>
+</li>
+<li>sntp_getkodreceived()
+: <a class="el" href="group__sntp.html#ga68146d2ee1bba10e5aa01f098b597d9e">sntp.c</a>
+, <a class="el" href="group__sntp.html#ga68146d2ee1bba10e5aa01f098b597d9e">sntp.h</a>
 </li>
 <li>sntp_getoperatingmode()
 : <a class="el" href="group__sntp.html#gae66404a551d5cef420cf844a71356fae">sntp.h</a>
@@ -607,8 +641,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 , <a class="el" href="group__sntp.html#gac8097829a81cb6f37d9acf8efb2cc82e">sntp.h</a>
 </li>
 <li>sntp_getserver()
-: <a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp.c</a>
-, <a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp.h</a>
+: <a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp.h</a>
+, <a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp.c</a>
 </li>
 <li>sntp_init()
 : <a class="el" href="group__sntp.html#ga9b300c6616de60524c85ea40bf70e2ba">sntp.c</a>
@@ -656,8 +690,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="group__sntp__opts.html#gae082c2f3044d500ca5e1be1d4928de75">sntp_opts.h</a>
 </li>
 <li>sntp_stop()
-: <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.h</a>
-, <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.c</a>
+: <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.c</a>
+, <a class="el" href="group__sntp.html#ga8119fc2d1ff7ff6eba511cc9c7167488">sntp.h</a>
 </li>
 <li>SNTP_UPDATE_DELAY
 : <a class="el" href="group__sntp__opts.html#ga9232c56443115be05a2f852eba21979c">sntp_opts.h</a>
@@ -811,8 +845,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 : <a class="el" href="group__sys__misc.html#ga0d596afdd8dbcfad320172d39b0f607a">sys.h</a>
 </li>
 <li>sys_timeout()
-: <a class="el" href="timeouts_8c.html#a8deed391626ec8b5423998e33782d7a8">timeouts.c</a>
-, <a class="el" href="timeouts_8h.html#a8deed391626ec8b5423998e33782d7a8">timeouts.h</a>
+: <a class="el" href="timeouts_8h.html#a8deed391626ec8b5423998e33782d7a8">timeouts.h</a>
+, <a class="el" href="timeouts_8c.html#a8deed391626ec8b5423998e33782d7a8">timeouts.c</a>
 </li>
 <li>sys_timeout_handler
 : <a class="el" href="timeouts_8h.html#a2ab5bb8173f492563f70a519011b0ac1">timeouts.h</a>
@@ -822,8 +856,8 @@ $(document).ready(function(){initNavTree('globals_s.html','');});
 , <a class="el" href="timeouts_8c.html#a60f42f167f496f6f740c8df48f4dd26c">timeouts.c</a>
 </li>
 <li>sys_timeouts_sleeptime()
-: <a class="el" href="timeouts_8h.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.h</a>
-, <a class="el" href="timeouts_8c.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.c</a>
+: <a class="el" href="timeouts_8c.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.c</a>
+, <a class="el" href="timeouts_8h.html#aa9971a14a5810cfeb1efd7104cde6664">timeouts.h</a>
 </li>
 <li>SYS_TIMEOUTS_SLEEPTIME_INFINITE
 : <a class="el" href="timeouts_8h.html#a9e2b2593e709ff54c7e3c0b003f6f1b0">timeouts.h</a>

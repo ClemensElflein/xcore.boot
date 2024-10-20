@@ -4,6 +4,7 @@ var searchData=
   ['dhcp6_5fremove_5fstruct',['dhcp6_remove_struct',['../dhcp6_8h.html#a76941ddba22fe00dfc47d2f339f7aca3',1,'dhcp6.h']]],
   ['dhcp6_5fstatus_5fsuccess',['DHCP6_STATUS_SUCCESS',['../prot_2dhcp6_8h.html#a878a7734e159826e82e958fe3a5ca175',1,'dhcp6.h']]],
   ['dhcp6_5ftimer_5fmsecs',['DHCP6_TIMER_MSECS',['../dhcp6_8h.html#afdd69327dc7d9f5cc4f029d706f60c8f',1,'dhcp6.h']]],
+  ['dhcp_5fadd_5fextra_5frequest_5foptions',['DHCP_ADD_EXTRA_REQUEST_OPTIONS',['../dhcp_8c.html#aa29d020558b37b29d5d5ae50dfeb0c88',1,'dhcp.c']]],
   ['dhcp_5fcoarse_5ftimer_5fmsecs',['DHCP_COARSE_TIMER_MSECS',['../dhcp_8h.html#ad84b8f4deec421bbf6fd85e8fae047d6',1,'dhcp.h']]],
   ['dhcp_5fcoarse_5ftimer_5fsecs',['DHCP_COARSE_TIMER_SECS',['../dhcp_8h.html#a3751cc5daa0875d415ebacd8ad675f1e',1,'dhcp.h']]],
   ['dhcp_5fcreate_5frand_5fxid',['DHCP_CREATE_RAND_XID',['../dhcp_8c.html#ad6de9c5120654454a330bf5de53c4835',1,'dhcp.c']]],

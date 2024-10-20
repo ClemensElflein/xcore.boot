@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -169,12 +169,18 @@ Macros</h2></td></tr>
 <tr class="separator:ga3528798be1d2f1ec6a6bccd35694edce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab5c5540ea05227bdd9207a47304bb2c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gab5c5540ea05227bdd9207a47304bb2c1">ip_addr_get_network</a>(target,  host,  netmask)</td></tr>
 <tr class="separator:gab5c5540ea05227bdd9207a47304bb2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga3a2123f0bbf6fe843c8542e349c680eb">ip_addr_netcmp</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="memitem:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga3a2123f0bbf6fe843c8542e349c680eb">ip_addr_netcmp</a>(addr1,  addr2,  mask)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a>((addr1), (addr2), (mask))</td></tr>
 <tr class="separator:ga3a2123f0bbf6fe843c8542e349c680eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga008c9c92d770cc030ea054e6b259835a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga008c9c92d770cc030ea054e6b259835a">ip_addr_cmp</a>(addr1,  addr2)</td></tr>
+<tr class="memitem:gad1bbbe4c93ea2368663e90814953b929"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr_net_eq</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="separator:gad1bbbe4c93ea2368663e90814953b929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga008c9c92d770cc030ea054e6b259835a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga008c9c92d770cc030ea054e6b259835a">ip_addr_cmp</a>(addr1,  addr2)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a>((addr1), (addr2))</td></tr>
 <tr class="separator:ga008c9c92d770cc030ea054e6b259835a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gadb66f6d5fa926ed4b0e69db58dffcbe4">ip_addr_cmp_zoneless</a>(addr1,  addr2)</td></tr>
+<tr class="memitem:ga5b40158bdffa4b0c81c4ee77066e6b28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr_eq</a>(addr1,  addr2)</td></tr>
+<tr class="separator:ga5b40158bdffa4b0c81c4ee77066e6b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gadb66f6d5fa926ed4b0e69db58dffcbe4">ip_addr_cmp_zoneless</a>(addr1,  addr2)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a>((addr1), (addr2))</td></tr>
 <tr class="separator:gadb66f6d5fa926ed4b0e69db58dffcbe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ac2686417ec2974bb0b3fc6ee0ee1a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr_zoneless_eq</a>(addr1,  addr2)</td></tr>
+<tr class="separator:ga8ac2686417ec2974bb0b3fc6ee0ee1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga279118890e6a90aa740051fb8b0cc5f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#ga279118890e6a90aa740051fb8b0cc5f4">ip_addr_isany</a>(ipaddr)</td></tr>
 <tr class="separator:ga279118890e6a90aa740051fb8b0cc5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd8f5aa151cff966fd28368b85f38c05"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ipaddr.html#gacd8f5aa151cff966fd28368b85f38c05">ip_addr_isany_val</a>(ipaddr)</td></tr>

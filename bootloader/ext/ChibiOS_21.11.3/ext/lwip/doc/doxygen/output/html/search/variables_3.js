@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['cache_5fflush',['cache_flush',['../structmdns__outpacket.html#a9bd0fd91dda48baa2938dddd747d3195',1,'mdns_outpacket']]],
+  ['cache_5fflush',['cache_flush',['../structmdns__outmsg.html#ab46f1589681a1abe826e8f6c58d10f1a',1,'mdns_outmsg']]],
   ['callback',['callback',['../structnetconn.html#abe796060bb06e585333ca9a87862b624',1,'netconn']]],
   ['callback_5farg',['callback_arg',['../structsmtp__session.html#af0544df7a935a092d825d8f2380f970f',1,'smtp_session']]],
   ['callback_5ffn',['callback_fn',['../structsmtp__session.html#a24c13d621e18311a613ab68b856a7f7b',1,'smtp_session']]],
@@ -10,6 +10,7 @@ var searchData=
   ['client_5fpass',['client_pass',['../structmqtt__connect__client__info__t.html#a8f68efe91c5311418151256c96102d4b',1,'mqtt_connect_client_info_t']]],
   ['client_5fuser',['client_user',['../structmqtt__connect__client__info__t.html#aec961673d5c3e8dc853c91f30d9333b5',1,'mqtt_connect_client_info_t']]],
   ['close',['close',['../structtftp__context.html#ae9181c57d1cf89bc263f7671e5630a65',1,'tftp_context']]],
+  ['conflict_5ftime',['conflict_time',['../structmdns__host.html#ab1ca90b282a4a6511fa87408b946f49a',1,'mdns_host']]],
   ['conn',['conn',['../structapi__msg.html#abec5e33802d69f1b601543d60699f028',1,'api_msg::conn()'],['../structlwip__sock.html#a3a3fee485b3361ed7054cde149355fb4',1,'lwip_sock::conn()']]],
   ['conn_5fstate',['conn_state',['../structmqtt__client__s.html#af4a07c1079e2e2a336f1939d8b9677e6',1,'mqtt_client_s']]],
   ['connect_5farg',['connect_arg',['../structmqtt__client__s.html#ae6d53359ec6d70533dab7c0d2717ce1a',1,'mqtt_client_s']]],

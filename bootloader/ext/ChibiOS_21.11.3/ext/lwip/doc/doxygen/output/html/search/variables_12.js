@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['r',['r',['../structapi__msg.html#aebd72e07e711e7135294563b82c98cdf',1,'api_msg']]],
+  ['r',['r',['../structapi__msg.html#a18358e3086ee6dbc605fe2680896e055',1,'api_msg']]],
   ['ram_5fheap',['ram_heap',['../mem_8c.html#a6da602f2bbf1d555556f9260b3b8ad5f',1,'mem.c']]],
+  ['rate_5flimit_5factivated',['rate_limit_activated',['../structmdns__host.html#a002e836a1888c7df4cf2b775c7fae557',1,'mdns_host']]],
   ['rcvevent',['rcvevent',['../structlwip__sock.html#af40d67cbaef4318d26e560988b6e1b3a',1,'lwip_sock']]],
   ['reachability',['reachability',['../structsntp__server.html#a2e9283bb8f94930fd2a2c3f24fc4b40d',1,'sntp_server']]],
   ['read',['read',['../structtftp__context.html#a748e37df0c8b84b3adda78d603b9033c',1,'tftp_context']]],
@@ -18,5 +19,6 @@ var searchData=
   ['reference_5flen',['reference_len',['../structsnmp__node__instance.html#ad289957b34b4e55915fa79f37c4d9d54',1,'snmp_node_instance']]],
   ['release_5finstance',['release_instance',['../structsnmp__node__instance.html#a20a256c54fab19a455ecf6deff76c6de',1,'snmp_node_instance']]],
   ['remove_5fcallback',['remove_callback',['../structnetif.html#ae06deb532ead2e3009ba4e58aae6ca07',1,'netif']]],
+  ['result_5ffn',['result_fn',['../structmdns__request.html#a4cc8a4e62ce71bc33f1e7cb24b198c1d',1,'mdns_request']]],
   ['rs_5fcount',['rs_count',['../structnetif.html#a9c1f9f28bde60aa868bc3296bee7b1b6',1,'netif']]]
 ];

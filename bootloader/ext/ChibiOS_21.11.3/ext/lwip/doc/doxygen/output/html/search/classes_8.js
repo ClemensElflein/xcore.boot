@@ -1,8 +1,11 @@
 var searchData=
 [
+  ['mdns_5fdelayed_5fmsg',['mdns_delayed_msg',['../structmdns__delayed__msg.html',1,'']]],
   ['mdns_5fhost',['mdns_host',['../structmdns__host.html',1,'']]],
+  ['mdns_5foutmsg',['mdns_outmsg',['../structmdns__outmsg.html',1,'']]],
   ['mdns_5foutpacket',['mdns_outpacket',['../structmdns__outpacket.html',1,'']]],
   ['mdns_5fpacket',['mdns_packet',['../structmdns__packet.html',1,'']]],
+  ['mdns_5frequest',['mdns_request',['../structmdns__request.html',1,'']]],
   ['mdns_5frr_5finfo',['mdns_rr_info',['../structmdns__rr__info.html',1,'']]],
   ['mdns_5fservice',['mdns_service',['../structmdns__service.html',1,'']]],
   ['mem',['mem',['../structmem.html',1,'']]],

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -130,8 +130,12 @@ Macros</h2></td></tr>
 <tr class="separator:ad50d93464bbbda199b585c54869a3a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81658cb05ba504d13ee860e82dc444e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#a81658cb05ba504d13ee860e82dc444e9">ip4_addr_get_network</a>(target,  host,  netmask)&#160;&#160;&#160;do { ((target)-&gt;addr = ((host)-&gt;addr) &amp; ((netmask)-&gt;addr)); } while(0)</td></tr>
 <tr class="separator:a81658cb05ba504d13ee860e82dc444e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd43f6ceb2df8d50c84509ad1059f514"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#afd43f6ceb2df8d50c84509ad1059f514">ip4_addr_netcmp</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="memitem:afd43f6ceb2df8d50c84509ad1059f514"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#afd43f6ceb2df8d50c84509ad1059f514">ip4_addr_netcmp</a>(addr1,  addr2,  mask)&#160;&#160;&#160;<a class="el" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a>(addr1, addr2, mask)</td></tr>
 <tr class="separator:afd43f6ceb2df8d50c84509ad1059f514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d05df9201602fc873a97fb61fd1134"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a>(addr1,  addr2,  mask)</td></tr>
+<tr class="separator:a95d05df9201602fc873a97fb61fd1134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59494c562c62fdf62a6c9c6a66a50fb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#a59494c562c62fdf62a6c9c6a66a50fb3">ip4_addr_cmp</a>(addr1,  addr2)&#160;&#160;&#160;ip4_addr_eq(addr1, addr2)</td></tr>
+<tr class="separator:a59494c562c62fdf62a6c9c6a66a50fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b2230516e7911dfacc9b87644ba30f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ip4__addr_8h.html#a2b2230516e7911dfacc9b87644ba30f1">ip_ntoa</a>(ipaddr)&#160;&#160;&#160;<a class="el" href="group__ipaddr.html#gace12d28aef35bb15962e8563aea571b1">ipaddr_ntoa</a>(ipaddr)</td></tr>
 <tr class="separator:a2b2230516e7911dfacc9b87644ba30f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -202,6 +206,35 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set an IP address given by the four byte-parts </p>
+
+</div>
+</div>
+<a id="a59494c562c62fdf62a6c9c6a66a50fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59494c562c62fdf62a6c9c6a66a50fb3">&#9670;&nbsp;</a></span>ip4_addr_cmp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ip4_addr_cmp</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr2&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;ip4_addr_eq(addr1, addr2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Renamed to ip4_addr_eq </dd></dl>
 
 </div>
 </div>
@@ -307,14 +340,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afd43f6ceb2df8d50c84509ad1059f514"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd43f6ceb2df8d50c84509ad1059f514">&#9670;&nbsp;</a></span>ip4_addr_netcmp</h2>
+<a id="a95d05df9201602fc873a97fb61fd1134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d05df9201602fc873a97fb61fd1134">&#9670;&nbsp;</a></span>ip4_addr_net_eq</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ip4_addr_netcmp</td>
+          <td class="memname">#define ip4_addr_net_eq</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">addr1, </td>
@@ -345,6 +378,41 @@ Functions</h2></td></tr>
 <li>mask network identifier mask <dl class="section return"><dt>Returns</dt><dd>!0 if the network identifiers of both address match </dd></dl>
 </li>
 </ul>
+
+</div>
+</div>
+<a id="afd43f6ceb2df8d50c84509ad1059f514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd43f6ceb2df8d50c84509ad1059f514">&#9670;&nbsp;</a></span>ip4_addr_netcmp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ip4_addr_netcmp</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr2, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">mask&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a>(addr1, addr2, mask)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if two address are on the same network. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Renamed to <a class="el" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr_net_eq</a> </dd></dl>
 
 </div>
 </div>

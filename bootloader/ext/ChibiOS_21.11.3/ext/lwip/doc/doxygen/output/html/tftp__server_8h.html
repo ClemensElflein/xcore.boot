@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -82,35 +82,20 @@ $(document).ready(function(){initNavTree('tftp__server_8h.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">tftp_server.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Trivial File Transfer Protocol (RFC 1350)  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="tftp__opts_8h.html">lwip/apps/tftp_opts.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="err_8h.html">lwip/err.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pbuf_8h.html">lwip/pbuf.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="tftp__common_8h.html">lwip/apps/tftp_common.h</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtftp__context.html">tftp_context</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga7a80673a1324da5c8ae2440af7b008a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tftp.html#ga7a80673a1324da5c8ae2440af7b008a3">tftp_init</a> (const struct <a class="el" href="structtftp__context.html">tftp_context</a> *ctx)</td></tr>
-<tr class="separator:ga7a80673a1324da5c8ae2440af7b008a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabb4a4e24b5c7ec8df70ec5a68a206dec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tftp.html#gabb4a4e24b5c7ec8df70ec5a68a206dec">tftp_cleanup</a> (void)</td></tr>
-<tr class="separator:gabb4a4e24b5c7ec8df70ec5a68a206dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73a98f0811244d5bd24d5b959db8ed40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tftp.html#ga73a98f0811244d5bd24d5b959db8ed40">tftp_init_server</a> (const struct <a class="el" href="structtftp__context.html">tftp_context</a> *ctx)</td></tr>
+<tr class="separator:ga73a98f0811244d5bd24d5b959db8ed40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Trivial File Transfer Protocol (RFC 1350) </p>
-<dl class="section author"><dt>Author</dt><dd>Logan Gunthorpe <a href="#" onclick="location.href='mai'+'lto:'+'log'+'an'+'g@d'+'el'+'tat'+'ee'+'.co'+'m'; return false;">logan<span style="display: none;">.nosp@m.</span>g@de<span style="display: none;">.nosp@m.</span>ltate<span style="display: none;">.nosp@m.</span>e.co<span style="display: none;">.nosp@m.</span>m</a></dd></dl>
-<p>Copyright (c) Deltatee Enterprises Ltd. 2013 All rights reserved. </p>
+<div class="textblock"><p>TFTP server header </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

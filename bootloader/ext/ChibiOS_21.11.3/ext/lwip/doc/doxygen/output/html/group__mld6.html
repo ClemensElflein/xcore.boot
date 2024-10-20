@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -107,9 +107,9 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Multicast listener discovery for IPv6. Aims to be compliant with RFC 2710. No support for MLDv2.<br />
-Note: The allnodes (ff01::1, ff02::1) group is assumed be received by your netif since it must always be received for correct IPv6 operation (e.g. SLAAC). Ensure the netif filters are configured accordingly!<br />
-The netif flags also need NETIF_FLAG_MLD6 flag set to enable MLD6 on a netif ("netif-&gt;flags |= NETIF_FLAG_MLD6;").<br />
-To be called from TCPIP thread. </p>
+ Note: The allnodes (ff01::1, ff02::1) group is assumed be received by your netif since it must always be received for correct IPv6 operation (e.g. SLAAC). Ensure the netif filters are configured accordingly!<br />
+ The netif flags also need NETIF_FLAG_MLD6 flag set to enable MLD6 on a netif ("netif-&gt;flags |= NETIF_FLAG_MLD6;").<br />
+ To be called from TCPIP thread. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga02a2259082f22c5989a3c929be95e641"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga02a2259082f22c5989a3c929be95e641">&#9670;&nbsp;</a></span>netif_mld6_data</h2>

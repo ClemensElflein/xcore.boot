@@ -2,7 +2,6 @@ var searchData=
 [
   ['how_20to_20contribute_20to_20lwip',['How to contribute to lwIP',['../contrib.html',1,'']]],
   ['h_5ferrno',['h_errno',['../netdb_8c.html#a2a1ce3f2040007303d36c0b682b5ac10',1,'h_errno():&#160;netdb.c'],['../lwip_2netdb_8h.html#a2a1ce3f2040007303d36c0b682b5ac10',1,'h_errno():&#160;netdb.c']]],
-  ['hostent_5fstorage',['HOSTENT_STORAGE',['../netdb_8c.html#acfc1e988534c0e497599b904739f92fe',1,'netdb.c']]],
   ['http_5fclient_2ec',['http_client.c',['../http__client_8c.html',1,'']]],
   ['http_5fclient_2eh',['http_client.h',['../http__client_8h.html',1,'']]],
   ['http_5fdefault_5fport',['HTTP_DEFAULT_PORT',['../group__httpc.html#ga1f192f3009865e9f9a3cd83609c866c2',1,'http_client.h']]],

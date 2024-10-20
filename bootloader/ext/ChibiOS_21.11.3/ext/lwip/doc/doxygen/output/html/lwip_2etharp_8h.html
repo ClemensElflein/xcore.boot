@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -125,6 +125,10 @@ Functions</h2></td></tr>
 <tr class="separator:a3e56faced96841e615f88dd57d1b2b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae94677a2a5f3698276027c7475f6ca05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lwip_2etharp_8h.html#ae94677a2a5f3698276027c7475f6ca05">etharp_cleanup_netif</a> (struct <a class="el" href="structnetif.html">netif</a> *<a class="el" href="structnetif.html">netif</a>)</td></tr>
 <tr class="separator:ae94677a2a5f3698276027c7475f6ca05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7d5048a81ef1c63b18d769700f4899"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lwip_2etharp_8h.html#aac7d5048a81ef1c63b18d769700f4899">etharp_acd_probe</a> (struct <a class="el" href="structnetif.html">netif</a> *<a class="el" href="structnetif.html">netif</a>, const <a class="el" href="ip4__addr_8h.html#a3d3b45daffbc15d65da236e31e621b7e">ip4_addr_t</a> *ipaddr)</td></tr>
+<tr class="separator:aac7d5048a81ef1c63b18d769700f4899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c41ba8b145fa4d06f8d6af3df44c4ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lwip_2etharp_8h.html#a7c41ba8b145fa4d06f8d6af3df44c4ff">etharp_acd_announce</a> (struct <a class="el" href="structnetif.html">netif</a> *<a class="el" href="structnetif.html">netif</a>, const <a class="el" href="ip4__addr_8h.html#a3d3b45daffbc15d65da236e31e621b7e">ip4_addr_t</a> *ipaddr)</td></tr>
+<tr class="separator:a7c41ba8b145fa4d06f8d6af3df44c4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a540a5506979693ef9ac4496db9bfa7d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lwip_2etharp_8h.html#a540a5506979693ef9ac4496db9bfa7d6">etharp_input</a> (struct <a class="el" href="structpbuf.html">pbuf</a> *p, struct <a class="el" href="structnetif.html">netif</a> *<a class="el" href="structnetif.html">netif</a>)</td></tr>
 <tr class="separator:a540a5506979693ef9ac4496db9bfa7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -166,6 +170,80 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a7c41ba8b145fa4d06f8d6af3df44c4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c41ba8b145fa4d06f8d6af3df44c4ff">&#9670;&nbsp;</a></span>etharp_acd_announce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a> etharp_acd_announce </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structnetif.html">netif</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ip4__addr_8h.html#a3d3b45daffbc15d65da236e31e621b7e">ip4_addr_t</a> *&#160;</td>
+          <td class="paramname"><em>ipaddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Send an ARP request packet announcing an ipaddr. Used to send announce messages for address conflict detection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">netif</td><td>the lwip network interface on which to send the request </td></tr>
+    <tr><td class="paramname">ipaddr</td><td>the IP address to announce </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ERR_OK if the request has been sent ERR_MEM if the ARP packet couldn't be allocated any other err_t on failure </dd></dl>
+
+</div>
+</div>
+<a id="aac7d5048a81ef1c63b18d769700f4899"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7d5048a81ef1c63b18d769700f4899">&#9670;&nbsp;</a></span>etharp_acd_probe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a> etharp_acd_probe </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structnetif.html">netif</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ip4__addr_8h.html#a3d3b45daffbc15d65da236e31e621b7e">ip4_addr_t</a> *&#160;</td>
+          <td class="paramname"><em>ipaddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Send an ARP request packet probing for an ipaddr. Used to send probe messages for address conflict detection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">netif</td><td>the lwip network interface on which to send the request </td></tr>
+    <tr><td class="paramname">ipaddr</td><td>the IP address to probe </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ERR_OK if the request has been sent ERR_MEM if the ARP packet couldn't be allocated any other err_t on failure </dd></dl>
+
+</div>
+</div>
 <a id="ae94677a2a5f3698276027c7475f6ca05"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae94677a2a5f3698276027c7475f6ca05">&#9670;&nbsp;</a></span>etharp_cleanup_netif()</h2>
 

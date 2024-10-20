@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>lwIP: System initalization</title>
+<title>lwIP: System initialization</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -82,7 +82,7 @@ $(document).ready(function(){initNavTree('sys_init.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">System initalization </div>  </div>
+<div class="title">System initialization </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>A truly complete and generic sequence for initializing the lwIP stack cannot be given because it depends on additional initializations for your runtime environment (e.g. timers).</p>
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('sys_init.html','');});
 <p class="startli">The init function pointer must point to a initialization function for your Ethernet netif interface. The following code illustrates its use.</p>
 </li>
 </ul>
-<div class="fragment"><div class="line"><a class="code" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a> netif_if_init(<span class="keyword">struct</span> <a class="code" href="structnetif.html">netif</a> *<a class="code" href="structnetif.html">netif</a>)</div><div class="line">{</div><div class="line">  u8_t i;</div><div class="line">  </div><div class="line">  <span class="keywordflow">for</span> (i = 0; i &lt; ETHARP_HWADDR_LEN; i++) {</div><div class="line">    netif-&gt;<a class="code" href="structnetif.html#aee967965d999fc1a4c40a66709304e69">hwaddr</a>[i] = some_eth_addr[i];</div><div class="line">  }</div><div class="line">  init_my_eth_device();</div><div class="line">  <span class="keywordflow">return</span> <a class="code" href="group__infrastructure__errors.html#ggae2e66c7d13afc90ffecd6151680fbadcaa26c163b80b1f6786ca81dadc14b00fb">ERR_OK</a>;</div><div class="line">}</div></div><!-- fragment --><p>For Ethernet drivers, the input function pointer must point to the lwIP function <a class="el" href="group__lwip__nosys.html#ga6a10c58b82c56d02c48b3cfa2c2494ff">ethernet_input()</a> declared in "netif/etharp.h". Other drivers must use <a class="el" href="group__lwip__nosys.html#ga3c420dab0c6760df099a2d688fa42a26">ip_input()</a> declared in "lwip/ip.h".</p>
+<div class="fragment"><div class="line"><a class="code" href="group__infrastructure__errors.html#gaf02d9da80fd66b4f986d2c53d7231ddb">err_t</a> netif_if_init(<span class="keyword">struct</span> <a class="code" href="structnetif.html">netif</a> *<a class="code" href="structnetif.html">netif</a>)</div><div class="line">{</div><div class="line">  u8_t i;</div><div class="line"></div><div class="line">  <span class="keywordflow">for</span> (i = 0; i &lt; ETHARP_HWADDR_LEN; i++) {</div><div class="line">    netif-&gt;<a class="code" href="structnetif.html#aee967965d999fc1a4c40a66709304e69">hwaddr</a>[i] = some_eth_addr[i];</div><div class="line">  }</div><div class="line">  init_my_eth_device();</div><div class="line">  <span class="keywordflow">return</span> <a class="code" href="group__infrastructure__errors.html#ggae2e66c7d13afc90ffecd6151680fbadcaa26c163b80b1f6786ca81dadc14b00fb">ERR_OK</a>;</div><div class="line">}</div></div><!-- fragment --><p>For Ethernet drivers, the input function pointer must point to the lwIP function <a class="el" href="group__lwip__nosys.html#ga6a10c58b82c56d02c48b3cfa2c2494ff">ethernet_input()</a> declared in "netif/etharp.h". Other drivers must use <a class="el" href="group__lwip__nosys.html#ga3c420dab0c6760df099a2d688fa42a26">ip_input()</a> declared in "lwip/ip.h".</p>
 <ul>
 <li><a class="el" href="group__netif.html#gac90f290edd005238d62aa94c4ac9dea3">netif_set_default(struct netif *netif)</a> Registers the default network interface.</li>
 <li><a class="el" href="group__netif.html#gae0d2975f189277990e9d5276fdd9e9ea">netif_set_link_up(struct netif *netif)</a> This is the hardware link state; e.g. whether cable is plugged for wired Ethernet interface. This function must be called even if you don't know the current state. Having link up and link down events is optional but DHCP and IPv6 discover benefit well from those events.</li>

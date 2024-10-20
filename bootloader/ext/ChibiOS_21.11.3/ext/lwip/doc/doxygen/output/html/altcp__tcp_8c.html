@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('altcp__tcp_8c.html','');});
 <code>#include &quot;<a class="el" href="altcp__tcp_8h.html">lwip/altcp_tcp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="altcp__priv_8h.html">lwip/priv/altcp_priv.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="tcp_8h.html">lwip/tcp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tcp__priv_8h.html">lwip/priv/tcp_priv.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mem_8h.html">lwip/mem.h</a>&quot;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
@@ -101,8 +102,8 @@ Functions</h2></td></tr>
 <tr class="separator:a211215e43cb40bd204a20c34316b7caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Application layered TCP connection API (to be used from TCPIP thread)<br />
-This interface mimics the tcp callback API to the application while preventing direct linking (much like virtual functions). This way, an application can make use of other application layer protocols on top of TCP without knowing the details (e.g. TLS, proxy connection).</p>
+<div class="textblock"><p>Application layered TCP connection API (to be used from TCPIP thread)</p>
+<p>This interface mimics the tcp callback API to the application while preventing direct linking (much like virtual functions). This way, an application can make use of other application layer protocols on top of TCP without knowing the details (e.g. TLS, proxy connection).</p>
 <p>This file contains the base implementation calling into tcp. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a211215e43cb40bd204a20c34316b7caa"></a>

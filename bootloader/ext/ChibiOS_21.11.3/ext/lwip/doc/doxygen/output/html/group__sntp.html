@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -112,9 +112,12 @@ Functions</h2></td></tr>
 <tr class="separator:ga4fa038dcea66349fafdbe1cc3e52ff3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2a28523cb9f2b5b025a4818bc2c1afc1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__ipaddr.html#ga16ef96d6cde029029bbf47fee35fd67a">ip_addr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sntp.html#ga2a28523cb9f2b5b025a4818bc2c1afc1">sntp_getserver</a> (u8_t idx)</td></tr>
 <tr class="separator:ga2a28523cb9f2b5b025a4818bc2c1afc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga68146d2ee1bba10e5aa01f098b597d9e"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sntp.html#ga68146d2ee1bba10e5aa01f098b597d9e">sntp_getkodreceived</a> (u8_t idx)</td></tr>
+<tr class="separator:ga68146d2ee1bba10e5aa01f098b597d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This is simple "SNTP" client for the lwIP raw API. It is a minimal implementation of SNTPv4 as specified in RFC 4330.</p>
+<p>You need to increase MEMP_NUM_SYS_TIMEOUT by one if you use SNTP!</p>
 <p>For a list of some public NTP servers, see this link: <a href="http://support.ntp.org/bin/view/Servers/NTPPoolServers">http://support.ntp.org/bin/view/Servers/NTPPoolServers</a></p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga3fe5254e5a056fca80802d9f26b9c3c5"></a>
@@ -133,6 +136,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Get enabled state. </p>
+
+</div>
+</div>
+<a id="ga68146d2ee1bba10e5aa01f098b597d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga68146d2ee1bba10e5aa01f098b597d9e">&#9670;&nbsp;</a></span>sntp_getkodreceived()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u8_t sntp_getkodreceived </td>
+          <td>(</td>
+          <td class="paramtype">u8_t&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if a Kiss-of-Death has been received from this server (only valid for SNTP_MAX_SERVERS &gt; 1).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>the index of the NTP server </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if a KoD has been received, 0 if not. </dd></dl>
 
 </div>
 </div>

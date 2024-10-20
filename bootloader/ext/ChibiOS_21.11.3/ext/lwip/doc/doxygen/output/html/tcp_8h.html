@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -195,16 +195,16 @@ Functions</h2></td></tr>
 <tr class="separator:ga0cbcc6d628f644a530daf629fa3e5f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4836e0b4f66439493e106a50400d1616"><td class="memItemLeft" align="right" valign="top">u8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#ga4836e0b4f66439493e106a50400d1616">tcp_ext_arg_alloc_id</a> (void)</td></tr>
 <tr class="separator:ga4836e0b4f66439493e106a50400d1616"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga36e60dc02bfe0437c8da368a62e2f316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#ga36e60dc02bfe0437c8da368a62e2f316">tcp_ext_arg_set_callbacks</a> (struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, uint8_t id, const struct <a class="el" href="structtcp__ext__arg__callbacks.html">tcp_ext_arg_callbacks</a> *const callbacks)</td></tr>
-<tr class="separator:ga36e60dc02bfe0437c8da368a62e2f316"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga58500cb2ce22438e16a37373595af318"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#ga58500cb2ce22438e16a37373595af318">tcp_ext_arg_set</a> (struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, uint8_t id, void *arg)</td></tr>
-<tr class="separator:ga58500cb2ce22438e16a37373595af318"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa8ac7a74407cb3e0e01a30314805f990"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#gaa8ac7a74407cb3e0e01a30314805f990">tcp_ext_arg_get</a> (const struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, uint8_t id)</td></tr>
-<tr class="separator:gaa8ac7a74407cb3e0e01a30314805f990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacea54ce1154e7ae8ef0199ff1c5bdc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#gaacea54ce1154e7ae8ef0199ff1c5bdc5">tcp_ext_arg_set_callbacks</a> (struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, u8_t id, const struct <a class="el" href="structtcp__ext__arg__callbacks.html">tcp_ext_arg_callbacks</a> *const callbacks)</td></tr>
+<tr class="separator:gaacea54ce1154e7ae8ef0199ff1c5bdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5c2397b2d85b3a902584fb64cdb961e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#gaf5c2397b2d85b3a902584fb64cdb961e">tcp_ext_arg_set</a> (struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, u8_t id, void *arg)</td></tr>
+<tr class="separator:gaf5c2397b2d85b3a902584fb64cdb961e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70ab65b0ad805dcb1b211f7470254053"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tcp__raw__extargs.html#ga70ab65b0ad805dcb1b211f7470254053">tcp_ext_arg_get</a> (const struct <a class="el" href="structtcp__pcb.html">tcp_pcb</a> *pcb, u8_t id)</td></tr>
+<tr class="separator:ga70ab65b0ad805dcb1b211f7470254053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TCP API (to be used from TCPIP thread)<br />
-See also <a class="el" href="group__tcp__raw.html">TCP</a> </p>
+ See also <a class="el" href="group__tcp__raw.html">TCP</a> </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a874630045102fc5f1442704a790c8bb8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a874630045102fc5f1442704a790c8bb8">&#9670;&nbsp;</a></span>TCP_PCB_COMMON</h2>
@@ -353,7 +353,7 @@ See also <a class="el" href="group__tcp__raw.html">TCP</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>ext arg id (allocated via <a class="el" href="group__tcp__raw__extargs.html#ga4836e0b4f66439493e106a50400d1616">tcp_ext_arg_alloc_id</a>) </td></tr>
-    <tr><td class="paramname">data</td><td>pointer to the data (set via <a class="el" href="group__tcp__raw__extargs.html#ga58500cb2ce22438e16a37373595af318">tcp_ext_arg_set</a> before) </td></tr>
+    <tr><td class="paramname">data</td><td>pointer to the data (set via <a class="el" href="group__tcp__raw__extargs.html#gaf5c2397b2d85b3a902584fb64cdb961e">tcp_ext_arg_set</a> before) </td></tr>
   </table>
   </dd>
 </dl>

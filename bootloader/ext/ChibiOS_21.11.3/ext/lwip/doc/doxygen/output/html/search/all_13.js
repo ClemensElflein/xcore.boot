@@ -2,8 +2,9 @@ var searchData=
 [
   ['reporting_20bugs',['Reporting bugs',['../bugs.html',1,'']]],
   ['raw',['RAW',['../group__lwip__opts__raw.html',1,'']]],
-  ['r',['r',['../structapi__msg.html#aebd72e07e711e7135294563b82c98cdf',1,'api_msg']]],
+  ['r',['r',['../structapi__msg.html#a18358e3086ee6dbc605fe2680896e055',1,'api_msg']]],
   ['ram_5fheap',['ram_heap',['../mem_8c.html#a6da602f2bbf1d555556f9260b3b8ad5f',1,'mem.c']]],
+  ['rate_5flimit_5factivated',['rate_limit_activated',['../structmdns__host.html#a002e836a1888c7df4cf2b775c7fae557',1,'mdns_host']]],
   ['raw_2ec',['raw.c',['../raw_8c.html',1,'']]],
   ['raw_2eh',['raw.h',['../raw_8h.html',1,'']]],
   ['raw_5fbind',['raw_bind',['../group__raw__raw.html#ga8576dbbc7f03797525d2cdb7ec3b9fe4',1,'raw_bind(struct raw_pcb *pcb, const ip_addr_t *ipaddr):&#160;raw.c'],['../group__raw__raw.html#ga8576dbbc7f03797525d2cdb7ec3b9fe4',1,'raw_bind(struct raw_pcb *pcb, const ip_addr_t *ipaddr):&#160;raw.c']]],
@@ -48,6 +49,7 @@ var searchData=
   ['reference_5flen',['reference_len',['../structsnmp__node__instance.html#ad289957b34b4e55915fa79f37c4d9d54',1,'snmp_node_instance']]],
   ['release_5finstance',['release_instance',['../structsnmp__node__instance.html#a20a256c54fab19a455ecf6deff76c6de',1,'snmp_node_instance']]],
   ['remove_5fcallback',['remove_callback',['../structnetif.html#ae06deb532ead2e3009ba4e58aae6ca07',1,'netif']]],
+  ['result_5ffn',['result_fn',['../structmdns__request.html#a4cc8a4e62ce71bc33f1e7cb24b198c1d',1,'mdns_request']]],
   ['rfc7668_5fif_5finit',['rfc7668_if_init',['../group__rfc7668if.html#ga3d940376bd983c14ffcc8d2580f3bdde',1,'rfc7668_if_init(struct netif *netif):&#160;lowpan6_ble.c'],['../group__rfc7668if.html#ga3d940376bd983c14ffcc8d2580f3bdde',1,'rfc7668_if_init(struct netif *netif):&#160;lowpan6_ble.c']]],
   ['rfc7668_5finput',['rfc7668_input',['../group__rfc7668if.html#ga1d9d7aff9f2f0515f761be0802178197',1,'rfc7668_input(struct pbuf *p, struct netif *netif):&#160;lowpan6_ble.c'],['../group__rfc7668if.html#ga1d9d7aff9f2f0515f761be0802178197',1,'rfc7668_input(struct pbuf *p, struct netif *netif):&#160;lowpan6_ble.c']]],
   ['rfc7668_5foutput',['rfc7668_output',['../group__rfc7668if.html#ga22930ade4e77b3195fe59949834d85f0',1,'rfc7668_output(struct netif *netif, struct pbuf *q, const ip6_addr_t *ip6addr):&#160;lowpan6_ble.c'],['../group__rfc7668if.html#ga22930ade4e77b3195fe59949834d85f0',1,'rfc7668_output(struct netif *netif, struct pbuf *q, const ip6_addr_t *ip6addr):&#160;lowpan6_ble.c']]],

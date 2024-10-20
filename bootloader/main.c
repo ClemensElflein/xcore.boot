@@ -8,6 +8,7 @@
 #include <globals.h>
 #include <heartbeat.h>
 #include <id_eeprom.h>
+#include <lwip/dhcp.h>
 #include <service_discovery.h>
 
 #include "lwipthread.h"
@@ -42,10 +43,10 @@ int main(void) {
   uint8_t mac_address[6] = {0};
   ID_EEPROM_GetMacAddress(mac_address, sizeof(mac_address));
   lwipthread_opts_t lwipconf_opts = {0};
-  lwipconf_opts.addrMode = NET_ADDRESS_DHCP;
-  lwipconf_opts.address = FALLBACK_IP_ADDRESS;
-  lwipconf_opts.gateway = FALLBACK_GATEWAY;
-  lwipconf_opts.netmask = FALLBACK_NETMASK;
+  lwipconf_opts.addrMode = NET_ADDRESS_STATIC;
+  lwipconf_opts.address = PP_HTONL(FALLBACK_IP_ADDRESS);
+  lwipconf_opts.gateway = PP_HTONL(FALLBACK_GATEWAY);
+  lwipconf_opts.netmask = PP_HTONL(FALLBACK_NETMASK);
   lwipconf_opts.macaddress = mac_address;
   lwipInit(&lwipconf_opts);
 
@@ -54,6 +55,8 @@ int main(void) {
 
   // Start the actual Bootloader Task
   InitBootloaderThread();
+
+  chThdSleep(TIME_INFINITE);
 
   uint32_t sleep_count = 1000 / 100;
   while (sleep_count-- > 0) {

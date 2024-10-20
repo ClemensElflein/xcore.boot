@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -162,8 +162,12 @@ Macros</h2></td></tr>
 <tr class="separator:ga5a378ba73e60cd1e5235474f0db22978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3428b3f8195249c6cd8704a4db46b401"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__netif.html#ga3428b3f8195249c6cd8704a4db46b401">netif_set_igmp_mac_filter</a>(<a class="el" href="structnetif.html">netif</a>,  function)&#160;&#160;&#160;do { if((<a class="el" href="structnetif.html">netif</a>) != NULL) { (<a class="el" href="structnetif.html">netif</a>)-&gt;igmp_mac_filter = function; }}while(0)</td></tr>
 <tr class="separator:ga3428b3f8195249c6cd8704a4db46b401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a674553c18b429b53397372ea82fcaf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="netif_8h.html#a0a674553c18b429b53397372ea82fcaf">netif_get_igmp_mac_filter</a>(<a class="el" href="structnetif.html">netif</a>)&#160;&#160;&#160;(((<a class="el" href="structnetif.html">netif</a>) != NULL) ? ((<a class="el" href="structnetif.html">netif</a>)-&gt;igmp_mac_filter) : NULL)</td></tr>
+<tr class="separator:a0a674553c18b429b53397372ea82fcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga97f30bb5542e4c07d3b32e3c754e104c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__netif.html#ga97f30bb5542e4c07d3b32e3c754e104c">netif_set_mld_mac_filter</a>(<a class="el" href="structnetif.html">netif</a>,  function)&#160;&#160;&#160;do { if((<a class="el" href="structnetif.html">netif</a>) != NULL) { (<a class="el" href="structnetif.html">netif</a>)-&gt;mld_mac_filter = function; }}while(0)</td></tr>
 <tr class="separator:ga97f30bb5542e4c07d3b32e3c754e104c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a046c4816e37c3c4b84b3634eeeea7029"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="netif_8h.html#a046c4816e37c3c4b84b3634eeeea7029">netif_get_mld_mac_filter</a>(<a class="el" href="structnetif.html">netif</a>)&#160;&#160;&#160;(((<a class="el" href="structnetif.html">netif</a>) != NULL) ? ((<a class="el" href="structnetif.html">netif</a>)-&gt;mld_mac_filter) : NULL)</td></tr>
+<tr class="separator:a046c4816e37c3c4b84b3634eeeea7029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae424e336fe9f013b30d4065fd35c91ee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__netif__ip6.html#gae424e336fe9f013b30d4065fd35c91ee">netif_ip_addr6</a>(<a class="el" href="structnetif.html">netif</a>,  i)&#160;&#160;&#160;((const <a class="el" href="group__ipaddr.html#ga16ef96d6cde029029bbf47fee35fd67a">ip_addr_t</a>*)(&amp;((<a class="el" href="structnetif.html">netif</a>)-&gt;<a class="el" href="structip6__addr.html">ip6_addr</a>[i])))</td></tr>
 <tr class="separator:gae424e336fe9f013b30d4065fd35c91ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7ec0623f1a858a0cdb187beaa89df365"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__netif__ip6.html#ga7ec0623f1a858a0cdb187beaa89df365">netif_ip6_addr</a>(<a class="el" href="structnetif.html">netif</a>,  i)&#160;&#160;&#160;((const <a class="el" href="ip6__addr_8h.html#aaca9e796e93a355294c4954c08d01762">ip6_addr_t</a>*)<a class="el" href="group__ip6addr.html#ga06e75bcd198012b5ba39480c233608bd">ip_2_ip6</a>(&amp;((<a class="el" href="structnetif.html">netif</a>)-&gt;<a class="el" href="structip6__addr.html">ip6_addr</a>[i])))</td></tr>
@@ -188,6 +192,8 @@ Macros</h2></td></tr>
 <tr class="separator:a8fb4317a77ee2e3848be80db15618666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d70fe11cac43c8fa35827b8e607ccf6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="netif_8h.html#a0d70fe11cac43c8fa35827b8e607ccf6">LWIP_NSC_IPV6_ADDR_STATE_CHANGED</a>&#160;&#160;&#160;0x0200</td></tr>
 <tr class="separator:a0d70fe11cac43c8fa35827b8e607ccf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a716576f3485524d44ef0843839ef0564"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="netif_8h.html#a716576f3485524d44ef0843839ef0564">LWIP_NSC_IPV4_ADDR_VALID</a>&#160;&#160;&#160;0x0400</td></tr>
+<tr class="separator:a716576f3485524d44ef0843839ef0564"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -294,6 +300,21 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>netif API (to be used from TCPIP thread) </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a716576f3485524d44ef0843839ef0564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a716576f3485524d44ef0843839ef0564">&#9670;&nbsp;</a></span>LWIP_NSC_IPV4_ADDR_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LWIP_NSC_IPV4_ADDR_VALID&#160;&#160;&#160;0x0400</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>IPv4 settings: valid address set, application may start to communicate </p>
+
+</div>
+</div>
 <a id="aeb4e790199b02469aa04c044ef5cfa32"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb4e790199b02469aa04c044ef5cfa32">&#9670;&nbsp;</a></span>LWIP_NSC_IPV4_ADDRESS_CHANGED</h2>
 
@@ -441,8 +462,46 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>netif administrative status changed.<br />
-up is called AFTER netif is set up.<br />
-down is called BEFORE the netif is actually set down. </p>
+ up is called AFTER netif is set up.<br />
+ down is called BEFORE the netif is actually set down. </p>
+
+</div>
+</div>
+<a id="a0a674553c18b429b53397372ea82fcaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a674553c18b429b53397372ea82fcaf">&#9670;&nbsp;</a></span>netif_get_igmp_mac_filter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define netif_get_igmp_mac_filter</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structnetif.html">netif</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(((<a class="el" href="structnetif.html">netif</a>) != NULL) ? ((<a class="el" href="structnetif.html">netif</a>)-&gt;igmp_mac_filter) : NULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the igmp mac filter function for a netif. </p>
+
+</div>
+</div>
+<a id="a046c4816e37c3c4b84b3634eeeea7029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a046c4816e37c3c4b84b3634eeeea7029">&#9670;&nbsp;</a></span>netif_get_mld_mac_filter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define netif_get_mld_mac_filter</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structnetif.html">netif</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(((<a class="el" href="structnetif.html">netif</a>) != NULL) ? ((<a class="el" href="structnetif.html">netif</a>)-&gt;mld_mac_filter) : NULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the mld mac filter function for a netif. </p>
 
 </div>
 </div>

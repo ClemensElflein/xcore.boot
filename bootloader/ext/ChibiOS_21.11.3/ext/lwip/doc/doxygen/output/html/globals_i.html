@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lwIP
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">Lightweight IP stack</div>
   </td>
@@ -385,6 +385,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 <li>IP4_ADDR_BROADCAST
 : <a class="el" href="group__ip4addr.html#ga5efdf55ba72c2b1b5755b1fc6f559a1a">ip_addr.h</a>
 </li>
+<li>ip4_addr_cmp
+: <a class="el" href="ip4__addr_8h.html#a59494c562c62fdf62a6c9c6a66a50fb3">ip4_addr.h</a>
+</li>
 <li>ip4_addr_copy
 : <a class="el" href="ip4__addr_8h.html#a2f4e9c339e897e6ca5cb4a2f1e8394d5">ip4_addr.h</a>
 </li>
@@ -400,6 +403,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 </li>
 <li>ip4_addr_isloopback
 : <a class="el" href="ip4__addr_8h.html#a46dabb4df212d156004fa5afe03e2051">ip4_addr.h</a>
+</li>
+<li>ip4_addr_net_eq
+: <a class="el" href="ip4__addr_8h.html#a95d05df9201602fc873a97fb61fd1134">ip4_addr.h</a>
 </li>
 <li>ip4_addr_netcmp
 : <a class="el" href="ip4__addr_8h.html#afd43f6ceb2df8d50c84509ad1059f514">ip4_addr.h</a>
@@ -540,7 +546,7 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 : <a class="el" href="ip6__addr_8h.html#a11fe84789e3f039b3f71009e802946a8">ip6_addr.h</a>
 </li>
 <li>ip6_addr_cmp_zone
-: <a class="el" href="group__ip6__zones.html#gacbb8e1a7505d9772181defa0e75b8da9">ip6_zone.h</a>
+: <a class="el" href="group__ip6__zones.html#gac01d0bad0a682dcc239ba3d5695e0648">ip6_zone.h</a>
 </li>
 <li>ip6_addr_cmp_zoneless
 : <a class="el" href="ip6__addr_8h.html#ad0fc088972d395839a7ad75d3dab8322">ip6_addr.h</a>
@@ -557,6 +563,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 <li>ip6_addr_copy_zone
 : <a class="el" href="group__ip6__zones.html#ga7347729485d837bcff85ae4731bbf5c4">ip6_zone.h</a>
 </li>
+<li>ip6_addr_eq
+: <a class="el" href="ip6__addr_8h.html#a9ea0b6b837baff1e1e62cccd4f17d50e">ip6_addr.h</a>
+</li>
 <li>ip6_addr_equals_zone
 : <a class="el" href="group__ip6__zones.html#gaeead8379cc3fd4c257be0bb654994a8f">ip6_zone.h</a>
 </li>
@@ -569,11 +578,20 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 <li>ip6_addr_lacks_zone
 : <a class="el" href="group__ip6__zones.html#gad963bf3e9695ba898271e314975f5c97">ip6_zone.h</a>
 </li>
+<li>ip6_addr_net_eq
+: <a class="el" href="ip6__addr_8h.html#a9a983c7d613ab45e37aaf66c067a0c7a">ip6_addr.h</a>
+</li>
+<li>ip6_addr_net_zoneless_eq
+: <a class="el" href="ip6__addr_8h.html#afc9d2b8d0a05f2ff23ab3b7fd3bf8229">ip6_addr.h</a>
+</li>
 <li>ip6_addr_netcmp
 : <a class="el" href="ip6__addr_8h.html#a76b01f76b65647767d00ee9fad9fbaa2">ip6_addr.h</a>
 </li>
 <li>ip6_addr_netcmp_zoneless
 : <a class="el" href="ip6__addr_8h.html#acc1622ab895680da0a3b6e5e56070342">ip6_addr.h</a>
+</li>
+<li>ip6_addr_packed_eq
+: <a class="el" href="ip6__addr_8h.html#aa324ac65d537997ebaaed78bd40f6da9">ip6_addr.h</a>
 </li>
 <li>IP6_ADDR_PART
 : <a class="el" href="ip6__addr_8h.html#a1d78feeb50aec8f2c07d840829f49ddd">ip6_addr.h</a>
@@ -607,6 +625,12 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 </li>
 <li>ip6_addr_zone
 : <a class="el" href="group__ip6__zones.html#gaee83e12649fa9706857c9ad8f9ef8634">ip6_zone.h</a>
+</li>
+<li>ip6_addr_zone_eq
+: <a class="el" href="group__ip6__zones.html#gabc6d5f833b2abef31aa602dc11ace0a9">ip6_zone.h</a>
+</li>
+<li>ip6_addr_zoneless_eq
+: <a class="el" href="ip6__addr_8h.html#a811d8a2aa6417ae22a7a46b27d9ead26">ip6_addr.h</a>
 </li>
 <li>ip6_chksum_pseudo()
 : <a class="el" href="inet__chksum_8c.html#a102544bca5912c78649e25a45a7d0a88">inet_chksum.c</a>
@@ -650,8 +674,8 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 , <a class="el" href="ip6_8h.html#a7a8d47200bb6ccbec329be8f0979853e">ip6.h</a>
 </li>
 <li>ip6_output()
-: <a class="el" href="ip6_8h.html#aec695e64536ac744e616c997deb84cda">ip6.h</a>
-, <a class="el" href="ip6_8c.html#aec695e64536ac744e616c997deb84cda">ip6.c</a>
+: <a class="el" href="ip6_8c.html#aec695e64536ac744e616c997deb84cda">ip6.c</a>
+, <a class="el" href="ip6_8h.html#aec695e64536ac744e616c997deb84cda">ip6.h</a>
 </li>
 <li>ip6_output_if()
 : <a class="el" href="ip6_8c.html#aeb1c9967e7ae7d7ba71b68256ff6fdb4">ip6.c</a>
@@ -739,6 +763,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 <li>ip_addr_copy_from_ip6_packed
 : <a class="el" href="group__ip6addr.html#ga130ca0907497831677c130dbb3289e1e">ip_addr.h</a>
 </li>
+<li>ip_addr_eq
+: <a class="el" href="group__ipaddr.html#ga5b40158bdffa4b0c81c4ee77066e6b28">ip_addr.h</a>
+</li>
 <li>ip_addr_get_ip4_u32
 : <a class="el" href="group__ip4addr.html#ga09c62e8a3bf599aa7f335e0ad0820e85">ip_addr.h</a>
 </li>
@@ -762,6 +789,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 </li>
 <li>ip_addr_ismulticast
 : <a class="el" href="group__ipaddr.html#ga2170d3ee13dd22722222228e7b1c5752">ip_addr.h</a>
+</li>
+<li>ip_addr_net_eq
+: <a class="el" href="group__ipaddr.html#gad1bbbe4c93ea2368663e90814953b929">ip_addr.h</a>
 </li>
 <li>ip_addr_netcmp
 : <a class="el" href="group__ipaddr.html#ga3a2123f0bbf6fe843c8542e349c680eb">ip_addr.h</a>
@@ -805,6 +835,9 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 <li>ip_addr_t
 : <a class="el" href="group__ipaddr.html#ga16ef96d6cde029029bbf47fee35fd67a">ip_addr.h</a>
 </li>
+<li>ip_addr_zoneless_eq
+: <a class="el" href="group__ipaddr.html#ga8ac2686417ec2974bb0b3fc6ee0ee1a7">ip_addr.h</a>
+</li>
 <li>IP_ANY_TYPE
 : <a class="el" href="group__ipaddr.html#gabe43b154533b73585c4e58f568370ede">ip_addr.h</a>
 </li>
@@ -830,8 +863,8 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 : <a class="el" href="ip_8h.html#a4e35b7692c228c98e738892f0a215647">ip.h</a>
 </li>
 <li>ip_data
-: <a class="el" href="ip_8c.html#ac944fb6564f181bc90bc7c2b8b00d94c">ip.c</a>
-, <a class="el" href="ip_8h.html#ac944fb6564f181bc90bc7c2b8b00d94c">ip.h</a>
+: <a class="el" href="ip_8h.html#ac944fb6564f181bc90bc7c2b8b00d94c">ip.h</a>
+, <a class="el" href="ip_8c.html#ac944fb6564f181bc90bc7c2b8b00d94c">ip.c</a>
 </li>
 <li>IP_DEBUG
 : <a class="el" href="group__lwip__opts__debugmsg.html#ga5d3348778951e7bc5cd397c6575eef3a">opt.h</a>
@@ -987,12 +1020,12 @@ $(document).ready(function(){initNavTree('globals_i.html','');});
 : <a class="el" href="ip4__addr_8h.html#abc4b2e3531c4992f2ae4b8c0f9751544">ip4_addr.h</a>
 </li>
 <li>ipaddr_ntoa()
-: <a class="el" href="group__ipaddr.html#gace12d28aef35bb15962e8563aea571b1">ip.c</a>
-, <a class="el" href="group__ipaddr.html#gace12d28aef35bb15962e8563aea571b1">ip_addr.h</a>
+: <a class="el" href="group__ipaddr.html#gace12d28aef35bb15962e8563aea571b1">ip_addr.h</a>
+, <a class="el" href="group__ipaddr.html#gace12d28aef35bb15962e8563aea571b1">ip.c</a>
 </li>
 <li>ipaddr_ntoa_r()
-: <a class="el" href="group__ipaddr.html#ga3684dabc0cae597ffb5b51d41f1d886f">ip_addr.h</a>
-, <a class="el" href="group__ipaddr.html#ga3684dabc0cae597ffb5b51d41f1d886f">ip.c</a>
+: <a class="el" href="group__ipaddr.html#ga3684dabc0cae597ffb5b51d41f1d886f">ip.c</a>
+, <a class="el" href="group__ipaddr.html#ga3684dabc0cae597ffb5b51d41f1d886f">ip_addr.h</a>
 </li>
 <li>IPADDR_STRLEN_MAX
 : <a class="el" href="group__ipaddr.html#ga8619278bcbf705844f584f36972fc758">ip_addr.h</a>

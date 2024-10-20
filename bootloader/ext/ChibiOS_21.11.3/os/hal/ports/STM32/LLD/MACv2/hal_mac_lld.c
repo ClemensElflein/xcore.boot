@@ -379,7 +379,11 @@ void mac_lld_start(MACDriver *macp) {
   ETH->MACPFR  = 0U;
   ETH->MACTFCR = 0U;
   ETH->MACRFCR = 0U;
-  ETH->MACVTR  = 0U;
+  ETH->MACVTR  = 0;
+  // Set those for VLAN 100
+  //ETH->MACVTR = ETH_MACVTR_EVLS_STRIPIFPASS | 100;
+  //ETH->MACVIR= ETH_MACVIR_VLC_VLANTAGINSERT | ETH_MACVIR_VLP | 100;
+
 
   /* MAC address setup.*/
   if (macp->config->mac_address == NULL)
@@ -395,6 +399,7 @@ void mac_lld_start(MACDriver *macp) {
 #else
   ETH->MACCR |=                 ETH_MACCR_RE | ETH_MACCR_TE;
 #endif
+
 
   /* MMC configuration:
      Disable all interrupts.*/

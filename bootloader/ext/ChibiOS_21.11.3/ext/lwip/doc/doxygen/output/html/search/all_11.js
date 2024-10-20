@@ -30,6 +30,7 @@ var searchData=
   ['pbuf_5fcoalesce',['pbuf_coalesce',['../group__pbuf.html#ga54ac7b116c6f53c704cbf74f35a8b35c',1,'pbuf_coalesce(struct pbuf *p, pbuf_layer layer):&#160;pbuf.c'],['../group__pbuf.html#ga54ac7b116c6f53c704cbf74f35a8b35c',1,'pbuf_coalesce(struct pbuf *p, pbuf_layer layer):&#160;pbuf.c']]],
   ['pbuf_5fcopy',['pbuf_copy',['../group__pbuf.html#gaba88511dee3df4b631fde691f421320d',1,'pbuf_copy(struct pbuf *p_to, const struct pbuf *p_from):&#160;pbuf.c'],['../group__pbuf.html#gaba88511dee3df4b631fde691f421320d',1,'pbuf_copy(struct pbuf *p_to, const struct pbuf *p_from):&#160;pbuf.c']]],
   ['pbuf_5fcopy_5fpartial',['pbuf_copy_partial',['../group__pbuf.html#gac2f1f58fd36042e82af46f5015720899',1,'pbuf_copy_partial(const struct pbuf *buf, void *dataptr, u16_t len, u16_t offset):&#160;pbuf.c'],['../group__pbuf.html#gac2f1f58fd36042e82af46f5015720899',1,'pbuf_copy_partial(const struct pbuf *p, void *dataptr, u16_t len, u16_t offset):&#160;pbuf.c']]],
+  ['pbuf_5fcopy_5fpartial_5fpbuf',['pbuf_copy_partial_pbuf',['../group__pbuf.html#gadded8d23ed42840f2eb7fef7244dde95',1,'pbuf_copy_partial_pbuf(struct pbuf *p_to, const struct pbuf *p_from, u16_t copy_len, u16_t offset):&#160;pbuf.c'],['../group__pbuf.html#gadded8d23ed42840f2eb7fef7244dde95',1,'pbuf_copy_partial_pbuf(struct pbuf *p_to, const struct pbuf *p_from, u16_t copy_len, u16_t offset):&#160;pbuf.c']]],
   ['pbuf_5fcustom',['pbuf_custom',['../structpbuf__custom.html',1,'']]],
   ['pbuf_5fcustom_5fref',['pbuf_custom_ref',['../structpbuf__custom__ref.html',1,'']]],
   ['pbuf_5fdebug',['PBUF_DEBUG',['../group__lwip__opts__debugmsg.html#ga5c3d44a0ec3bb8bd66f776c70d5c6a6c',1,'opt.h']]],
@@ -99,9 +100,8 @@ var searchData=
   ['pppos_2ec',['pppos.c',['../pppos_8c.html',1,'']]],
   ['pppos_2eh',['pppos.h',['../pppos_8h.html',1,'']]],
   ['prev',['prev',['../structmem.html#a9d7722ed10adf965fa98563d502f98ac',1,'mem::prev()'],['../structsnmp__varbind.html#a365abcc1f80d28dc8ffd07193099c760',1,'snmp_varbind::prev()'],['../structlwip__select__cb.html#a21a98e316bb7001d8750b20f5a7d0aa7',1,'lwip_select_cb::prev()']]],
-  ['probes_5fsent',['probes_sent',['../structmdns__host.html#ac8f6e3c6e1251bf73f043e489c840922',1,'mdns_host']]],
-  ['probing_5fstate',['probing_state',['../structmdns__host.html#af9ced31c35de6a281e5b13f01e5aae61',1,'mdns_host']]],
-  ['proto',['proto',['../structmdns__service.html#aa9f2e0bb67d3848152e6076e92e8018d',1,'mdns_service']]],
+  ['probe_5fquery_5frecv',['probe_query_recv',['../structmdns__outmsg.html#a4a3ee99f7c25e88f17ea912897617aa0',1,'mdns_outmsg']]],
+  ['proto',['proto',['../structmdns__request.html#a497e1b8f664dab9904a89e5f15f5bc60',1,'mdns_request::proto()'],['../structmdns__service.html#aa9f2e0bb67d3848152e6076e92e8018d',1,'mdns_service::proto()']]],
   ['ptr',['ptr',['../structnetvector.html#a523362737ea7764f9aaa73a050a0b983',1,'netvector']]],
   ['porting_20_28system_20abstraction_20layer_29',['Porting (system abstraction layer)',['../group__sys__layer.html',1,'']]]
 ];
