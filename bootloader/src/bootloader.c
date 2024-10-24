@@ -21,6 +21,7 @@
 #define BOARD_MSG "BOARD:"
 #define VERSION_MSG "HARDWARE VERSION:"
 #define CARRIER_BOARD_MSG "CARRIER BOARD INFO:"
+#define BOOTLOADER_PORT 8007
 
 // 256bits need to be written at a single time and the buffer needs to be
 // aligned, so we first copy our bytes into this tmp buffer and then let the
@@ -33,7 +34,7 @@ static char out_buffer[1000];
 // Working Area for the bootloader thread
 static THD_WORKING_AREA(wa_bootloader_thread, 128000);
 
-enum BOOTLOADER_STATE { HASH, IMAGE_SIZE, IMAGE_DATA, VERIFY };
+enum BOOTLOADER_STATE { HASH, IMAGE_SIZE, IMAGE_DATA };
 
 static SHA256_CTX sha256;
 
@@ -46,16 +47,16 @@ static SHA256_CTX sha256;
  * @param hash  Array of 8 uint32_t elements to store the parsed hash.
  * @return true if the hash was successfully parsed, false otherwise.
  */
-static bool parseSHA256(const char *buf, size_t buflen, uint32_t hash[8]) {
+static bool parseSHA256(const char *buf, size_t buflen, uint8_t hash[32]) {
   if (buflen != 64) {
     return false;
   }
-  for (uint8_t i = 0; i < 8; i++) {
+  for (uint8_t i = 0; i < 32; i++) {
     hash[i] = 0;
-    for (uint8_t j = 0; j < 8; j++) {
+    for (uint8_t j = 0; j < 2; j++) {
       // 4 bits per character
       hash[i] <<= 4;
-      char c = buf[8 * i + j];
+      char c = buf[2 * i + j];
       if (c >= '0' && c <= '9') {
         hash[i] |= c - '0';
       } else if (c >= 'A' && c <= 'F') {
@@ -85,7 +86,7 @@ static THD_FUNCTION(bootloader_thread, arg) {
   memset(&server_addr, 0, sizeof(server_addr));
   server_addr.sin_family = AF_INET;
   server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-  server_addr.sin_port = htons(4242);
+  server_addr.sin_port = htons(BOOTLOADER_PORT);
 
   if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
     lwip_close(sockfd);
@@ -110,6 +111,7 @@ static THD_FUNCTION(bootloader_thread, arg) {
       continue;
     }
 
+    // Prevent chip from starting while bootloading
     if (!locked) {
       chMtxLock(&reboot_mutex);
       locked = true;
@@ -145,15 +147,14 @@ static THD_FUNCTION(bootloader_thread, arg) {
     int bytes_received;
     size_t buffer_fill = 0;
     size_t receive_bytes = 1;
-    uint32_t hash[8];
+    uint8_t hash[32];
     bool ok = true;
 
     size_t image_size = 0;
+    size_t received_bytes = 0;
 
     // State for flashing
-    uint32_t flash_address = 0x8020000;
-    uint32_t success_count = 0;
-    uint32_t error_count = 0;
+    uint32_t flash_address = TARGET_FLASH_ADDRESS;
 
     while (ok && buffer_fill < (sizeof(buffer) - receive_bytes) &&
            (bytes_received =
@@ -209,7 +210,6 @@ static THD_FUNCTION(bootloader_thread, arg) {
           SEND(connfd, "LENGTH OK\n");
           HAL_FLASH_Unlock();
           SEND(connfd, ">Erasing Chip...\n");
-          // TODO: only erase the size we actually need
           EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
           EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
           EraseInitStruct.Banks = FLASH_BANK_1;
@@ -226,54 +226,75 @@ static THD_FUNCTION(bootloader_thread, arg) {
 
           SEND(connfd, "SEND DATA\n");
           buffer_fill = 0;
+          received_bytes = 0;
           sha256_init(&sha256);
           state = IMAGE_DATA;
         } break;
         case IMAGE_DATA:
-          // Read 32 bytes at a time.
-          if (buffer_fill < 32) {
+          // Read 32 bytes at a time (except for when the buffer ends)
+          if (buffer_fill < 32 &&
+              (buffer_fill + received_bytes) != image_size) {
             continue;
           }
+          received_bytes += buffer_fill;
           sha256_update(&sha256, buffer, buffer_fill);
+          // zeropad, if we're in the last block of data
+          while (buffer_fill < 32) {
+            buffer[buffer_fill++] = 0;
+          }
+
           if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, flash_address,
-                                (uint32_t)(&buffer)) == HAL_OK) {
-            success_count++;
-          } else {
-            error_count++;
+                                (uint32_t)(&buffer)) != HAL_OK) {
             SEND(connfd, ">Flash Program Error!\n");
             ok = false;
             continue;
           }
           flash_address += 32;
           buffer_fill = 0;
-          chThdYield();
+          if (received_bytes == image_size) {
+            // done, break out
+            break;
+          }
           break;
         default:
           break;
       }
     }
 
-    if (state == IMAGE_DATA && ok && buffer_fill != 0) {
-      // We have a partial buffer, write it.
-      // TODO: also check the remaining expected size sent initially
-      sha256_update(&sha256, buffer, buffer_fill);
-      while (buffer_fill < 32) {
-        buffer[buffer_fill++] = 0;
+    // Verify image
+    if (ok) {
+      HAL_FLASH_Lock();
+
+      SEND(connfd, ">Verifying Hash");
+      uint8_t validate_hash[32];
+      memset(validate_hash, 0, sizeof(validate_hash));
+      // This verifies the received bytes
+      sha256_final(&sha256, validate_hash);
+      if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
+        SEND(connfd, "Receive Verify OK\n");
+      } else {
+        SEND(connfd, "Receive Verify Failed\n");
+        ok = false;
       }
-      HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, flash_address,
-                        (uint32_t)(&buffer));
-      chThdYield();
     }
 
-    HAL_FLASH_Lock();
+    if (ok) {
+      uint8_t validate_hash[32];
+      // Now verify the actual written bytes
+      sha256_init(&sha256);
+      memset(validate_hash, 0, sizeof(validate_hash));
+      sha256_update(&sha256, (uint8_t *)TARGET_FLASH_ADDRESS, image_size);
+      sha256_final(&sha256, validate_hash);
+      if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
+        SEND(connfd, "Flash Verify OK\n");
+      } else {
+        SEND(connfd, "Flash Verify Failed\n");
+        ok = false;
+      }
+    }
 
-    uint8_t validate_hash[32];
-    memset(validate_hash, 0, sizeof(validate_hash));
-    sha256_final(&sha256, validate_hash);
-
-    if (!ok) {
-      SEND(connfd, "ERROR\n");
-    } else {
+    if (ok) {
+      // Allow reboot into user program
       locked = false;
       chMtxUnlock(&reboot_mutex);
     }

@@ -38,6 +38,8 @@
 #ifndef __LWIPOPT_H__
 #define __LWIPOPT_H__
 
+// LWIP_LINK_POLL_INTERVAL is set low here in order to have quicker startup time.
+#define LWIP_LINK_POLL_INTERVAL TIME_MS2I(1000)
 
 /*
    -----------------------------------------------
@@ -680,8 +682,10 @@
  * DHCP_DOES_ARP_CHECK==1: Do an ARP check on the offered address.
  */
 #ifndef DHCP_DOES_ARP_CHECK
-#define DHCP_DOES_ARP_CHECK             ((LWIP_DHCP) && (LWIP_ARP))
+#define DHCP_DOES_ARP_CHECK             0
 #endif
+// Same option, but for newer LWIP version
+#define LWIP_DHCP_DOES_ACD_CHECK 0
 
 /*
    ------------------------------------
@@ -1123,7 +1127,7 @@
  * changes its up/down status (i.e., due to DHCP IP acquistion)
  */
 #ifndef LWIP_NETIF_STATUS_CALLBACK
-#define LWIP_NETIF_STATUS_CALLBACK      0
+#define LWIP_NETIF_STATUS_CALLBACK      1
 #endif
 
 /**

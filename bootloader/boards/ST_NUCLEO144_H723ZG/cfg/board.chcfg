@@ -394,7 +394,7 @@
         Mode="Input"
         Alternate="0" />
       <pin13
-        ID="BUTTON"
+        ID="BUTTON PREVENT_BOOT_BUTTON"
         Type="PushPull"
         Level="High"
         Speed="Minimum"
@@ -558,7 +558,7 @@
         Mode="Input"
         Alternate="0" />
       <pin1
-        ID="LED2 LED_YELLOW"
+        ID="LED2 LED_YELLOW STATUS_LED"
         Type="PushPull"
         Level="Low"
         Speed="Maximum"

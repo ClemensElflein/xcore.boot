@@ -10,8 +10,59 @@
 #include <id_eeprom.h>
 #include <lwip/dhcp.h>
 #include <service_discovery.h>
+#include <sha256.h>
+#include <status_led.h>
+#include <string.h>
 
 #include "lwipthread.h"
+
+void link_up(struct netif *netif) {
+  if (netif->ip_addr.addr != 0) {
+    chEvtBroadcastFlags(&netif_events, NETIF_FLAG_BROADCAST);
+  }
+}
+
+bool jump_to_user_program(void) {
+  RTC->BKP0R = 0xB0043D;
+#ifdef BOARD_HAS_EEPROM
+
+  // Check, if we have a valid image
+  struct bootloader_info info = {0};
+  if (!ID_EEPROM_GetBootloaderInfo(&info)) {
+    // If we don't have a valid image, stay in bootloader and allow bootloading
+    // again
+    return false;
+  }
+
+  // Check, if image size is valid
+  if (info.image_size > PROGRAM_FLASH_SIZE_BYTES) {
+    return false;
+  }
+
+  // If we have a valid info in our EEPROM, verify the hash before booting
+  SHA256_CTX sha256;
+  uint8_t validate_hash[32] = {0};
+  sha256_init(&sha256);
+  sha256_update(&sha256, (uint8_t *)TARGET_FLASH_ADDRESS, info.image_size);
+  sha256_final(&sha256, validate_hash);
+  if (memcmp(validate_hash, info.image_sha256, sizeof(validate_hash)) == 0) {
+    // Program OK, now we can boot to it.
+    RTC->BKP0R = 0xB0043D;
+    MODIFY_REG(SYSCFG->UR2, SYSCFG_UR2_BOOT_ADD0,
+               (BOOT_ADDRESS >> 16) << SYSCFG_UR2_BOOT_ADD0_Pos);
+    NVIC_SystemReset();
+  } else {
+    return false;
+  }
+
+#else
+  // We don't have EEPROM, so we cannot verify the image, just jump to it.
+  RTC->BKP0R = 0xB0043D;
+  MODIFY_REG(SYSCFG->UR2, SYSCFG_UR2_BOOT_ADD0,
+             (BOOT_ADDRESS >> 16) << SYSCFG_UR2_BOOT_ADD0_Pos);
+  NVIC_SystemReset();
+#endif
+}
 
 /*
  * Application entry point.
@@ -36,6 +87,21 @@ int main(void) {
    */
   InitGlobals();
   InitHeartbeat();
+  InitStatusLed();
+
+  // True, when the board was started via power up. If we have a valid image,
+  // directly jump to it without waiting.
+  bool is_started_from_power_up = RTC->BKP0R != 0xB0043D;
+
+  if (is_started_from_power_up) {
+    SetStatusLedMode(LED_MODE_BLINK_SLOW);
+    // No need to actually catch the return value here.
+    // If success, we won't return
+    // If fail, we bootload as usual.
+    jump_to_user_program();
+  }
+
+  SetStatusLedMode(LED_MODE_BLINK_FAST);
 
   /*
    * Setup LWIP stack using the MAC address provided by the EEPROM.
@@ -43,37 +109,54 @@ int main(void) {
   uint8_t mac_address[6] = {0};
   ID_EEPROM_GetMacAddress(mac_address, sizeof(mac_address));
   lwipthread_opts_t lwipconf_opts = {0};
-  lwipconf_opts.addrMode = NET_ADDRESS_STATIC;
-  lwipconf_opts.address = PP_HTONL(FALLBACK_IP_ADDRESS);
-  lwipconf_opts.gateway = PP_HTONL(FALLBACK_GATEWAY);
-  lwipconf_opts.netmask = PP_HTONL(FALLBACK_NETMASK);
+  lwipconf_opts.addrMode = NET_ADDRESS_DHCP;
+  lwipconf_opts.address = 0;
+  lwipconf_opts.gateway = 0;
+  lwipconf_opts.netmask = 0;
   lwipconf_opts.macaddress = mac_address;
   lwipInit(&lwipconf_opts);
+  netif_set_status_callback(netif_default, link_up);
 
-  // Start the ServiceDiscovery Task.
-  InitServiceDiscovery();
+  // Wait for the interface to come up (DHCP)
+  event_listener_t event_listener;
+  chEvtRegister(&netif_events, &event_listener, 0);
+  // 10 second timeout
+  eventmask_t events =
+      chEvtWaitAnyTimeout(NETIF_EVENT_ADDRESS_VALID, TIME_S2I(10));
+  bool got_address = (events & NETIF_EVENT_ADDRESS_VALID) != 0;
+  if (got_address) {
+    // Start Service Discovery and Bootloader Thread
+    SetStatusLedMode(LED_MODE_BLINK_SLOW);
 
-  // Start the actual Bootloader Task
-  InitBootloaderThread();
+    // Start the ServiceDiscovery Task.
+    InitServiceDiscovery();
 
-  chThdSleep(TIME_INFINITE);
+    // Start the actual Bootloader Task
+    InitBootloaderThread();
 
-  uint32_t sleep_count = 1000 / 100;
-  while (sleep_count-- > 0) {
-    chThdSleep(TIME_MS2I(100));
-    if (palReadLine(LINE_BUTTON)) {
-      // sleep forever, don't boot into user software
-      chThdSleep(TIME_INFINITE);
+    // Timer before starting into user program
+#ifndef LINE_PREVENT_BOOT_BUTTON
+    chThdSleep(TIME_S2I(5));
+#else
+    // instead of just sleeping, we can poll a user button to keep device from
+    // entering user program
+    uint32_t sleep_count = 1000 / 100;
+    while (sleep_count-- > 0) {
+      chThdSleep(TIME_MS2I(100));
+      if (palReadLine(LINE_BUTTON)) {
+        // sleep forever, don't boot into user software
+        chThdSleep(TIME_INFINITE);
+      }
     }
+#endif
   }
 
+  // prevent bootloader from bootloading
   chMtxLock(&reboot_mutex);
 
-  MODIFY_REG(SYSCFG->UR2, SYSCFG_UR2_BOOT_ADD0,
-             (BOOT_ADDRESS >> 16) << SYSCFG_UR2_BOOT_ADD0_Pos);
-  NVIC_SystemReset();
+  jump_to_user_program();
 
-  while (1) {
-    chThdSleep(100);
-  }
+  // allow bootloader to work again, since jumping to user program didn't work
+  chMtxUnlock(&reboot_mutex);
+  chThdSleep(TIME_INFINITE);
 }

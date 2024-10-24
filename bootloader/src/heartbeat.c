@@ -10,7 +10,7 @@
 // Gets updated by the idle task to the current tick value.
 volatile uint32_t last_idle_tick = 0;
 
-volatile uint8_t blink_state = 0;
+static volatile uint8_t blink_state = 0;
 
 static virtual_timer_t heartbeat_timer;
 
@@ -22,9 +22,9 @@ static void heartbeat_timer_cb(void *arg) {
     case 0:
       if (elapsed) {
         palSetLine(LINE_HEARTBEAT_LED_RED);
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
-      } else {
         palSetLine(LINE_HEARTBEAT_LED_GREEN);
+      } else {
+        palClearLine(LINE_HEARTBEAT_LED_GREEN);
         palClearLine(LINE_HEARTBEAT_LED_RED);
       }
       chSysLockFromISR();
@@ -33,7 +33,7 @@ static void heartbeat_timer_cb(void *arg) {
       blink_state++;
       break;
     case 1:
-      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_GREEN);
       palClearLine(LINE_HEARTBEAT_LED_RED);
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(100), heartbeat_timer_cb, NULL);
@@ -43,9 +43,9 @@ static void heartbeat_timer_cb(void *arg) {
     case 2:
       if (elapsed) {
         palSetLine(LINE_HEARTBEAT_LED_RED);
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
-      } else {
         palSetLine(LINE_HEARTBEAT_LED_GREEN);
+      } else {
+        palClearLine(LINE_HEARTBEAT_LED_GREEN);
         palClearLine(LINE_HEARTBEAT_LED_RED);
       }
       chSysLockFromISR();
@@ -54,7 +54,7 @@ static void heartbeat_timer_cb(void *arg) {
       blink_state++;
       break;
     default:
-      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_GREEN);
       palClearLine(LINE_HEARTBEAT_LED_RED);
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(500), heartbeat_timer_cb, NULL);

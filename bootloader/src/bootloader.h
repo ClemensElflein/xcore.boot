@@ -5,6 +5,8 @@
 #ifndef BOOTLOADER_H
 #define BOOTLOADER_H
 
+#define TARGET_FLASH_ADDRESS 0x8020000
+
 void InitBootloaderThread();
 
 #endif  // BOOTLOADER_H

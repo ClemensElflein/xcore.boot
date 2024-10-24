@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -O3 -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -O0 -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -127,6 +127,7 @@ CSRC = $(ALLCSRC) \
        src/id_eeprom.c \
        src/bootloader.c \
        src/stm32hal.c \
+       src/status_led.c \
        main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global

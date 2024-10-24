@@ -17,6 +17,7 @@
 #define BOARD_NAME "Nucleo144-H723ZG"
 #define BOARD_VERSION_MAJOR 1
 #define BOARD_VERSION_MINOR 0
+#define BOARD_VERSION_PATCH 0
 
 // Define the fallback IP settings for this board (if DHCP fails)
 // 10.0.0.254

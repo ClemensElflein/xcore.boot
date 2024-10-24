@@ -119,6 +119,7 @@
 #define GPIOC_PIN11                 11U
 #define GPIOC_PIN12                 12U
 #define GPIOC_BUTTON                13U
+#define GPIOC_PREVENT_BOOT_BUTTON   13U
 #define GPIOC_OSC32_IN              14U
 #define GPIOC_OSC32_OUT             15U
 
@@ -144,6 +145,7 @@
 #define GPIOE_PIN0                  0U
 #define GPIOE_LED2                  1U
 #define GPIOE_LED_YELLOW            1U
+#define GPIOE_STATUS_LED            1U
 #define GPIOE_PIN2                  2U
 #define GPIOE_PIN3                  3U
 #define GPIOE_PIN4                  4U
@@ -289,6 +291,7 @@
 #define LINE_RMII_RXD0              PAL_LINE(GPIOC, 4U)
 #define LINE_RMII_RXD1              PAL_LINE(GPIOC, 5U)
 #define LINE_BUTTON                 PAL_LINE(GPIOC, 13U)
+#define LINE_PREVENT_BOOT_BUTTON    PAL_LINE(GPIOC, 13U)
 #define LINE_OSC32_IN               PAL_LINE(GPIOC, 14U)
 #define LINE_OSC32_OUT              PAL_LINE(GPIOC, 15U)
 #define LINE_USART3_RX              PAL_LINE(GPIOD, 8U)
@@ -298,6 +301,7 @@
 #define LINE_USB_FS_PWR_EN          PAL_LINE(GPIOD, 10U)
 #define LINE_LED2                   PAL_LINE(GPIOE, 1U)
 #define LINE_LED_YELLOW             PAL_LINE(GPIOE, 1U)
+#define LINE_STATUS_LED             PAL_LINE(GPIOE, 1U)
 #define LINE_USB_FS_OVCR            PAL_LINE(GPIOG, 7U)
 #define LINE_RMII_TX_EN             PAL_LINE(GPIOG, 11U)
 #define LINE_RMII_TXD0              PAL_LINE(GPIOG, 13U)
@@ -592,7 +596,7 @@
  * PC10 - PIN10                     (input pullup).
  * PC11 - PIN11                     (input pullup).
  * PC12 - PIN12                     (input pullup).
- * PC13 - BUTTON                    (input floating).
+ * PC13 - BUTTON PREVENT_BOOT_BUTTON(input floating).
  * PC14 - OSC32_IN                  (input floating).
  * PC15 - OSC32_OUT                 (input floating).
  */
@@ -814,7 +818,7 @@
  * GPIOE setup:
  *
  * PE0  - PIN0                      (input pullup).
- * PE1  - LED2 LED_YELLOW           (output pushpull maximum).
+ * PE1  - LED2 LED_YELLOW STATUS_LED(output pushpull maximum).
  * PE2  - PIN2                      (input pullup).
  * PE3  - PIN3                      (input pullup).
  * PE4  - PIN4                      (input pullup).

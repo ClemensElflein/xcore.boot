@@ -9,8 +9,6 @@
 #include "stddef.h"
 #include "stdint.h"
 
-#define ID_EEPROM_DEVICE_ID 0b10100110
-
 #pragma pack(push, 1)
 struct bootloader_info {
   uint8_t image_present;
