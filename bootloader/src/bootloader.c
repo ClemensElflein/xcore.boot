@@ -5,6 +5,7 @@
 #include "hal.h"
 // clang-format on
 
+#include <id_eeprom.h>
 #include <sha256.h>
 #include <stdlib.h>
 #include <stm32h7xx_hal.h>
@@ -201,6 +202,15 @@ static THD_FUNCTION(bootloader_thread, arg) {
             continue;
           }
 
+#if BOARD_HAS_EEPROM
+          struct bootloader_info info = {0};
+          if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
+            SEND(connfd, ">Error clearing EEPROM");
+            ok = false;
+            continue;
+          }
+#endif
+
           EraseInitStruct.NbSectors =
               (image_size + FLASH_PAGE_SIZE_BYTES - 1) / FLASH_PAGE_SIZE_BYTES;
           chsnprintf(out_buffer, sizeof(out_buffer),
@@ -271,9 +281,9 @@ static THD_FUNCTION(bootloader_thread, arg) {
       // This verifies the received bytes
       sha256_final(&sha256, validate_hash);
       if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
-        SEND(connfd, "Receive Verify OK\n");
+        SEND(connfd, ">Receive Verify OK\n");
       } else {
-        SEND(connfd, "Receive Verify Failed\n");
+        SEND(connfd, ">Receive Verify Failed\n");
         ok = false;
       }
     }
@@ -286,12 +296,27 @@ static THD_FUNCTION(bootloader_thread, arg) {
       sha256_update(&sha256, (uint8_t *)TARGET_FLASH_ADDRESS, image_size);
       sha256_final(&sha256, validate_hash);
       if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
-        SEND(connfd, "Flash Verify OK\n");
+        SEND(connfd, ">Flash Verify OK\n");
       } else {
-        SEND(connfd, "Flash Verify Failed\n");
+        SEND(connfd, ">Flash Verify Failed\n");
         ok = false;
       }
     }
+
+#if BOARD_HAS_EEPROM
+    if (ok) {
+      // Store bootloader info
+      struct bootloader_info info = {0};
+      info.image_present = 1;
+      info.image_size = image_size;
+      memcpy(info.image_sha256, hash, sizeof(hash));
+      if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
+        SEND(connfd, ">Error storing EEPROM");
+        ok = false;
+        continue;
+      }
+    }
+#endif
 
     if (ok) {
       // Allow reboot into user program

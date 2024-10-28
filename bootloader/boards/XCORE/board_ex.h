@@ -32,18 +32,11 @@
 #define BOARD_STATUS_LED_INVERTED
 #define BOARD_HEARTBEAT_LED_INVERTED
 
-#define BOARD_HAS_EEPROM 0
-
-// Default mac address (same as the one provided in lwip)
-#define BOARD_ETHADDR_0 0xC2
-#define BOARD_ETHADDR_1 0xAF
-#define BOARD_ETHADDR_2 0x51
-#define BOARD_ETHADDR_3 0x03
-#define BOARD_ETHADDR_4 0xCF
-#define BOARD_ETHADDR_5 0x46
+#define BOARD_HAS_EEPROM 1
+#define EEPROM_DEVICE_ADDRESS 0b1010011
 
 #define BOARD_VERSION_MAJOR 1
-#define BOARD_VERSION_MINOR 0
+#define BOARD_VERSION_MINOR 1
 #define BOARD_VERSION_PATCH 0
 
 // Define the fallback IP settings for this board (if DHCP fails)

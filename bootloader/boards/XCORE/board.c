@@ -211,9 +211,7 @@ static void stm32_gpio_init(void) {
 void __early_init(void) {
 
   stm32_gpio_init();
-  SYSCFG->UR18 = SYSCFG_UR18_CPU_FREQ_BOOST;
   stm32_clock_init();
-  SYSCFG->UR18 = SYSCFG_UR18_CPU_FREQ_BOOST;
 }
 
 #if HAL_USE_SDC || defined(__DOXYGEN__)

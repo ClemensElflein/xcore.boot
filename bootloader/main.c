@@ -34,6 +34,10 @@ bool jump_to_user_program(void) {
     return false;
   }
 
+  if (info.image_present != 1) {
+    return false;
+  }
+
   // Check, if image size is valid
   if (info.image_size > PROGRAM_FLASH_SIZE_BYTES) {
     return false;
@@ -79,6 +83,10 @@ int main(void) {
    */
   halInit();
   chSysInit();
+
+#if BOARD_HAS_EEPROM
+  ID_EEPROM_Init();
+#endif
 
   /*
    * InitGlobals() sets up global variables shared by threads. (e.g. mutex)
