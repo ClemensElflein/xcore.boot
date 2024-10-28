@@ -115,7 +115,10 @@ int main(void) {
    * Setup LWIP stack using the MAC address provided by the EEPROM.
    */
   uint8_t mac_address[6] = {0};
-  ID_EEPROM_GetMacAddress(mac_address, sizeof(mac_address));
+  if (!ID_EEPROM_GetMacAddress(mac_address, sizeof(mac_address))) {
+    while (1)
+      ;
+  }
   lwipthread_opts_t lwipconf_opts = {0};
   lwipconf_opts.addrMode = NET_ADDRESS_DHCP;
   lwipconf_opts.address = 0;
