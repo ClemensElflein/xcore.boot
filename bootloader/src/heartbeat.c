@@ -21,11 +21,21 @@ static void heartbeat_timer_cb(void *arg) {
   switch (blink_state) {
     case 0:
       if (elapsed) {
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
         palSetLine(LINE_HEARTBEAT_LED_RED);
         palSetLine(LINE_HEARTBEAT_LED_GREEN);
+#else
+        palClearLine(LINE_HEARTBEAT_LED_RED);
+        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+#endif
       } else {
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
         palClearLine(LINE_HEARTBEAT_LED_GREEN);
         palClearLine(LINE_HEARTBEAT_LED_RED);
+#else
+        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_RED);
+#endif
       }
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(100), heartbeat_timer_cb, NULL);
@@ -33,8 +43,13 @@ static void heartbeat_timer_cb(void *arg) {
       blink_state++;
       break;
     case 1:
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
       palSetLine(LINE_HEARTBEAT_LED_GREEN);
       palClearLine(LINE_HEARTBEAT_LED_RED);
+#else
+      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_RED);
+#endif
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(100), heartbeat_timer_cb, NULL);
       chSysUnlockFromISR();
@@ -42,11 +57,21 @@ static void heartbeat_timer_cb(void *arg) {
       break;
     case 2:
       if (elapsed) {
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
         palSetLine(LINE_HEARTBEAT_LED_RED);
         palSetLine(LINE_HEARTBEAT_LED_GREEN);
+#else
+        palClearLine(LINE_HEARTBEAT_LED_RED);
+        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+#endif
       } else {
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
         palClearLine(LINE_HEARTBEAT_LED_GREEN);
         palClearLine(LINE_HEARTBEAT_LED_RED);
+#else
+        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_RED);
+#endif
       }
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(100), heartbeat_timer_cb, NULL);
@@ -54,8 +79,14 @@ static void heartbeat_timer_cb(void *arg) {
       blink_state++;
       break;
     default:
+#ifndef BOARD_HEARTBEAT_LED_INVERTED
       palSetLine(LINE_HEARTBEAT_LED_GREEN);
       palClearLine(LINE_HEARTBEAT_LED_RED);
+#else
+      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_RED);
+#endif
+
       chSysLockFromISR();
       chVTSetI(&heartbeat_timer, TIME_MS2I(500), heartbeat_timer_cb, NULL);
       chSysUnlockFromISR();

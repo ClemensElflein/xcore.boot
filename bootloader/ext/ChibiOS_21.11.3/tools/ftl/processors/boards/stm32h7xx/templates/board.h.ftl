@@ -33,6 +33,10 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+[#list doc1.board.headers.header as header]
+#include "${header[0]?string?trim}"
+[/#list]
+
 /*===========================================================================*/
 /* Driver constants.                                                         */
 /*===========================================================================*/

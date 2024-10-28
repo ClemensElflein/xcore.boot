@@ -107,14 +107,15 @@ include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
 
-include ./boards/ST_NUCLEO144_H723ZG/board.mk
+#include ./boards/ST_NUCLEO144_H723ZG/board.mk
+include ./boards/XCORE/board.mk
 include ./ext/ext.mk
 
 
 include $(CHIBIOS)/os/various/lwip_bindings/lwip.mk
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/STM32H723xG_ITCM64k.ld
+LDSCRIPT= $(BOARDINC)/STM32H723xG_ITCM64k.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
