@@ -22,7 +22,7 @@ void link_up(struct netif *netif) {
   }
 }
 
-bool jump_to_user_program(void) {
+void jump_to_user_program(void) {
   RTC->BKP0R = 0xB0043D;
 #ifdef BOARD_HAS_EEPROM
 
@@ -31,16 +31,16 @@ bool jump_to_user_program(void) {
   if (!ID_EEPROM_GetBootloaderInfo(&info)) {
     // If we don't have a valid image, stay in bootloader and allow bootloading
     // again
-    return false;
+    return;
   }
 
   if (info.image_present != 1) {
-    return false;
+    return;
   }
 
   // Check, if image size is valid
   if (info.image_size > PROGRAM_FLASH_SIZE_BYTES) {
-    return false;
+    return;
   }
 
   // If we have a valid info in our EEPROM, verify the hash before booting
@@ -56,7 +56,7 @@ bool jump_to_user_program(void) {
                (BOOT_ADDRESS >> 16) << SYSCFG_UR2_BOOT_ADD0_Pos);
     NVIC_SystemReset();
   } else {
-    return false;
+    return;
   }
 
 #else
@@ -97,6 +97,7 @@ int main(void) {
   InitHeartbeat();
   InitStatusLed();
 
+  /*
   // True, when the board was started via power up. If we have a valid image,
   // directly jump to it without waiting.
   bool is_started_from_power_up = RTC->BKP0R != 0xB0043D;
@@ -108,6 +109,7 @@ int main(void) {
     // If fail, we bootload as usual.
     jump_to_user_program();
   }
+  */
 
   SetStatusLedMode(LED_MODE_BLINK_FAST);
 

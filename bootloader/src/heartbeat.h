@@ -11,6 +11,6 @@
  * Initializes the timer task for showing the heartbeat (to show the RTOS hasn't
  * crashed)
  */
-void InitHeartbeat();
+void InitHeartbeat(void);
 
 #endif  // HEARTBEAT_H

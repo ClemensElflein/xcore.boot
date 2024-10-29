@@ -21,7 +21,8 @@
 #define GREETING_MESSAGE "BOOTLOADER VERSION:xcore-boot v1.0"
 #define BOARD_MSG "BOARD:"
 #define VERSION_MSG "HARDWARE VERSION:"
-#define CARRIER_BOARD_MSG "CARRIER BOARD INFO:"
+#define CARRIER_BOARD_MSG "CARRIER BOARD:"
+#define CARRIER_BOARD_VERSION_MSG "CARRIER BOARD VERSION:"
 #define BOOTLOADER_PORT 8007
 
 // 256bits need to be written at a single time and the buffer needs to be
@@ -129,14 +130,26 @@ static THD_FUNCTION(bootloader_thread, arg) {
     SEND(connfd, GREETING_MESSAGE);
     SEND(connfd, "\n");
     SEND(connfd, BOARD_MSG);
-    write(connfd, BOARD_NAME, strlen(BOARD_NAME));
+    write(connfd, board_info.board_id,
+          strnlen(board_info.board_id, sizeof(board_info.board_id)));
     SEND(connfd, "\n");
     SEND(connfd, VERSION_MSG);
-    SEND(connfd, "0");
-    SEND(connfd, "\n");
+    char version_buffer[50] = {0};
+    chsnprintf(version_buffer, sizeof(version_buffer), "%d.%d.%d\n",
+               board_info.version_major, board_info.version_minor,
+               board_info.version_patch);
+    SEND(connfd, version_buffer);
     SEND(connfd, CARRIER_BOARD_MSG);
-    SEND(connfd, "N/A");
+    write(connfd, carrier_board_info.board_id,
+          strnlen(carrier_board_info.board_id,
+                  sizeof(carrier_board_info.board_id)));
     SEND(connfd, "\n");
+    SEND(connfd, CARRIER_BOARD_VERSION_MSG);
+    chsnprintf(version_buffer, sizeof(version_buffer), "%d.%d.%d\n",
+               carrier_board_info.version_major,
+               carrier_board_info.version_minor,
+               carrier_board_info.version_patch);
+    SEND(connfd, version_buffer);
 
     SEND(connfd, "SEND HASH\n");
 
@@ -174,7 +187,7 @@ static THD_FUNCTION(bootloader_thread, arg) {
             continue;
           }
 
-          bool hash_ok = parseSHA256(buffer, 64, hash);
+          bool hash_ok = parseSHA256((const char *)buffer, 64, hash);
           if (!hash_ok) {
             ok = false;
             continue;
@@ -191,7 +204,7 @@ static THD_FUNCTION(bootloader_thread, arg) {
           }
           // Put 0 termination
           buffer[buffer_fill - 1] = 0;
-          image_size = strtol(buffer, NULL, 10);
+          image_size = strtol((const char *)buffer, NULL, 10);
           chsnprintf(out_buffer, sizeof(out_buffer), ">Image size: %u\n",
                      image_size);
           write(connfd, out_buffer, strlen(out_buffer));

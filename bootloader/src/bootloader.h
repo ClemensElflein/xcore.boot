@@ -7,6 +7,6 @@
 
 #define TARGET_FLASH_ADDRESS 0x8020000
 
-void InitBootloaderThread();
+void InitBootloaderThread(void);
 
 #endif  // BOOTLOADER_H

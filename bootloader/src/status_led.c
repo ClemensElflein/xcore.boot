@@ -14,8 +14,9 @@ static volatile uint8_t blink_state = 0;
 
 static virtual_timer_t status_led_timer;
 
-static void status_led_timer_cb(void *arg) {
+static void status_led_timer_cb(struct ch_virtual_timer *tp, void *arg) {
   (void)arg;
+  (void)tp;
   switch (current_mode) {
     case LED_MODE_OFF:
       palClearLine(LINE_STATUS_LED);
@@ -41,7 +42,7 @@ static void status_led_timer_cb(void *arg) {
 void InitStatusLed() {
   chMtxObjectInit(&status_led_mutex);
   current_mode = LED_MODE_OFF;
-  status_led_timer_cb(NULL);
+  status_led_timer_cb(NULL, NULL);
 }
 void SetStatusLedMode(enum LED_MODE mode) {
   chMtxLock(&status_led_mutex);

@@ -4,6 +4,7 @@
 #define BOARD_PHY_ADDRESS 31
 #define BOARD_PHY_RESET()                      \
   do {                                         \
+    uint8_t tries = 0;                         \
     uint32_t i = 0;                            \
     while (1) {                                \
       mii_write(&ETHD1, 0x1f, 0xFA00);         \
@@ -15,6 +16,24 @@
       while (i-- > 0) {                        \
         asm("nop");                            \
       };                                       \
+      tries++;                                 \
+      if (tries == 100) {                      \
+        mii_write(&ETHD1, 0x1F, 0xFA00);       \
+        mii_write(&ETHD1, 0x01, 0xFFFF);       \
+        i = STM32_SYS_CK / 100;                \
+        while (i-- > 0) {                      \
+          asm("nop");                          \
+        };                                     \
+      }                                        \
+      if (tries > 200) {                       \
+        palClearLine(LINE_RESET_PHY);          \
+        i = STM32_SYS_CK / 100;                \
+        while (i-- > 0) {                      \
+          asm("nop");                          \
+        };                                     \
+        palSetLine(LINE_RESET_PHY);            \
+        tries = 0;                             \
+      }                                        \
     }                                          \
     i = STM32_SYS_CK / 100;                    \
     while (i-- > 0) {                          \
@@ -27,17 +46,14 @@
     mii_write(&ETHD1, 0x00, 0x2A05);           \
   } while (0)
 
-#define BOARD_HAS_RGB_STATUS 0
-#define BOARD_HAS_RGB_HEARTBEAT 0
+#define BOARD_HAS_RGB_STATUS 1
+#define BOARD_HAS_RGB_HEARTBEAT 1
 #define BOARD_STATUS_LED_INVERTED
 #define BOARD_HEARTBEAT_LED_INVERTED
 
 #define BOARD_HAS_EEPROM 1
 #define EEPROM_DEVICE_ADDRESS 0b1010011
-
-#define BOARD_VERSION_MAJOR 1
-#define BOARD_VERSION_MINOR 1
-#define BOARD_VERSION_PATCH 0
+#define CARRIER_EEPROM_DEVICE_ADDRESS 0b1010000
 
 // Define the fallback IP settings for this board (if DHCP fails)
 // 10.0.0.254

@@ -14,8 +14,9 @@ static volatile uint8_t blink_state = 0;
 
 static virtual_timer_t heartbeat_timer;
 
-static void heartbeat_timer_cb(void *arg) {
+static void heartbeat_timer_cb(struct ch_virtual_timer *tp, void *arg) {
   (void)arg;
+  (void)tp;
   bool elapsed =
       TIME_I2MS(chVTTimeElapsedSinceX(last_idle_tick)) > HEARTBEAT_RECENT_MS;
   switch (blink_state) {
@@ -23,17 +24,17 @@ static void heartbeat_timer_cb(void *arg) {
       if (elapsed) {
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
         palSetLine(LINE_HEARTBEAT_LED_RED);
-        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palClearLine(LINE_HEARTBEAT_LED_BLUE);
 #else
         palClearLine(LINE_HEARTBEAT_LED_RED);
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_BLUE);
 #endif
       } else {
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_BLUE);
         palClearLine(LINE_HEARTBEAT_LED_RED);
 #else
-        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palClearLine(LINE_HEARTBEAT_LED_BLUE);
         palSetLine(LINE_HEARTBEAT_LED_RED);
 #endif
       }
@@ -44,10 +45,10 @@ static void heartbeat_timer_cb(void *arg) {
       break;
     case 1:
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
-      palSetLine(LINE_HEARTBEAT_LED_GREEN);
+      palClearLine(LINE_HEARTBEAT_LED_BLUE);
       palClearLine(LINE_HEARTBEAT_LED_RED);
 #else
-      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_BLUE);
       palSetLine(LINE_HEARTBEAT_LED_RED);
 #endif
       chSysLockFromISR();
@@ -59,17 +60,17 @@ static void heartbeat_timer_cb(void *arg) {
       if (elapsed) {
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
         palSetLine(LINE_HEARTBEAT_LED_RED);
-        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palClearLine(LINE_HEARTBEAT_LED_BLUE);
 #else
         palClearLine(LINE_HEARTBEAT_LED_RED);
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_BLUE);
 #endif
       } else {
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
-        palClearLine(LINE_HEARTBEAT_LED_GREEN);
+        palSetLine(LINE_HEARTBEAT_LED_BLUE);
         palClearLine(LINE_HEARTBEAT_LED_RED);
 #else
-        palSetLine(LINE_HEARTBEAT_LED_GREEN);
+        palClearLine(LINE_HEARTBEAT_LED_BLUE);
         palSetLine(LINE_HEARTBEAT_LED_RED);
 #endif
       }
@@ -80,10 +81,10 @@ static void heartbeat_timer_cb(void *arg) {
       break;
     default:
 #ifndef BOARD_HEARTBEAT_LED_INVERTED
-      palSetLine(LINE_HEARTBEAT_LED_GREEN);
+      palClearLine(LINE_HEARTBEAT_LED_BLUE);
       palClearLine(LINE_HEARTBEAT_LED_RED);
 #else
-      palClearLine(LINE_HEARTBEAT_LED_GREEN);
+      palSetLine(LINE_HEARTBEAT_LED_BLUE);
       palSetLine(LINE_HEARTBEAT_LED_RED);
 #endif
 
@@ -97,5 +98,5 @@ static void heartbeat_timer_cb(void *arg) {
 
 void InitHeartbeat() {
   chVTObjectInit(&heartbeat_timer);
-  heartbeat_timer_cb(NULL);
+  heartbeat_timer_cb(NULL, NULL);
 }

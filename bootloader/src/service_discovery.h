@@ -9,6 +9,6 @@
 #define SD_MULTICAST_PORT 8007
 #define SD_INTERVAL 500
 
-void InitServiceDiscovery();
+void InitServiceDiscovery(void);
 
 #endif  // SERVICE_DISCOVERY_H

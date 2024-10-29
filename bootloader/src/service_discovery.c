@@ -19,10 +19,10 @@ static char boardAdvertisementRequestBuffer[1000];
 static THD_WORKING_AREA(waServiceDiscovery, 128000);
 
 static void multicast_sender_thread(void *p) {
+  (void)p;
   struct sockaddr_in multicast_addr;
   struct sockaddr_in addr;
   int sockfd;
-  int status;
   struct timeval tv;
 
   // Create a new socket
@@ -71,9 +71,8 @@ static void multicast_sender_thread(void *p) {
                  sizeof(boardAdvertisementRequestBuffer) - 1, 0, NULL, NULL);
     if (received > 0) {
       // Send the multicast message
-      status = sendto(
-          sockfd, boardAdvertisementBuffer, strlen(boardAdvertisementBuffer), 0,
-          (struct sockaddr *)&multicast_addr, sizeof(multicast_addr));
+      sendto(sockfd, boardAdvertisementBuffer, strlen(boardAdvertisementBuffer),
+             0, (struct sockaddr *)&multicast_addr, sizeof(multicast_addr));
     }
   }
 
