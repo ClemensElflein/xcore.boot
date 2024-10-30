@@ -164,12 +164,15 @@ int main(void) {
 #endif
   }
 
-  // prevent bootloader from bootloading
-  chMtxLock(&reboot_mutex);
+  while (1) {
+    // make sure we're not currently updating the software
+    chMtxLock(&reboot_mutex);
 
-  jump_to_user_program();
+    jump_to_user_program();
 
-  // allow bootloader to work again, since jumping to user program didn't work
-  chMtxUnlock(&reboot_mutex);
-  chThdSleep(TIME_INFINITE);
+    // allow bootloader to work again, since jumping to user program didn't work
+    chMtxUnlock(&reboot_mutex);
+    // Wait a bit
+    chThdSleep(TIME_MS2I(100));
+  }
 }
