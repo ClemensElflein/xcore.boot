@@ -23,7 +23,7 @@ set(CMAKE_EXECUTABLE_SUFFIX_CXX     ".elf")
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-add_compile_definitions(-DCORTEX_USE_FPU=TRUE)
+add_compile_definitions(CORTEX_USE_FPU=TRUE)
 
 # MCU specific flags
 set(TARGET_FLAGS "-mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -fomit-frame-pointer -falign-functions=16 -mthumb -fno-common -flto -nostartfiles")

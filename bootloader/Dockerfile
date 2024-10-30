@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y  \
 COPY . /project
 
 WORKDIR /project
-#RUN make -j$(nproc)
+RUN mkdir build && cd build && cmake .. --preset=Release && cd Release && make -j$(nproc)
 
 
 FROM scratch
-COPY --from=builder /project/build/xcore-boot.elf /
-COPY --from=builder /project/build/xcore-boot.bin /
+COPY --from=builder /project/build/Release/xcore-boot.elf /
+COPY --from=builder /project/build/Release/xcore-boot.bin /

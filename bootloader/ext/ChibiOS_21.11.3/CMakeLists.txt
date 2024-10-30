@@ -90,18 +90,18 @@ add_library(
         os/common/ports/ARMv7-M/compilers/GCC/chcoreasm.S
         #oslib
         os/oslib/src/chmboxes.c
-os/oslib/src/chmemcore.c
-os/oslib/src/chmemheaps.c
-os/oslib/src/chmempools.c
-os/oslib/src/chpipes.c
-os/oslib/src/chobjcaches.c
-os/oslib/src/chdelegates.c
-os/oslib/src/chfactory.c
+        os/oslib/src/chmemcore.c
+        os/oslib/src/chmemheaps.c
+        os/oslib/src/chmempools.c
+        os/oslib/src/chpipes.c
+        os/oslib/src/chobjcaches.c
+        os/oslib/src/chdelegates.c
+        os/oslib/src/chfactory.c
         # board
         ${BOARD_DIR}/board.c
         # LwIP
         os/various/lwip_bindings/lwipthread.c
-os/various/lwip_bindings/arch/sys_arch.c
+        os/various/lwip_bindings/arch/sys_arch.c
         os/various/evtimer.c
         ${lwipnoapps_SRCS}
 )

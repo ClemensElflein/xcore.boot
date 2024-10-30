@@ -41,31 +41,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb55a81-22ac-441c-9b50-0667791a71de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bootloader.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake/gcc-arm-none-eabi.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/ChibiOS_21.11.3/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/sha/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/stm32h7xx_hal_driver/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/xcore_jlink.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/board.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/board.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/board.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/board_ex.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/cfg/board.chcfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boards/ST_NUCLEO144_H723ZG/cfg/board.fmpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cfg/chconf.h" beforeDir="false" afterPath="$PROJECT_DIR$/cfg/chconf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openocd_nucleo_h723.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/openocd_xcore.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heartbeat.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/heartbeat.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/status_led.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/status_led.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/gcc-arm-none-eabi.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/gcc-arm-none-eabi.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ext/ChibiOS_21.11.3/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ext/ChibiOS_21.11.3/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730246674813</updated>
       <workItem from="1730246676068" duration="6822000" />
-      <workItem from="1730310905822" duration="1229000" />
+      <workItem from="1730310905822" duration="3275000" />
     </task>
     <servers />
   </component>
