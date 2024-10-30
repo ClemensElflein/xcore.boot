@@ -23,7 +23,6 @@ void link_up(struct netif *netif) {
 }
 
 void jump_to_user_program(void) {
-  return;
   RTC->BKP0R = 0xB0043D;
 #ifdef BOARD_HAS_EEPROM
 
