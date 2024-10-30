@@ -46,6 +46,19 @@ jobs:
         with:
           name: bootloader
           path: artifacts/
+  tagged-release:
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    needs: artifacts
+    steps:
+      - name: Compress release directory into a versioned ZIP file
+        run: zip -r "xcore-boot-${{ github.ref_name }}.zip" artifacts/*
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: "xcore-boot-${{ github.ref_name }}.zip"
+
   build-host-docker:
     name: "Build Host Software Docker Image"
     needs: pre-commit

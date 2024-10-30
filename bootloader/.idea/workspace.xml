@@ -41,11 +41,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb55a81-22ac-441c-9b50-0667791a71de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/ci.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/ci.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfg/chconf.h" beforeDir="false" afterPath="$PROJECT_DIR$/cfg/chconf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/gcc-arm-none-eabi.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/gcc-arm-none-eabi.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ext/ChibiOS_21.11.3/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ext/ChibiOS_21.11.3/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +169,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730246674813</updated>
       <workItem from="1730246676068" duration="6822000" />
-      <workItem from="1730310905822" duration="3275000" />
+      <workItem from="1730310905822" duration="3879000" />
     </task>
     <servers />
   </component>
