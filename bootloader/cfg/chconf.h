@@ -568,7 +568,13 @@ extern volatile uint32_t last_idle_tick;
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_SYSTEM_STATE_CHECK)
+#ifdef DEBUG_BUILD
+#define CH_DBG_SYSTEM_STATE_CHECK           TRUE
+#elifdef RELEASE_BUILD
 #define CH_DBG_SYSTEM_STATE_CHECK           FALSE
+#else
+#error "Need to define either DEBUG_BUILD or RELEASE_BUILD"
+#endif
 #endif
 
 /**
@@ -579,7 +585,13 @@ extern volatile uint32_t last_idle_tick;
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_ENABLE_CHECKS)
-#define CH_DBG_ENABLE_CHECKS                FALSE
+#ifdef DEBUG_BUILD
+#define CH_DBG_ENABLE_CHECKS           TRUE
+#elifdef RELEASE_BUILD
+#define CH_DBG_ENABLE_CHECKS           FALSE
+#else
+#error "Need to define either DEBUG_BUILD or RELEASE_BUILD"
+#endif
 #endif
 
 /**
@@ -591,7 +603,13 @@ extern volatile uint32_t last_idle_tick;
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_ENABLE_ASSERTS)
-#define CH_DBG_ENABLE_ASSERTS               FALSE
+#ifdef DEBUG_BUILD
+#define CH_DBG_ENABLE_ASSERTS           TRUE
+#elifdef RELEASE_BUILD
+#define CH_DBG_ENABLE_ASSERTS           FALSE
+#else
+#error "Need to define either DEBUG_BUILD or RELEASE_BUILD"
+#endif
 #endif
 
 /**
@@ -624,7 +642,13 @@ extern volatile uint32_t last_idle_tick;
  *          @p panic_msg variable set to @p NULL.
  */
 #if !defined(CH_DBG_ENABLE_STACK_CHECK)
+#ifdef DEBUG_BUILD
+#define CH_DBG_ENABLE_STACK_CHECK           TRUE
+#elifdef RELEASE_BUILD
 #define CH_DBG_ENABLE_STACK_CHECK           FALSE
+#else
+#error "Need to define either DEBUG_BUILD or RELEASE_BUILD"
+#endif
 #endif
 
 /**
@@ -636,7 +660,13 @@ extern volatile uint32_t last_idle_tick;
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_FILL_THREADS)
-#define CH_DBG_FILL_THREADS                 FALSE
+#ifdef DEBUG_BUILD
+#define CH_DBG_FILL_THREADS           TRUE
+#elifdef RELEASE_BUILD
+#define CH_DBG_FILL_THREADS           FALSE
+#else
+#error "Need to define either DEBUG_BUILD or RELEASE_BUILD"
+#endif
 #endif
 
 /**

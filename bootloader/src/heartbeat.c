@@ -98,5 +98,7 @@ static void heartbeat_timer_cb(struct ch_virtual_timer *tp, void *arg) {
 
 void InitHeartbeat() {
   chVTObjectInit(&heartbeat_timer);
-  heartbeat_timer_cb(NULL, NULL);
+  chSysLock();
+  chVTSetI(&heartbeat_timer, TIME_MS2I(100), heartbeat_timer_cb, NULL);
+  chSysUnlock();
 }
