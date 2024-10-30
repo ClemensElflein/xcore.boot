@@ -42,7 +42,8 @@ jobs:
           mkdir artifacts
           cp -r ./host-software ./artifacts
           mkdir ./artifacts/bootloader
-          cp ./out/* ./artifacts/bootloader
+          cp ./out/xcore-boot.bin ./artifacts/bootloader
+          cp ./out/xcore-boot.elf ./artifacts/bootloader
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -53,6 +54,11 @@ jobs:
     if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     needs: artifacts
     steps:
+      - name: Download artifacts from build stage
+        uses: actions/download-artifact@v4
+        with:
+          name: bootloader
+          path: artifacts
       - name: Compress release directory into a versioned ZIP file
         run: zip -r "xcore-boot-${{ github.ref_name }}.zip" artifacts/*
       - uses: "marvinpinto/action-automatic-releases@latest"
