@@ -68,6 +68,14 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
         # Add user defined symbols
 )
 
+if(${BOOTLOADER_UNSAFE})
+message("Building Unsafe Bootloader")
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+        # Add user defined symbols
+        ALLOW_UNSAFE_BOOT
+)
+endif ()
+
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC
         # Add user defined libraries

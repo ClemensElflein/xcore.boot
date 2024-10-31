@@ -24,7 +24,7 @@ void link_up(struct netif *netif) {
 
 void jump_to_user_program(void) {
   RTC->BKP0R = 0xB0043D;
-#ifdef BOARD_HAS_EEPROM
+#if defined(BOARD_HAS_EEPROM) && !defined(ALLOW_UNSAFE_BOOT)
 
   // Check, if we have a valid image
   struct bootloader_info info = {0};
