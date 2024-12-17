@@ -13,10 +13,6 @@
       "name": "Release"
     },
     {
-      "configurePreset": "ReleaseUnsafe",
-      "name": "ReleaseUnsafe"
-    },
-    {
       "configurePreset": "MinSizeRel",
       "name": "MinSizeRel"
     }
@@ -50,14 +46,6 @@
       },
       "inherits": "default",
       "name": "Release"
-    },
-    {
-      "cacheVariables": {
-        "BOOTLOADER_UNSAFE": true,
-        "CMAKE_BUILD_TYPE": "Release"
-      },
-      "inherits": "default",
-      "name": "ReleaseUnsafe"
     },
     {
       "cacheVariables": {

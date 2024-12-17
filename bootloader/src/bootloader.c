@@ -5,6 +5,7 @@
 #include "hal.h"
 // clang-format on
 
+#include <chscanf.h>
 #include <id_eeprom.h>
 #include <sha256.h>
 #include <stdlib.h>
@@ -18,7 +19,7 @@
 // Macro to send a constant string to a socket
 #define SEND(sock, str) write(sock, str, strlen(str))
 
-#define GREETING_MESSAGE "BOOTLOADER VERSION:xcore-boot v1.0"
+#define GREETING_MESSAGE "BOOTLOADER VERSION:xcore-boot v1.1"
 #define BOARD_MSG "BOARD:"
 #define VERSION_MSG "HARDWARE VERSION:"
 #define CARRIER_BOARD_MSG "CARRIER BOARD:"
@@ -70,6 +71,272 @@ static bool parseSHA256(const char *buf, size_t buflen, uint8_t hash[32]) {
       }
     }
   }
+  return true;
+}
+
+static int ReadLine(int connfd) {
+  // reset first byte in case of timeout with 0 bytes received
+  buffer[0] = 0;
+  size_t buffer_fill = 0;
+  size_t bytes_received = 0;
+  do {
+    bytes_received = read(connfd, buffer + buffer_fill, 1);
+    buffer_fill += bytes_received;
+  } while (bytes_received > 0 && buffer[buffer_fill - 1] != '\n' &&
+           buffer_fill < sizeof(buffer));
+
+  // Nothing received
+  if (buffer_fill == 0) return -1;
+
+  // Check, if it's actually a line
+  if (buffer[buffer_fill - 1] != '\n') return -1;
+
+  // Check for empty string (i.e. "\n")
+  if (buffer_fill == 1) return 0;
+
+  // Here, buffer has at least 2 bytes and we have \n, so there's two cases:
+  // Either we have \r\n as line ending, or it's \n
+  if (buffer[buffer_fill - 2] == '\r') {
+    buffer[buffer_fill - 2] = 0;
+    return (int)buffer_fill - 2;
+  }
+
+  buffer[buffer_fill - 1] = 0;
+  return (int)buffer_fill - 1;
+}
+
+static bool HandleUpload(int connfd) {
+  SEND(connfd, "SEND HASH\n");
+
+  enum BOOTLOADER_STATE state = HASH;
+
+  FLASH_EraseInitTypeDef EraseInitStruct;
+
+  // Handle the connection
+  int bytes_received;
+  size_t buffer_fill = 0;
+  size_t receive_bytes = 1;
+  uint8_t hash[32];
+  bool ok = true;
+
+  size_t image_size = 0;
+  size_t received_bytes = 0;
+
+  // State for flashing
+  uint32_t flash_address = TARGET_FLASH_ADDRESS;
+
+  while (ok && buffer_fill < (sizeof(buffer) - receive_bytes) &&
+         (bytes_received = read(connfd, buffer + buffer_fill, receive_bytes)) >
+             0) {
+    buffer_fill += bytes_received;
+
+    switch (state) {
+      case HASH:
+        // Receive single bytes until we have 64
+        receive_bytes = 1;
+        if (buffer[buffer_fill - 1] != '\n') {
+          continue;
+        }
+        if (buffer_fill < 64) {
+          ok = false;
+          continue;
+        }
+
+        bool hash_ok = parseSHA256((const char *)buffer, 64, hash);
+        if (!hash_ok) {
+          ok = false;
+          continue;
+        }
+
+        SEND(connfd, "HASH OK\nSEND LENGTH\n");
+        buffer_fill = 0;
+        state = IMAGE_SIZE;
+        break;
+      case IMAGE_SIZE: {
+        receive_bytes = 1;
+        if (buffer[buffer_fill - 1] != '\n') {
+          continue;
+        }
+        // Put 0 termination
+        buffer[buffer_fill - 1] = 0;
+        image_size = strtol((const char *)buffer, NULL, 10);
+        chsnprintf(out_buffer, sizeof(out_buffer), ">Image size: %u\n",
+                   image_size);
+        write(connfd, out_buffer, strlen(out_buffer));
+
+        if (image_size > PROGRAM_FLASH_SIZE_BYTES) {
+          SEND(connfd, "ILLEGAL SIZE");
+          ok = false;
+          continue;
+        }
+
+#if BOARD_HAS_EEPROM
+        struct bootloader_info info;
+        ID_EEPROM_GetBootloaderInfo(&info);
+        info.image_present = false;
+        memset(info.image_sha256, 0, sizeof(info.image_sha256));
+        if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
+          SEND(connfd, ">Error clearing EEPROM");
+          ok = false;
+          continue;
+        }
+#endif
+
+        EraseInitStruct.NbSectors =
+            (image_size + FLASH_PAGE_SIZE_BYTES - 1) / FLASH_PAGE_SIZE_BYTES;
+        chsnprintf(out_buffer, sizeof(out_buffer), ">Erasing %u Flash Pages.\n",
+                   EraseInitStruct.NbSectors);
+        write(connfd, out_buffer, strlen(out_buffer));
+
+        SEND(connfd, "LENGTH OK\n");
+        HAL_FLASH_Unlock();
+        SEND(connfd, ">Erasing Chip...\n");
+        EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
+        EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+        EraseInitStruct.Banks = FLASH_BANK_1;
+        EraseInitStruct.Sector = FLASH_SECTOR_1;
+
+        uint32_t e = 0;
+        ok &= HAL_FLASHEx_Erase(&EraseInitStruct, &e) == HAL_OK;
+        if (!ok) {
+          SEND(connfd, ">Error during Erase\n");
+          continue;
+        }
+
+        SEND(connfd, ">Erasing Done\n");
+
+        SEND(connfd, "SEND DATA\n");
+        buffer_fill = 0;
+        received_bytes = 0;
+        sha256_init(&sha256);
+        state = IMAGE_DATA;
+      } break;
+      case IMAGE_DATA:
+        // Read 32 bytes at a time (except for when the buffer ends)
+        if (buffer_fill < 32 && (buffer_fill + received_bytes) != image_size) {
+          continue;
+        }
+        received_bytes += buffer_fill;
+        sha256_update(&sha256, buffer, buffer_fill);
+        // zeropad, if we're in the last block of data
+        while (buffer_fill < 32) {
+          buffer[buffer_fill++] = 0;
+        }
+
+        if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, flash_address,
+                              (uint32_t)(&buffer)) != HAL_OK) {
+          SEND(connfd, ">Flash Program Error!\n");
+          ok = false;
+          continue;
+        }
+        flash_address += 32;
+        buffer_fill = 0;
+        if (received_bytes == image_size) {
+          // done, break out
+          break;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Verify image
+  if (ok) {
+    HAL_FLASH_Lock();
+
+    SEND(connfd, ">Verifying Hash");
+    uint8_t validate_hash[32];
+    memset(validate_hash, 0, sizeof(validate_hash));
+    // This verifies the received bytes
+    sha256_final(&sha256, validate_hash);
+    if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
+      SEND(connfd, ">Receive Verify OK\n");
+    } else {
+      SEND(connfd, ">Receive Verify Failed\n");
+      ok = false;
+    }
+  }
+
+  if (ok) {
+    uint8_t validate_hash[32];
+    // Now verify the actual written bytes
+    sha256_init(&sha256);
+    memset(validate_hash, 0, sizeof(validate_hash));
+    sha256_update(&sha256, (uint8_t *)TARGET_FLASH_ADDRESS, image_size);
+    sha256_final(&sha256, validate_hash);
+    if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
+      SEND(connfd, ">Flash Verify OK\n");
+    } else {
+      SEND(connfd, ">Flash Verify Failed\n");
+      ok = false;
+    }
+  }
+
+#if BOARD_HAS_EEPROM
+  if (ok) {
+    // Store bootloader info
+    struct bootloader_info info;
+    ID_EEPROM_GetBootloaderInfo(&info);
+    info.image_present = 1;
+    info.image_size = image_size;
+    memcpy(info.image_sha256, hash, sizeof(hash));
+    if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
+      SEND(connfd, ">Error storing EEPROM");
+      ok = false;
+      return false;
+    }
+  }
+#endif
+
+  return ok;
+}
+
+static bool GetDevMode(int connfd) {
+  struct bootloader_info info;
+  // Read current value
+  ID_EEPROM_GetBootloaderInfo(&info);
+  if (info.developer_mode == 1) {
+    SEND(connfd, "Enabled\n");
+  } else {
+    SEND(connfd, "Disabled\n");
+  }
+  return true;
+}
+
+static bool SetDevMode(int connfd) {
+  SEND(connfd, "SEND DEV_MODE_ENABLED\n");
+  int length = ReadLine(connfd);
+  if (length != 1) {
+    SEND(connfd, "ERROR\n");
+    return false;
+  }
+  bool value;
+  switch (buffer[0]) {
+    case '0':
+      SEND(connfd, "> Dev Mode: Disabled.\n");
+      value = false;
+      break;
+    case '1':
+      SEND(connfd, "> Dev Mode: Enabled.\n");
+      value = true;
+      break;
+    default:
+      SEND(connfd, "> Error: Illegal value. Send either 1 or 0\n");
+      return false;
+  }
+
+  // Store bootloader info
+  struct bootloader_info info;
+  // Read current value
+  ID_EEPROM_GetBootloaderInfo(&info);
+  // Overwrite developer mode and store
+  info.developer_mode = value;
+  if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
+    SEND(connfd, ">Error storing EEPROM\n");
+    return false;
+  }
+  SEND(connfd, ">Successfully updated EEPROM\n");
   return true;
 }
 
@@ -151,196 +418,36 @@ static THD_FUNCTION(bootloader_thread, arg) {
                carrier_board_info.version_patch);
     SEND(connfd, version_buffer);
 
-    SEND(connfd, "SEND HASH\n");
+    SEND(connfd, "SEND COMMAND\n");
 
-    enum BOOTLOADER_STATE state = HASH;
+    int command_len = ReadLine(connfd);
+    if (command_len < 0) {
+      SEND(connfd, "> ERROR reading command\n");
+    } else {
+      SEND(connfd, "> Got command: ");
+      SEND(connfd, buffer);
+      SEND(connfd, "\n");
 
-    FLASH_EraseInitTypeDef EraseInitStruct;
-
-    // Handle the connection
-    int bytes_received;
-    size_t buffer_fill = 0;
-    size_t receive_bytes = 1;
-    uint8_t hash[32];
-    bool ok = true;
-
-    size_t image_size = 0;
-    size_t received_bytes = 0;
-
-    // State for flashing
-    uint32_t flash_address = TARGET_FLASH_ADDRESS;
-
-    while (ok && buffer_fill < (sizeof(buffer) - receive_bytes) &&
-           (bytes_received =
-                read(connfd, buffer + buffer_fill, receive_bytes)) > 0) {
-      buffer_fill += bytes_received;
-
-      switch (state) {
-        case HASH:
-          // Receive single bytes until we have 64
-          receive_bytes = 1;
-          if (buffer[buffer_fill - 1] != '\n') {
-            continue;
-          }
-          if (buffer_fill < 64) {
-            ok = false;
-            continue;
-          }
-
-          bool hash_ok = parseSHA256((const char *)buffer, 64, hash);
-          if (!hash_ok) {
-            ok = false;
-            continue;
-          }
-
-          SEND(connfd, "HASH OK\nSEND LENGTH\n");
-          buffer_fill = 0;
-          state = IMAGE_SIZE;
-          break;
-        case IMAGE_SIZE: {
-          receive_bytes = 1;
-          if (buffer[buffer_fill - 1] != '\n') {
-            continue;
-          }
-          // Put 0 termination
-          buffer[buffer_fill - 1] = 0;
-          image_size = strtol((const char *)buffer, NULL, 10);
-          chsnprintf(out_buffer, sizeof(out_buffer), ">Image size: %u\n",
-                     image_size);
-          write(connfd, out_buffer, strlen(out_buffer));
-
-          if (image_size > PROGRAM_FLASH_SIZE_BYTES) {
-            SEND(connfd, "ILLEGAL SIZE");
-            ok = false;
-            continue;
-          }
-
-#if BOARD_HAS_EEPROM
-          struct bootloader_info info = {0};
-          if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
-            SEND(connfd, ">Error clearing EEPROM");
-            ok = false;
-            continue;
-          }
-#endif
-
-          EraseInitStruct.NbSectors =
-              (image_size + FLASH_PAGE_SIZE_BYTES - 1) / FLASH_PAGE_SIZE_BYTES;
-          chsnprintf(out_buffer, sizeof(out_buffer),
-                     ">Erasing %u Flash Pages.\n", EraseInitStruct.NbSectors);
-          write(connfd, out_buffer, strlen(out_buffer));
-
-          SEND(connfd, "LENGTH OK\n");
-          HAL_FLASH_Unlock();
-          SEND(connfd, ">Erasing Chip...\n");
-          EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
-          EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
-          EraseInitStruct.Banks = FLASH_BANK_1;
-          EraseInitStruct.Sector = FLASH_SECTOR_1;
-
-          uint32_t e = 0;
-          ok &= HAL_FLASHEx_Erase(&EraseInitStruct, &e) == HAL_OK;
-          if (!ok) {
-            SEND(connfd, ">Error during Erase\n");
-            continue;
-          }
-
-          SEND(connfd, ">Erasing Done\n");
-
-          SEND(connfd, "SEND DATA\n");
-          buffer_fill = 0;
-          received_bytes = 0;
-          sha256_init(&sha256);
-          state = IMAGE_DATA;
-        } break;
-        case IMAGE_DATA:
-          // Read 32 bytes at a time (except for when the buffer ends)
-          if (buffer_fill < 32 &&
-              (buffer_fill + received_bytes) != image_size) {
-            continue;
-          }
-          received_bytes += buffer_fill;
-          sha256_update(&sha256, buffer, buffer_fill);
-          // zeropad, if we're in the last block of data
-          while (buffer_fill < 32) {
-            buffer[buffer_fill++] = 0;
-          }
-
-          if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, flash_address,
-                                (uint32_t)(&buffer)) != HAL_OK) {
-            SEND(connfd, ">Flash Program Error!\n");
-            ok = false;
-            continue;
-          }
-          flash_address += 32;
-          buffer_fill = 0;
-          if (received_bytes == image_size) {
-            // done, break out
-            break;
-          }
-          break;
-        default:
-          break;
-      }
-    }
-
-    // Verify image
-    if (ok) {
-      HAL_FLASH_Lock();
-
-      SEND(connfd, ">Verifying Hash");
-      uint8_t validate_hash[32];
-      memset(validate_hash, 0, sizeof(validate_hash));
-      // This verifies the received bytes
-      sha256_final(&sha256, validate_hash);
-      if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
-        SEND(connfd, ">Receive Verify OK\n");
+      if (strncmp("UPLOAD", buffer, command_len) == 0) {
+        // Start Upload
+        HandleUpload(connfd);
+      } else if (strncmp("SET_DEV_MODE", buffer, command_len) == 0) {
+        SetDevMode(connfd);
+      } else if (strncmp("GET_DEV_MODE", buffer, command_len) == 0) {
+        GetDevMode(connfd);
       } else {
-        SEND(connfd, ">Receive Verify Failed\n");
-        ok = false;
+        SEND(connfd, "> Unknown Command\n");
       }
-    }
-
-    if (ok) {
-      uint8_t validate_hash[32];
-      // Now verify the actual written bytes
-      sha256_init(&sha256);
-      memset(validate_hash, 0, sizeof(validate_hash));
-      sha256_update(&sha256, (uint8_t *)TARGET_FLASH_ADDRESS, image_size);
-      sha256_final(&sha256, validate_hash);
-      if (memcmp(validate_hash, hash, sizeof(hash)) == 0) {
-        SEND(connfd, ">Flash Verify OK\n");
-      } else {
-        SEND(connfd, ">Flash Verify Failed\n");
-        ok = false;
-      }
-    }
-
-#if BOARD_HAS_EEPROM
-    if (ok) {
-      // Store bootloader info
-      struct bootloader_info info = {0};
-      info.image_present = 1;
-      info.image_size = image_size;
-      memcpy(info.image_sha256, hash, sizeof(hash));
-      if (!ID_EEPROM_SaveBootloaderInfo(&info)) {
-        SEND(connfd, ">Error storing EEPROM");
-        ok = false;
-        continue;
-      }
-    }
-#endif
-
-    if (ok) {
-      // Allow reboot into user program
-      locked = false;
-      chMtxUnlock(&reboot_mutex);
     }
 
     // Sleep to allow TCP thread to send some data before closing the socket
     chThdSleep(TIME_MS2I(100));
 
     close(connfd);
+
+    // Allow reboot into user program
+    locked = false;
+    chMtxUnlock(&reboot_mutex);
   }
 }
 

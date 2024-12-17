@@ -18,6 +18,8 @@ struct bootloader_info {
   uint8_t image_present;
   uint32_t image_size;
   uint32_t image_sha256[8];
+  uint8_t developer_mode;
+  uint16_t checksum;
 } __attribute__((packed));
 #pragma pack(pop)
 

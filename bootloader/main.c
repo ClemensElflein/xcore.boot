@@ -24,7 +24,7 @@ void link_up(struct netif *netif) {
 
 void jump_to_user_program(void) {
   RTC->BKP0R = 0xB0043D;
-#if defined(BOARD_HAS_EEPROM) && !defined(ALLOW_UNSAFE_BOOT)
+#if defined(BOARD_HAS_EEPROM)
 
   // Check, if we have a valid image
   struct bootloader_info info = {0};
@@ -32,6 +32,16 @@ void jump_to_user_program(void) {
     // If we don't have a valid image, stay in bootloader and allow bootloading
     // again
     return;
+  }
+
+  if (info.developer_mode == 1) {
+    // Developer mode, reboot into user program
+    RTC->BKP0R = 0xB0043D;
+    MODIFY_REG(SYSCFG->UR2, SYSCFG_UR2_BOOT_ADD0,
+               (BOOT_ADDRESS >> 16) << SYSCFG_UR2_BOOT_ADD0_Pos);
+    NVIC_SystemReset();
+    while (1)
+      ;
   }
 
   if (info.image_present != 1) {

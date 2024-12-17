@@ -204,7 +204,9 @@ def upload_file(filename, ip, interface_ip=None):
             line = read_protocol_line(sock_file)
             if line is None:
                 return
-            if line == 'SEND HASH':
+            if variables.get("BOOTLOADER VERSION") == "xcore-boot v1.0" and line == "SEND HASH":
+                break
+            if line == 'SEND COMMAND':
                 break  # End of variables section
             if ':' in line:
                 name, value = line.split(':', 1)
@@ -215,6 +217,18 @@ def upload_file(filename, ip, interface_ip=None):
         print("Variables received from board:")
         for name, value in variables.items():
             print(f"{name}: {value}")
+
+        if variables.get("BOOTLOADER VERSION") != "xcore-boot v1.0":
+            print("Sending UPLOAD command")
+            # Send the UPLOAD command
+            sock_file.write("UPLOAD\n".encode())
+            sock_file.flush()
+            # Wait for "SEND HASH" as response
+            response = read_protocol_line(sock_file)
+            if response != 'SEND HASH':
+                print(f"Unexpected response after sending command: {response}")
+                return
+            print("Received SEND HASH")
 
         # Send SHA256 as hex string
         sock_file.write((sha256_hex + '\n').encode())

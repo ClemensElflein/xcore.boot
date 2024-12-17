@@ -73,6 +73,13 @@ bool ID_EEPROM_GetBootloaderInfo(struct bootloader_info *buffer) {
                                    (uint8_t *)buffer,
                                    sizeof(struct bootloader_info)) == MSG_OK;
   i2cReleaseBus(&I2CD4);
+
+  // Checksum mismatch, fill with default values
+  if (!success || checksum(buffer, sizeof(struct bootloader_info) - 2) !=
+                      buffer->checksum) {
+    memset(buffer, 0, sizeof(struct bootloader_info));
+  }
+
   return success;
 #else
   // no eeprom - we don't store anything (the board will just try to boot
@@ -135,6 +142,7 @@ bool ID_EEPROM_GetCarrierBoardInfo(struct carrier_board_info *buffer) {
 
 bool ID_EEPROM_SaveBootloaderInfo(struct bootloader_info *buffer) {
 #if BOARD_HAS_EEPROM
+  buffer->checksum = checksum(buffer, sizeof(struct bootloader_info) - 2);
   i2cAcquireBus(&I2CD4);
 
   bool success = true;
