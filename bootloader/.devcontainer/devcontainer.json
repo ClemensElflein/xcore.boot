@@ -1,31 +1,31 @@
 {
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-vscode.cpptools",
-                "ms-vscode.cpptools-extension-pack",
-                "xaver.clang-format",
-                "twxs.cmake",
-                "ms-vscode.cmake-tools",
-                "marus25.cortex-debug",
-                "mcu-debug.debug-tracker-vscode",
-                "mcu-debug.memory-view",
-                "mcu-debug.peripheral-viewer",
-                "mcu-debug.rtos-views",
-                "ms-vscode.cpptools-themes"
-            ]
-        }
-    },
-    "runArgs": [
-        "--network=host"
-    ],
-    "forwardPorts": [
-        3000
-    ],
-    "mounts": [
-        "source=${localWorkspaceFolderBasename}-build,target=${containerWorkspaceFolder}/build,type=volume"
-    ]
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "xaver.clang-format",
+        "twxs.cmake",
+        "ms-vscode.cmake-tools",
+        "marus25.cortex-debug",
+        "mcu-debug.debug-tracker-vscode",
+        "mcu-debug.memory-view",
+        "mcu-debug.peripheral-viewer",
+        "mcu-debug.rtos-views",
+        "ms-vscode.cpptools-themes"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ],
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-build,target=${containerWorkspaceFolder}/build,type=volume"
+  ],
+  "runArgs": [
+    "--network=host"
+  ]
 }

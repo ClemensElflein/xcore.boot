@@ -6,5 +6,3 @@ RUN apt-get update && apt-get install -y  \
     cmake \
     make \
     && rm -rf /var/lib/apt/lists/*
-
-
