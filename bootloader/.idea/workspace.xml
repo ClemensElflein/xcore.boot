@@ -40,16 +40,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bb55a81-22ac-441c-9b50-0667791a71de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakePresets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CMakePresets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bootloader.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/bootloader.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/id_eeprom.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/id_eeprom.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/id_eeprom.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/id_eeprom.h" afterDir="false" />
-    </list>
+    <list default="true" id="1bb55a81-22ac-441c-9b50-0667791a71de" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -260,7 +251,7 @@
       <workItem from="1730327830005" duration="2313000" />
       <workItem from="1730365400419" duration="539000" />
       <workItem from="1734365857474" duration="1876000" />
-      <workItem from="1734454374229" duration="5229000" />
+      <workItem from="1734454374229" duration="8233000" />
     </task>
     <servers />
   </component>
